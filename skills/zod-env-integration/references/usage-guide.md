@@ -74,15 +74,16 @@ export const getEnv = () => {
 
 **index.ts**
 ```typescript
-export { getEnv } from './get-env';
-export type { Env } from './env-schema';
+export * from './getEnv';
+export * from './envSchema';
 ```
 
 ## 使用多环境 getXxxEnv
 
 ### 1. 导入并使用
 ```typescript
-import { getServerEnv, getClientEnv } from '@/integrations/env';
+import { getServerEnv } from '@/integrations/server-env';
+import { getClientEnv } from '@/integrations/client-env';
 
 // 获取服务端环境变量
 const { DATABASE_URL } = getServerEnv();
@@ -95,7 +96,7 @@ console.log(VITE_APP_URL);
 
 ### 2. 生成的代码示例
 
-**envSchema.ts**
+**integrations/server-env/envSchema.ts**
 ```typescript
 import { z } from 'zod/v4';
 
@@ -104,15 +105,10 @@ export const serverEnvSchema = z.object({
   BETTER_AUTH_SECRET: z.string(),
 });
 
-export const clientEnvSchema = z.object({
-  VITE_APP_URL: z.string().optional(),
-});
-
 export type ServerEnv = z.infer<typeof serverEnvSchema>;
-export type ClientEnv = z.infer<typeof clientEnvSchema>;
 ```
 
-**getServerEnv.ts**
+**integrations/server-env/getServerEnv.ts**
 ```typescript
 import { serverEnvSchema } from './envSchema';
 
@@ -126,7 +122,24 @@ export const getServerEnv = () => {
 };
 ```
 
-**getClientEnv.ts**
+**integrations/server-env/index.ts**
+```typescript
+export * from './getServerEnv';
+export * from './envSchema';
+```
+
+**integrations/client-env/envSchema.ts**
+```typescript
+import { z } from 'zod/v4';
+
+export const clientEnvSchema = z.object({
+  VITE_APP_URL: z.string().optional(),
+});
+
+export type ClientEnv = z.infer<typeof clientEnvSchema>;
+```
+
+**integrations/client-env/getClientEnv.ts**
 ```typescript
 import { clientEnvSchema } from './envSchema';
 
@@ -140,11 +153,10 @@ export const getClientEnv = () => {
 };
 ```
 
-**index.ts**
+**integrations/client-env/index.ts**
 ```typescript
-export { getServerEnv } from './get-server-env';
-export { getClientEnv } from './get-client-env';
-export type { ServerEnv, ClientEnv } from './env-schema';
+export * from './getClientEnv';
+export * from './envSchema';
 ```
 
 ## 错误处理
