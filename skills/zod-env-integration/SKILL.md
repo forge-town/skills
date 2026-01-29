@@ -10,10 +10,12 @@ description: Generate Zod-based environment variable management code from .env.e
 ## 工作原理
 
 1. 在项目根目录准备 .env.example 文件
-2. 按照代码生成指南创建 Zod schema
-3. 实现带有适当错误处理的 getter 函数
-4. 创建桶导出以实现干净的导入
-5. 在应用程序中使用生成的代码
+2. 对于单环境：生成 `integrations/env/` 包含 schema、getter 和导出
+3. 对于多环境：为每个环境生成独立的 `integrations/{env}-env/` 目录
+4. 按照代码生成指南创建 Zod schema
+5. 实现带有适当错误处理的 getter 函数
+6. 创建桶导出以实现干净的导入
+7. 在应用程序中使用生成的代码
 
 ## 使用方法
 
@@ -34,20 +36,34 @@ cp skills/zod-env-integration/references/.env.example.template .env.example
 
 ## 输出
 
-手动过程 - 在 `integrations/env/` 目录中创建这些文件：
-
+**单环境：**
+创建 `integrations/env/` 目录包含：
 - `envSchema.ts` - Zod schema 和类型
-- `getEnv.ts` 或 `getServerEnv.ts`/`getClientEnv.ts` - Getter 函数
+- `getEnv.ts` - Getter 函数
 - `index.ts` - 桶导出
+
+**多环境：**
+为每个环境创建独立的目录：
+- `integrations/server-env/` - 服务端环境集成
+- `integrations/client-env/` - 客户端环境集成
+每个目录都有自己的 schema、getter 和导出。
 
 ## 呈现结果
 
 环境变量集成代码创建成功！
 
-生成的文件：
+**单环境生成的文件：**
 - integrations/env/envSchema.ts
 - integrations/env/getEnv.ts
 - integrations/env/index.ts
+
+**多环境生成的文件：**
+- integrations/server-env/envSchema.ts
+- integrations/server-env/getServerEnv.ts
+- integrations/server-env/index.ts
+- integrations/client-env/envSchema.ts
+- integrations/client-env/getClientEnv.ts
+- integrations/client-env/index.ts
 
 ## 故障排除
 

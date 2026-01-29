@@ -10,10 +10,14 @@
 ## 生成规则总览
 
 ### 文件结构
-生成的代码必须位于 `integrations/env/` 目录下，包含以下文件：
-- `env-schema.ts`：Zod schema 定义
-- `get-env.ts` 或 `get-xxx-env.ts`：getter 函数
-- `index.ts`：桶导出
+生成的代码必须位于以下目录下：
+
+**单环境：**
+- `integrations/env/` 目录下
+
+**多环境：**
+- 每个环境独立一个目录：`integrations/{envName}-env/`
+- 例如：`integrations/server-env/`, `integrations/client-env/`
 
 ### 代码规范
 1. **导入语句**：必须使用 `import { z } from 'zod/v4';`
@@ -91,7 +95,7 @@ DEBUG=false  # zod:boolean, # optional
 
 ### 生成的文件
 
-#### 1. env-schema.ts
+#### 1. envSchema.ts
 ```typescript
 import { z } from 'zod/v4';
 
@@ -114,9 +118,9 @@ export const envSchema = z.object({
 export type Env = z.infer<typeof envSchema>;
 ```
 
-#### 2. get-env.ts
+#### 2. getEnv.ts
 ```typescript
-import { envSchema } from './env-schema';
+import { envSchema } from './envSchema';
 
 export const getEnv = () => {
   const { error, data } = envSchema.safeParse(process.env);
@@ -130,8 +134,8 @@ export const getEnv = () => {
 
 #### 3. index.ts
 ```typescript
-export { getEnv } from './get-env';
-export type { Env } from './env-schema';
+export * from './getEnv';
+export * from './envSchema';
 ```
 
 ### 生成要点
@@ -144,38 +148,39 @@ export type { Env } from './env-schema';
 ### 触发条件
 存在多个 `.env.{env-name}.example` 文件
 
-### 环境名称提取
-从文件名提取环境名称：
-- `.env.server.example` → 环境名：`server` → Schema：`serverEnvSchema` → 函数：`getServerEnv`
-- `.env.client.example` → 环境名：`client` → Schema：`clientEnvSchema` → 函数：`getClientEnv`
+### 生成规则
+每个环境独立生成一个 integration 目录，目录结构如下：
 
-### 生成的文件
+```
+integrations/
+├── server-env/          # 服务端环境
+│   ├── envSchema.ts     # serverEnvSchema
+│   ├── getServerEnv.ts  # getServerEnv 函数
+│   └── index.ts         # 桶导出
+└── client-env/          # 客户端环境
+    ├── envSchema.ts     # clientEnvSchema
+    ├── getClientEnv.ts  # getClientEnv 函数
+    └── index.ts         # 桶导出
+```
 
-#### 1. env-schema.ts
+#### 服务端环境 (integrations/server-env/)
+
+##### 1. envSchema.ts
 ```typescript
 import { z } from 'zod/v4';
 
-// Server 环境的 schema
 export const serverEnvSchema = z.object({
   DATABASE_URL: z.string(),
   BETTER_AUTH_SECRET: z.string(),
   EMAIL_USER: z.string(),
 });
 
-// Client 环境的 schema
-export const clientEnvSchema = z.object({
-  VITE_APP_URL: z.string().optional(),
-  VITE_API_URL: z.string(),
-});
-
-// 导出类型
 export type ServerEnv = z.infer<typeof serverEnvSchema>;
-export type ClientEnv = z.infer<typeof clientEnvSchema>;
 ```
 
-#### 2. get-server-env.ts
+##### 2. getServerEnv.ts
 ```typescript
-import { serverEnvSchema } from './env-schema';
+import { serverEnvSchema } from './envSchema';
 
 export const getServerEnv = () => {
   const { error, data } = serverEnvSchema.safeParse(process.env);
@@ -187,9 +192,29 @@ export const getServerEnv = () => {
 };
 ```
 
-#### 3. get-client-env.ts
+##### 3. index.ts
 ```typescript
-import { clientEnvSchema } from './env-schema';
+export * from './getServerEnv';
+export * from './envSchema';
+```
+
+#### 客户端环境 (integrations/client-env/)
+
+##### 1. envSchema.ts
+```typescript
+import { z } from 'zod/v4';
+
+export const clientEnvSchema = z.object({
+  VITE_APP_URL: z.string().optional(),
+  VITE_API_URL: z.string(),
+});
+
+export type ClientEnv = z.infer<typeof clientEnvSchema>;
+```
+
+##### 2. getClientEnv.ts
+```typescript
+import { clientEnvSchema } from './envSchema';
 
 export const getClientEnv = () => {
   const { error, data } = clientEnvSchema.safeParse(process.env);
@@ -201,18 +226,16 @@ export const getClientEnv = () => {
 };
 ```
 
-#### 4. index.ts
+##### 3. index.ts
 ```typescript
-export { getServerEnv } from './get-server-env';
-export { getClientEnv } from './get-client-env';
-export type { ServerEnv, ClientEnv } from './env-schema';
+export * from './getClientEnv';
+export * from './envSchema';
 ```
 
 ### 生成要点
-1. 每个环境生成独立的 schema：`{envName}EnvSchema`
-2. 每个环境生成独立的 getter 函数：`get{EnvName}Env`
-3. getter 函数文件名：`get-{env-name}-env.ts`
-4. 错误消息中环境名称首字母大写：`Server env`、`Client env`
+1. 每个环境独立生成一个目录：`integrations/{envName}-env/`
+2. 每个目录包含完整的 integration：schema、getter、index
+3. 每个环境的 schema 只包含该环境的变量
 
 ## 字段类型和验证规则
 
@@ -327,7 +350,7 @@ PAYPAL_CLIENT_SECRET=your-paypal-client-secret  # optional
 PAYPAL_SANDBOX_CLIENT_SECRET=your-paypal-sandbox-client-secret  # optional
 ```
 
-生成 `env-schema.ts`：
+生成 `envSchema.ts`：
 ```typescript
 import { z } from 'zod/v4';
 
@@ -352,9 +375,9 @@ export const envSchema = z.object({
 export type Env = z.infer<typeof envSchema>;
 ```
 
-生成 `get-env.ts`：
+生成 `getEnv.ts`：
 ```typescript
-import { envSchema } from './env-schema';
+import { envSchema } from './envSchema';
 
 export const getEnv = () => {
   const { error, data } = envSchema.safeParse(process.env);
@@ -368,8 +391,8 @@ export const getEnv = () => {
 
 生成 `index.ts`：
 ```typescript
-export { getEnv } from './get-env';
-export type { Env } from './env-schema';
+export * from './getEnv';
+export * from './envSchema';
 ```
 
 配置：
@@ -420,7 +443,7 @@ PORT: z.number().min(1).max(65535)
 }
 ```
 
-生成 env-schema.ts：
+生成 envSchema.ts：
 ```typescript
 import { z } from 'zod/v4';
 
@@ -433,9 +456,9 @@ export const serverEnvSchema = z.object({
 export type ServerEnv = z.infer<typeof serverEnvSchema>;
 ```
 
-生成 get-server-env.ts：
+生成 getServerEnv.ts：
 ```typescript
-import { serverEnvSchema } from './env-schema';
+import { serverEnvSchema } from './envSchema';
 
 export const getServerEnv = () => {
   const { error, data } = serverEnvSchema.safeParse(process.env);
@@ -449,6 +472,6 @@ export const getServerEnv = () => {
 
 生成 index.ts：
 ```typescript
-export { getServerEnv } from './get-server-env';
-export type { ServerEnv } from './env-schema';
+export * from './getServerEnv';
+export * from './envSchema';
 ```
