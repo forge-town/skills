@@ -11,22 +11,19 @@
 ## 代码模版
 
 ```typescript
-export { {{PageName}} } from "./{{PageName}}";
+export * from "./{{PageName}}";
 ```
 
 ## 示例
 
 ```typescript
 // UserProfilePage/index.ts
-export { UserProfilePage } from "./UserProfilePage";
+export * from "./UserProfilePage";
 ```
 
 ## 错误示例
 
 ```typescript
-// ❌ 不要使用通配符导出（会导出所有内容，包括内部组件）
-export * from "./UserProfilePage";
-
 // ❌ 不要同时导出包装器和Content组件（应只导出包装器）
 export { UserProfilePage } from "./UserProfilePage";
 export { UserProfilePageContent } from "./UserProfilePageContent";

@@ -172,9 +172,6 @@ description: 基于标准化解剖学规范（Anatomy）生成前端页面结构
 **步骤 3.4: 生成 入口 (Index)**
 - 参考 `TEMPLATE_INDEX.md`。
 - 只导出包装器组件，不导出Content组件
-- 格式：`export { {{PageName}} } from "./{{PageName}}";`
-- **关键**：只导出{{PageName}}（包装器），不导出{{PageName}}Content
-- 例如：`export { UserMyProjectsPage } from "./UserMyProjectsPage";`
 
 **步骤 3.5: 质量验证 (新增)**
 - 验证 Store 模块是否符合 `TEMPLATE_STORE.md` 的规范
