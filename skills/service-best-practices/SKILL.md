@@ -51,9 +51,8 @@ Service 可发起 `db.transaction()`，DAO 接收可选 `tx` 参数。
 
 ## 详细参考
 
-完整的最佳实践指南请参阅 [references/service-best-practices-guide.md](references/service-best-practices-guide.md)，包含代码示例、模板和高级用法。
+完整的最佳实践指南请参阅 [service-best-practices-guide.md](references/service-best-practices-guide.md)，包含代码示例、模板和高级用法。
 
 ## 资源
 
-- `references/service-best-practices-guide.md`：完整的 Service 编写指南
-- `scripts/generate-service.py`：生成 Service 模板的脚本（如果可用）
+- [service-best-practices-guide.md](references/service-best-practices-guide.md)：完整的 Service 编写指南
