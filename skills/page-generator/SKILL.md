@@ -17,12 +17,12 @@ description: 基于标准化解剖学规范（Anatomy）生成前端页面结构
 ### 无监督生成 (Unsupervised)
 - **适用场景**：Anatomy 规范足够完备，AI 可自动推导完整结构。
 - **特点**：全自动运行，无需人工干预。
-- **流程**：直接使用 `judgeHasStore.ts` 的逻辑判断所有选项，生成完整结构。
+- **流程**：直接使用 [judgeHasStore.ts](references/judgeHasStore.ts) 的逻辑判断所有选项，生成完整结构。
 
 ### 有监督生成 (Supervised)
 - **适用场景**：存在选项判断的不确定性，需要人工确认。
 - **特点**：在关键节点（如是否需要 Store）提问确认，AI 提供推荐但由用户决策。
-- **流程**：使用 `judgeHasStore.ts` 的逻辑判断提供推荐值，提问用户确认是否采纳。
+- **流程**：使用 [judgeHasStore.ts](references/judgeHasStore.ts) 的逻辑判断提供推荐值，提问用户确认是否采纳。
 
 ## 主动模式选择 (Active Mode Selection)
 
@@ -57,7 +57,7 @@ description: 基于标准化解剖学规范（Anatomy）生成前端页面结构
 - **保持一致性**: 遵循现有页面的设计模式和交互方式
 
 ### 复杂度判断逻辑
-- 使用 `judgeUIComplexity.ts` 智能判断UI复杂度等级
+- 使用 [judgeUIComplexity.ts](references/judgeUIComplexity.ts) 智能判断UI复杂度等级
 - 基于页面名称、描述和功能需求自动推导
 - 支持手动指定复杂度覆盖自动判断
 
@@ -150,12 +150,12 @@ description: 基于标准化解剖学规范（Anatomy）生成前端页面结构
 请复用 References 中的模版，将 `{{PageName}}` 和 `{{camelCasePageName}}` 替换为实际值。
 
 **步骤 3.1: 生成 Store 模块 (可选)**
-- 如果 `hasStore=true`，参考 `TEMPLATE_STORE.md` 生成 4 个文件（Slice 模式）。
+- 如果 `hasStore=true`，参考 [TEMPLATE_STORE.md](references/TEMPLATE_STORE.md) 生成 4 个文件（Slice 模式）。
 - 注意 `provider.tsx` 中必须包含 `@/hooks/useInit` 的引用。
 - **重要验证**：确保 Store 仅存储 UI 状态，不存储业务实体数据。
 
 **步骤 3.2: 生成 UI 视图 (Content)**
-- 参考 `TEMPLATE_VIEW.md`。
+- 参考 [TEMPLATE_VIEW.md](references/TEMPLATE_VIEW.md)。
 - 根据 `uiComplexity` 参数选择合适的UI复杂度：
   - **simple**: 基础布局，无搜索/排序功能，仅基础展示
   - **standard**: 添加搜索和排序功能，适合数据管理页面
@@ -165,16 +165,16 @@ description: 基于标准化解剖学规范（Anatomy）生成前端页面结构
 - **重要**: 避免过度设计，只生成实际需要的功能
 
 **步骤 3.3: 生成 包装器 (Wrapper)**
-- 参考 `TEMPLATE_WRAPPER.md`。
+- 参考 [TEMPLATE_WRAPPER.md](references/TEMPLATE_WRAPPER.md)。
 - **关键**: 如果生成了 Store，Wrapper 必须正确引入并嵌套 `<StoreProvider>`。如果没生成 Store，则不要引入。
 - **布局处理**: 优先使用路由层面的统一布局，仅在页面需要独特布局时在 Wrapper 中包含布局组件。
 
 **步骤 3.4: 生成 入口 (Index)**
-- 参考 `TEMPLATE_INDEX.md`。
+- 参考 [TEMPLATE_INDEX.md](references/TEMPLATE_INDEX.md)。
 - 只导出包装器组件，不导出Content组件
 
 **步骤 3.5: 质量验证 (新增)**
-- 验证 Store 模块是否符合 `TEMPLATE_STORE.md` 的规范
+- 验证 Store 模块是否符合 [TEMPLATE_STORE.md](references/TEMPLATE_STORE.md) 的规范
 - 检查是否仅存储 UI 状态，不存储业务数据
 - 确认依赖注入和类型安全
 
