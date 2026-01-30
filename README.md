@@ -19,7 +19,8 @@ pnpx skills add forge-town/skills
 
 | Skill | Description |
 |-------|-------------|
-| [forge](skills/forge) | Our preferences and best practices |
+| [page-generator](skills/page-generator) | 基于标准化解剖学规范（Anatomy）生成前端页面结构；主动询问用户选择生成模式（无监督/有监督），支持自动生成 Wrapper、Content 和 Optional Store 模块 |
+| [zod-env-integration](skills/zod-env-integration) | Generate Zod-based environment variable management code from .env.example files. Use when you need to create type-safe env management, standardize env handling, or generate env schemas. |
 
 ## License
 
