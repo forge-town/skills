@@ -1,76 +1,76 @@
-# SKILLS.md
+# 技能.md
 
-This file provides guidance for creating and using skills in this repository.
+此文件提供在此存储库中创建和使用技能的指导。
 
-## Repository Overview
+## 存储库概述
 
-A collection of skills that extend AI capabilities. Skills are packaged instructions and scripts for various development tasks.
+一个扩展 AI 能力的技能集合。技能是针对各种开发任务打包的指令和脚本。
 
-## Creating a New Skill
+## 创建新技能
 
-### Directory Structure
+### 目录结构
 
 ```
 skills/
-  {skill-name}/           # kebab-case directory name
-    SKILL.md              # Required: skill definition
-    scripts/              # Required: executable scripts
-      {script-name}.ts    # TypeScript scripts (preferred)
+  {skill-name}/           # kebab-case 目录名
+    SKILL.md              # 必需：技能定义
+    scripts/              # 必需：可执行脚本
+      {script-name}.ts    # TypeScript 脚本（首选）
 ```
 
-### Naming Conventions
+### 命名约定
 
-- **Skill directory**: `kebab-case` (e.g., `vercel-deploy`, `log-monitor`)
-- **SKILL.md**: Always uppercase, always this exact filename
-- **Scripts**: `kebab-case.ts` (e.g., `deploy.ts`, `fetch-logs.ts`)
+- **技能目录**：`kebab-case`（例如 `vercel-deploy`、`log-monitor`）
+- **SKILL.md**：始终大写，始终为此确切文件名
+- **脚本**：`kebab-case.ts`（例如 `deploy.ts`、`fetch-logs.ts`）
 
-### SKILL.md Format
+### SKILL.md 格式
 
 ```markdown
 ---
 name: {skill-name}
-description: {One sentence describing when to use this skill. Include trigger phrases like "Deploy my app", "Check logs", etc.}
+description: {一句描述何时使用此技能的话。包括触发短语如“部署我的应用”、“检查日志”等。}
 ---
 
-# {Skill Title}
+# {技能标题}
 
-{Brief description of what the skill does.}
+{简要描述技能的功能。}
 
-## How It Works
+## 工作原理
 
-{Numbered list explaining the skill's workflow}
+{编号列表解释技能的工作流程}
 
-## Usage
+## 使用方法
 
 ```bash
 pnpx tsx /mnt/skills/user/{skill-name}/scripts/{script}.ts [args]
 ```
 
-**Arguments:**
-- `arg1` - Description (defaults to X)
+**参数：**
+- `arg1` - 描述（默认为 X）
 
-**Examples:**
-{Show 2-3 common usage patterns}
+**示例：**
+{显示 2-3 个常见使用模式}
 
-## Output
+## 输出
 
-{Show example output users will see}
+{显示用户将看到的示例输出}
 
-## Present Results
+## 呈现结果
 
-{Template for how results should be formatted when presenting to users}
+{呈现给用户时结果格式化的模板}
 
-## Troubleshooting
+## 故障排除
 
-{Common issues and solutions, especially network/permissions errors}
+{常见问题和解决方案，尤其是网络/权限错误}
 ```
 
-### Script Requirements
+### 脚本要求
 
-- Use TypeScript with proper type annotations
+- 使用带有适当类型注解的 TypeScript
 
-### Installation
+### 安装
 
-Skills can be installed by copying the skill directory to the appropriate location or adding the SKILL.md content to your project knowledge.
+可以通过将技能目录复制到适当位置或将 SKILL.md 内容添加到项目知识中来安装技能。
 
-If the skill requires network access, ensure the necessary domains are allowed.
+如果技能需要网络访问，请确保允许必要的域。
