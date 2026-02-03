@@ -42,19 +42,7 @@ description: 创建有效技能的中文指南。当用户想要创建一个新�
 
 ### 技能剖析
 
-每个技能由必需的 SKILL.md 文件和可选捆绑资源组成：
-
-```
-skill-name/
-├── SKILL.md (必需)
-│   ├── YAML 前言元数据 (必需)
-│   │   ├── name: (必需)
-│   │   └── description: (必需)
-│   └── Markdown 说明 (必需)
-└── 捆绑资源 (可选)
-    ├── scripts/          - 可执行代码 (Python/Bash/等)
-    └── references/       - 文档，旨在根据需要加载到上下文中，包括样例代码和模板
-```
+每个技能由必需的 SKILL.md 文件和可选捆绑资源组成。详细的目录结构规范请参考 `references/anatomy.json`，其中以 JSON 格式定义了技能的完整结构要求，包括必需和可选组件。
 
 #### SKILL.md (必需)
 
