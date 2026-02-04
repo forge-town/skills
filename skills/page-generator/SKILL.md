@@ -94,7 +94,8 @@ description: 基于标准化解剖学规范（Anatomy）生成前端页面结构
 5.  **Index模版**: [references/TEMPLATE_INDEX.md](references/TEMPLATE_INDEX.md) (入口文件写法)
 6.  **Wrapper模版**: [references/TEMPLATE_WRAPPER.md](references/TEMPLATE_WRAPPER.md) (依赖注入层写法)
 7.  **View模版**: [references/TEMPLATE_VIEW.md](references/TEMPLATE_VIEW.md) (UI层写法)
-8.  **Store模版**: [references/TEMPLATE_STORE.md](references/TEMPLATE_STORE.md) (状态层写法)
+
+*💡 Store 相关规范请参考 `store-best-practice` 技能*
 
 ## 质量保证 (Quality Assurance)
 
@@ -135,6 +136,7 @@ description: 基于标准化解剖学规范（Anatomy）生成前端页面结构
 ### 1.1. Store 判断逻辑
 - **无监督模式**：直接调用 `judgeHasStoreFromDescription()` 自动判断
 - **有监督模式**：调用 `judgeHasStoreSupervised()` 获取推荐，询问用户确认
+- **重要**：如果判断需要 Store，请使用 `store-best-practice` 技能生成相应的 Store 模块
 
 ### 1.2. UI 复杂度判断
 - **无监督模式**：直接调用 `judgeUIComplexity()` 自动判断
@@ -143,16 +145,15 @@ description: 基于标准化解剖学规范（Anatomy）生成前端页面结构
 ### 2. 规划文件列表
 根据 `ANATOMY.md` 和 `hasStore` 参数，规划需要创建的文件路径。
 - 基础文件：`index.ts`, `[PageName].tsx`, `[PageName]Content.tsx`
-- 可选文件：`_store/index.ts`, `_store/provider.tsx`, `_store/[camelCase]Slice.ts`, `_store/[camelCase]Store.ts` (仅当 `hasStore=true`)
+- 可选文件：`_store/index.ts`, `_store/provider.tsx`, `_store/[camelCase]Slice.ts`, `_store/[camelCase]Store.ts` (仅当 `hasStore=true`，通过 `store-best-practice` 技能生成)
 
 ### 3. 代码生成 (按顺序)
 
 请复用 References 中的模版，将 `{{PageName}}` 和 `{{camelCasePageName}}` 替换为实际值。
 
-**步骤 3.1: 生成 Store 模块 (可选)**
-- 如果 `hasStore=true`，参考 [TEMPLATE_STORE.md](references/TEMPLATE_STORE.md) 生成 4 个文件（Slice 模式）。
-- 注意 `provider.tsx` 中必须包含 `@/hooks/useInit` 的引用。
-- **重要验证**：确保 Store 仅存储 UI 状态，不存储业务实体数据。
+**步骤 3.1: Store 模块处理**
+- 如果 `hasStore=true`，使用 `store-best-practice` 技能生成相应的 Store 模块
+- Store 文件将放置在 `_store/` 目录下
 
 **步骤 3.2: 生成 UI 视图 (Content)**
 - 参考 [TEMPLATE_VIEW.md](references/TEMPLATE_VIEW.md)。
@@ -166,17 +167,17 @@ description: 基于标准化解剖学规范（Anatomy）生成前端页面结构
 
 **步骤 3.3: 生成 包装器 (Wrapper)**
 - 参考 [TEMPLATE_WRAPPER.md](references/TEMPLATE_WRAPPER.md)。
-- **关键**: 如果生成了 Store，Wrapper 必须正确引入并嵌套 `<StoreProvider>`。如果没生成 Store，则不要引入。
+- **关键**: 如果需要 Store（通过 `store-best-practice` 技能生成），Wrapper 必须正确引入并嵌套 `<StoreProvider>`。如果不需要 Store，则不要引入。
 - **布局处理**: 优先使用路由层面的统一布局，仅在页面需要独特布局时在 Wrapper 中包含布局组件。
 
 **步骤 3.4: 生成 入口 (Index)**
 - 参考 [TEMPLATE_INDEX.md](references/TEMPLATE_INDEX.md)。
 - 只导出包装器组件，不导出Content组件
 
-**步骤 3.5: 质量验证 (新增)**
-- 验证 Store 模块是否符合 [TEMPLATE_STORE.md](references/TEMPLATE_STORE.md) 的规范
-- 检查是否仅存储 UI 状态，不存储业务数据
-- 确认依赖注入和类型安全
+**步骤 3.5: 质量验证**
+- 验证生成的代码是否符合项目规范
+- 检查类型安全和代码质量
+- 确认依赖注入正确
 
 ### 4. 输出确认
 - 告知用户页面已生成至指定路径。

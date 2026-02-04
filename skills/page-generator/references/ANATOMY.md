@@ -33,4 +33,4 @@
 
 - **Wrapper 实现**: 参见 [TEMPLATE_WRAPPER.md](./TEMPLATE_WRAPPER.md)
 - **View 实现**: 参见 [TEMPLATE_VIEW.md](./TEMPLATE_VIEW.md)
-- **Store 实现**: 参见 [TEMPLATE_STORE.md](./TEMPLATE_STORE.md) (支持 Slice 模式)
+- **Store 实现**: 请使用 `store-best-practice` 技能生成 (支持 Slice 模式)
