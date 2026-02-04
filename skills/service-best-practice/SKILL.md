@@ -1,5 +1,5 @@
 ---
-name: service-best-practices
+name: service-best-practice
 description: 帮助开发者根据项目指南编写 Services，以 tRPC + Service + DAO 架构的最佳实践。提供 Service 结构、依赖注入、错误处理、代码示例、模板、样板代码生成和最佳实践验证的指导。在创建或重构代码库中的 Service 文件时使用。
 ---
 
@@ -51,8 +51,8 @@ Service 可发起 `db.transaction()`，DAO 接收可选 `tx` 参数。
 
 ## 详细参考
 
-完整的最佳实践指南请参阅 [service-best-practices-guide.md](references/service-best-practices-guide.md)，包含代码示例、模板和高级用法。
+完整的最佳实践指南请参阅 [service-best-practice-guide.md](references/service-best-practice-guide.md)，包含代码示例、模板和高级用法。
 
 ## 资源
 
-- [service-best-practices-guide.md](references/service-best-practices-guide.md)：完整的 Service 编写指南
+- [service-best-practice-guide.md](references/service-best-practice-guide.md)：完整的 Service 编写指南
