@@ -25,6 +25,9 @@ pnpx skills add forge-town/skills
 | [skill-creator](skills/skill-creator) | 创建有效技能的中文指南。当用户想要创建一个新技能（或更新现有技能）来扩展 AI 的能力时，应使用此技能，包括专门知识、工作流程或工具集成。生成的新技能应使用中文描述。 |
 | [store-best-practice](skills/store-best-practice) | 使用 Zustand 或类似状态管理库生成最佳实践的 store 实现。当您需要创建可扩展、类型安全的 store 时使用，包括适当的 slice 模式和 provider 设置。 |
 | [zod-env-integration](skills/zod-env-integration) | 从 .env.example 文件生成基于 Zod 的环境变量管理代码。当您需要创建类型安全的 env 管理、标准化 env 处理或生成 env 模式时使用。 |
+| [db-table-naming](skills/db-table-naming) | 用于验证并自动修正数据库与数据表名的命名规范，确保符合团队约定的小写字母+下划线格式，支持批量检查与修复。当需要规范化数据库或数据表命名时使用。 |
+| [barrel-export](skills/barrel-export) | 用于自动生成、优化、修复和检查项目中的桶导出文件，确保所有 `index.ts`/`index.js` 遵循统一的导出规范，提升模块导入的一致性与可维护性。 |
+| [classname-refactor](skills/classname-refactor/) | 自动识别并转换代码中 className 属性的模板字符串为 `cn` 函数调用，提升样式代码的可维护性与可读性。在需要重构 React 组件样式写法时使用。 |
 
 ## 许可证
 
