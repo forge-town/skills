@@ -179,10 +179,11 @@ AI 仅在用户需要这些功能时阅读 REDLINING.md 或 OOXML.md。
 
 1. 通过具体示例理解技能
 2. 规划可重用技能内容 (脚本、参考资料、资产)
-3. 初始化技能 (运行 init_skill.py)
+3. 初始化技能 (请参阅 `references/skill-initialization-guide.md`)
 4. 编辑技能 (实现资源并编写 SKILL.md)
-5. 打包技能 (运行 package_skill.py)
-6. 基于实际使用迭代
+5. 验证技能 (请参阅 `references/skill-validation-guide.md`)
+6. 打包技能 (请参阅 `references/skill-packaging-guide.md`)
+7. 基于实际使用迭代
 
 按顺序遵循这些步骤，仅在有明确原因时跳过。
 
@@ -233,22 +234,7 @@ AI 仅在用户需要这些功能时阅读 REDLINING.md 或 OOXML.md。
 
 仅在正在开发的技能已经存在且需要迭代或打包时跳过此步骤。在这种情况下，继续下一步。
 
-从头创建新技能时，始终运行 `init_skill.py` 脚本。该脚本方便地生成新的模板技能目录，该目录自动包含技能所需的一切，使技能创建过程更加高效和可靠。
-
-用法：
-
-```bash
-scripts/init_skill.py <skill-name> --path <output-directory>
-```
-
-该脚本：
-
-- 在指定路径创建技能目录
-- 生成具有适当前言和 TODO 占位符的 SKILL.md 模板
-- 创建示例资源目录：`scripts/` 和 `references/`
-- 在每个目录中添加可自定义或删除的示例文件
-
-初始化后，根据需要自定义或删除生成的 SKILL.md 和示例文件。
+从头创建新技能时，请遵循 `references/skill-initialization-guide.md` 中的详细步骤。该指南提供创建技能目录结构、生成 SKILL.md 模板以及设置初始资源目录的完整说明。
 
 ### 步骤 4：编辑技能
 
@@ -258,8 +244,9 @@ scripts/init_skill.py <skill-name> --path <output-directory>
 
 根据您的技能需求咨询这些有帮助的指南：
 
-- **多步骤过程**：请参阅 references/workflows.md 以获取顺序工作流程和条件逻辑
-- **特定输出格式或质量标准**：请参阅 references/output-patterns.md 以获取模板和示例模式
+- **多步骤过程**：请参阅 `references/workflows.md` 以获取顺序工作流程和条件逻辑
+- **特定输出格式或质量标准**：请参阅 `references/output-patterns.md` 以获取模板和示例模式
+- **技能结构剖析**：请参阅 `references/anatomy.json` 以获取完整的目录结构规范
 
 这些文件包含有效技能设计的既定最佳实践。
 
@@ -269,7 +256,7 @@ scripts/init_skill.py <skill-name> --path <output-directory>
 
 添加的脚本必须通过实际运行来测试，以确保没有错误且输出符合预期。如果有很多相似脚本，只需要测试代表性样本以确保信心它们都有效，同时平衡完成时间。
 
-不需要的任何示例文件和目录应删除。初始化脚本在 `scripts/` 和 `references/` 中创建示例文件以演示结构，但大多数技能不需要所有这些。
+不需要的任何示例文件和目录应删除。初始化过程在 `scripts/` 和 `references/` 中创建示例文件以演示结构，但大多数技能不需要所有这些。
 
 #### 更新 SKILL.md
 
@@ -293,33 +280,15 @@ scripts/init_skill.py <skill-name> --path <output-directory>
 
 **重要：** 所有生成的技能应使用中文编写 SKILL.md，包括描述和主体内容，以匹配用户的语言偏好。
 
-### 步骤 5：打包技能
+### 步骤 5：验证技能
 
-一旦技能开发完成，必须将其打包成可分发的 .skill 文件以与用户共享。打包过程首先自动验证技能以确保它满足所有要求：
+一旦技能开发完成，在打包或分发之前验证其结构和内容。请遵循 `references/skill-validation-guide.md` 中的详细检查清单，确保技能符合所有标准并能正常工作。
 
-```bash
-scripts/package_skill.py <path/to/skill-folder>
-```
+### 步骤 6：打包技能
 
-可选输出目录指定：
+验证通过后，将技能打包成可分发的 .skill 文件。请遵循 `references/skill-packaging-guide.md` 中的步骤创建 ZIP 格式的包文件，便于分发和安装。
 
-```bash
-scripts/package_skill.py <path/to/skill-folder> ./dist
-```
-
-打包脚本将：
-
-1. **验证** 技能自动，检查：
-   - YAML 前言格式和必需字段
-   - 技能命名约定和目录结构
-   - 描述完整性和质量
-   - 文件组织和资源引用
-
-2. **打包** 技能如果验证通过，创建一个名为技能名称的 .skill 文件（例如，`my-skill.skill`），该文件包含所有文件并维护正确的目录结构以进行分发。.skill 文件是带有 .skill 扩展名的 zip 文件。
-
-如果验证失败，脚本将报告错误并退出而不创建包。修复任何验证错误并再次运行打包命令。
-
-### 步骤 6：迭代
+### 步骤 7：迭代
 
 测试技能后，用户可能请求改进。通常这发生在使用技能后不久，带有技能表现的新鲜上下文。
 

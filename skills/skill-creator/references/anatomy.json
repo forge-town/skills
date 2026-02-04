@@ -8,12 +8,6 @@
       "description": "主文档，描述技能作用与使用场景。"
     },
     {
-      "name": "scripts",
-      "type": "dir",
-      "optional": true,
-      "description": "可执行脚本，例如自动化或工具。"
-    },
-    {
       "name": "references",
       "type": "dir",
       "optional": true,
