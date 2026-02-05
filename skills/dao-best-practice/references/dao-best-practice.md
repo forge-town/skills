@@ -221,3 +221,26 @@ async findWithRelations(id: string) {
 ```
 
 遵循这些规范可确保DAO代码的高质量、可维护性和一致性。参考 Drizzle ORM 官方文档：[Select](https://orm.drizzle.team/docs/select), [Insert](https://orm.drizzle.team/docs/insert), [Transactions](https://orm.drizzle.team/docs/transactions), [Performance](https://orm.drizzle.team/docs/performance)。
+
+## 代码验证清单
+
+在编写或审查DAO代码时，请使用以下清单验证代码质量：
+
+### 导出形式检查
+- [ ] DAO应导出为对象形式：`export const {tableName}Dao = { ... }`
+- [ ] 确保导出语句正确，不使用其他导出方式
+
+### 方法命名检查
+- [ ] 所有方法名使用驼峰命名法（camelCase）
+- [ ] 避免使用大写字母开头的PascalCase命名
+- [ ] 示例：`findById`, `createUser`, `updateProfile`
+
+### 导入依赖检查
+- [ ] 从 `drizzle-orm` 导入必要的函数
+- [ ] 至少包含基本的查询和条件函数
+- [ ] 示例：`import { eq, and, or, desc, asc } from "drizzle-orm"`
+
+### 验证通过标准
+- 如果所有检查项都通过，代码符合最佳实践
+- 如果发现问题，请根据上述规范进行修复
+- 建议在代码审查时使用此清单

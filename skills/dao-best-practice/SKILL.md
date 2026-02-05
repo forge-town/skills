@@ -12,8 +12,8 @@ description: 用于规范化DAO文件，确保遵循Drizzle ORM最佳实践，�
 1. 识别需要规范化的DAO文件，通常位于 `apps/web/src/db/models/daos/`。
 
 2. 阅读参考指南：[DAO最佳实践指南](references/dao-best-practice.md) 以了解规范。
-3. 代码示例：[DAO代码参考](references/template-dao.ts) 作为参考
-4. 使用脚本检查文件：[检查DAO脚本](scripts/check-dao.js) （如果可用）。
+3. 代码示例：[DAO代码参考](references/template-dao.ts) 作为参考。
+4. 使用文档中的[代码验证清单](references/dao-best-practice.md#代码验证清单)检查文件是否符合规范。
 
 5. 重构文件以匹配指南中的模式。
 
