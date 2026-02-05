@@ -1,6 +1,4 @@
 import { cn } from "@code-arena/ui";
-
-// shadcn/ui 核心组件
 import { Button } from "@code-arena/ui";
 import {
   Card,
@@ -14,7 +12,6 @@ import { Separator } from "@code-arena/ui";
 export const SimpleNoStorePageContent = () => {
   return (
     <div className={cn("container mx-auto py-6 space-y-6")}>
-      {/* 页面头部 */}
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">关于我们</h1>
@@ -29,9 +26,7 @@ export const SimpleNoStorePageContent = () => {
 
       <Separator />
 
-      {/* 主要内容区域 */}
       <div className="space-y-6">
-        {/* 公司介绍 */}
         <Card>
           <CardHeader>
             <CardTitle>公司介绍</CardTitle>
@@ -49,7 +44,6 @@ export const SimpleNoStorePageContent = () => {
           </CardContent>
         </Card>
 
-        {/* 使命愿景 */}
         <Card>
           <CardHeader>
             <CardTitle>使命与愿景</CardTitle>
@@ -73,7 +67,6 @@ export const SimpleNoStorePageContent = () => {
           </CardContent>
         </Card>
 
-        {/* 团队介绍 */}
         <Card>
           <CardHeader>
             <CardTitle>我们的团队</CardTitle>

@@ -2,7 +2,6 @@ import { cn } from "@code-arena/ui";
 import { useStore } from "zustand";
 import { useStandardWithStoreStore } from "./_store";
 
-// shadcn/ui 核心组件
 import { Button } from "@code-arena/ui";
 import {
   Card,
@@ -23,7 +22,6 @@ import {
 import { Badge } from "@code-arena/ui";
 import { Separator } from "@code-arena/ui";
 
-// 扩展组件
 import { Skeleton } from "@code-arena/ui";
 import {
   Table,
@@ -44,7 +42,6 @@ export const StandardWithStorePageContent = () => {
 
   return (
     <div className={cn("container mx-auto py-6 space-y-6")}>
-      {/* 页面头部 */}
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">用户管理</h1>
@@ -60,7 +57,6 @@ export const StandardWithStorePageContent = () => {
 
       <Separator />
 
-      {/* 控制面板 */}
       <Card>
         <CardContent className="pt-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-end">
@@ -97,7 +93,6 @@ export const StandardWithStorePageContent = () => {
         </CardContent>
       </Card>
 
-      {/* 数据展示区 */}
       <Card>
         <CardHeader>
           <CardTitle>用户列表</CardTitle>
@@ -128,7 +123,6 @@ export const StandardWithStorePageContent = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {/* 示例数据 */}
                 <TableRow>
                   <TableCell>张三</TableCell>
                   <TableCell>zhangsan@example.com</TableCell>
