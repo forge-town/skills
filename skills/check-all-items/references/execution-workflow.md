@@ -76,10 +76,10 @@ const executionGroups = [
 - 生成问题摘要
 
 ### 2.4 After Hook触发
-每个技能检查完成后立即触发验证：
+所有技能检查完成后统一触发验证（仅执行一次）：
 
 ```bash
-# 执行标准化验证指令
+# 在所有检查完成后执行标准化验证指令
 npm run quality
 
 # 捕获结果
@@ -204,8 +204,7 @@ execution:
 ```yaml
 validation:
   command: "npm run quality"
-  run_after_each: true
-  run_after_all: true
+  run_after_all: true  # 仅在所有检查完成后触发一次
   timeout_seconds: 120
 ```
 
