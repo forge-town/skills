@@ -13,9 +13,11 @@ description: 用于规范化DAO文件，确保遵循Drizzle ORM最佳实践，�
 
 2. 阅读参考指南：[DAO最佳实践指南](references/dao-best-practice.md) 以了解规范。
 3. 代码示例：[DAO代码参考](references/template-dao.ts) 作为参考。
-4. 使用文档中的[代码验证清单](references/dao-best-practice.md#代码验证清单)检查文件是否符合规范。
+4. 使用[检查清单](references/checklist.md)验证文件是否符合规范。
 
 5. 重构文件以匹配指南中的模式。
+
+**重要：** 调用完毕技能后，强制查看[检查清单](references/checklist.md)，并确保返回的内容完全匹配清单中的所有项目。
 
 ## 核心规范
 
