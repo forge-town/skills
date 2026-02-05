@@ -14,7 +14,7 @@ description: 基于标准化解剖学规范（Anatomy）生成前端页面结构
 1. 分析页面需求，确定UI复杂度和状态管理需求
 2. **严格参照** [best-practice-examples/](best-practice-examples/) 中的代码结构和模式
 3. 根据UI复杂度生成相应的Content组件
-4. 如果需要Store，使用store-best-practice技能生成Store模块
+4. 如果需要Store，判断是生成新Store还是使用现有Store；如果生成新Store，使用store-best-practice技能生成Store模块
 5. 创建Wrapper组件处理依赖注入
 6. 实现Index文件提供干净的导出接口
 7. 在应用程序中注册路由并使用生成的页面
@@ -112,6 +112,8 @@ description: 基于标准化解剖学规范（Anatomy）生成前端页面结构
 ### 输入参数规范
 - `pageName`: 页面名称，必须为 PascalCase 格式
 - `features.hasStore`: 是否需要状态管理（系统自动判断）
+- `features.useExistingStore`: 如果需要store，是否使用现有store（true/false，系统自动判断）
+- `features.existingStorePath`: 如果使用现有store，指定store的导入路径（例如 "@/pages/UserPage/_store"）
 - `features.uiComplexity`: UI 复杂度等级（simple/standard/complex，系统自动判断）
 - `description`: 页面功能描述，用于智能判断复杂度
 
@@ -165,28 +167,30 @@ description: 基于标准化解剖学规范（Anatomy）生成前端页面结构
 ### 1. 意图解析与校验
 - 读取用户指令，确定生成模式
 - 使用 `schema.ts` 中的规则校验参数
+- **自动生成页面名称**：根据用户描述和指令，自动生成 PascalCase 格式的页面名称（例如，用户说"创建用户管理页面"则生成"UserManagementPage"）
 
 ### 1.1. Store 判断逻辑
-- **无监督模式**：直接调用 `judgeHasStoreFromDescription()` 自动判断
-- **有监督模式**：调用 `judgeHasStoreSupervised()` 获取推荐，询问用户确认
-- **重要**：如果判断需要 Store，请使用 `store-best-practice` 技能生成相应的 Store 模块
+- **无监督模式**：直接调用 `judgeHasStoreFromDescription()` 自动判断是否需要store，如果需要，进一步调用 `judgeUseExistingStoreFromDescription()` 判断是否使用现有store，如果使用现有store，调用 `inferExistingStorePath()` 推导路径
+- **有监督模式**：调用 `judgeHasStoreSupervised()` 获取推荐，询问用户确认是否采纳；如果需要store，进一步调用 `judgeUseExistingStoreSupervised()` 询问是否使用现有store，如果使用，询问用户指定路径或使用推导路径
+- **重要**：如果判断需要新Store，请使用 `store-best-practice` 技能生成相应的 Store 模块；如果使用现有store，则无需生成
 
 ### 1.2. UI 复杂度判断
 - **无监督模式**：直接调用 `judgeUIComplexity()` 自动判断
 - **有监督模式**：调用 `judgeUIComplexitySupervised()` 获取推荐，询问用户确认
 
 ### 2. 规划文件列表
-根据 `ANATOMY.md` 和 `hasStore` 参数，规划需要创建的文件路径。
+根据 `ANATOMY.md` 和 `hasStore`、`useExistingStore` 参数，规划需要创建的文件路径。
 - 基础文件：`index.ts`, `[PageName].tsx`, `[PageName]Content.tsx`
-- 可选文件：`_store/index.ts`, `_store/provider.tsx`, `_store/[camelCase]Slice.ts`, `_store/[camelCase]Store.ts` (仅当 `hasStore=true`，通过 `store-best-practice` 技能生成)
+- 可选文件：`_store/index.ts`, `_store/provider.tsx`, `_store/[camelCase]Slice.ts`, `_store/[camelCase]Store.ts` (仅当 `hasStore=true` 且 `useExistingStore=false`，通过 `store-best-practice` 技能生成)
 
 ### 3. 代码生成 (按顺序)
 
 请复用 References 中的模版，将 `{{PageName}}` 和 `{{camelCasePageName}}` 替换为实际值。
 
 **步骤 3.1: Store 模块处理**
-- 如果 `hasStore=true`，使用 `store-best-practice` 技能生成相应的 Store 模块
-- Store 文件将放置在 `_store/` 目录下
+- 如果 `hasStore=true` 且 `useExistingStore=false`，使用 `store-best-practice` 技能生成相应的 Store 模块
+- 如果 `hasStore=true` 且 `useExistingStore=true`，使用指定的 `existingStorePath` 导入现有 Store
+- Store 文件将放置在 `_store/` 目录下（仅当生成新Store时）
 
 **步骤 3.2: 生成 UI 视图 (Content)**
 - 参考 [TEMPLATE_VIEW.md](references/TEMPLATE_VIEW.md)。
@@ -194,13 +198,19 @@ description: 基于标准化解剖学规范（Anatomy）生成前端页面结构
   - **simple**: 基础布局，无搜索/排序功能，仅基础展示
   - **standard**: 添加搜索和排序功能，适合数据管理页面
   - **complex**: 添加标签页、高级过滤、批量操作等，适合功能丰富的页面
-- 如果有 Store，保留 Store 连接的 TODO 注释。
+- 如果 `hasStore=true`，替换 `{{StoreImport}}` 为相应的import语句：
+  - 如果 `useExistingStore=false`：`import { useStore } from "zustand"; import { use{{PageName}}Store } from "./_store";`
+  - 如果 `useExistingStore=true`：`import { useStore } from "zustand"; import { use{{PageName}}Store, {{PageName}}StoreProvider } from "{{existingStorePath}}";`
+- 如果 `hasStore=true`，替换 `{{StoreConnection}}` 为 `const { loading, searchQuery, selectedSort, viewMode } = use{{PageName}}Store();`，否则替换为空
 - 使用 `cn` 和 Flex 布局生成基础骨架。
 - **重要**: 避免过度设计，只生成实际需要的功能
 
 **步骤 3.3: 生成 包装器 (Wrapper)**
 - 参考 [TEMPLATE_WRAPPER.md](references/TEMPLATE_WRAPPER.md)。
-- **关键**: 如果需要 Store（通过 `store-best-practice` 技能生成），Wrapper 必须正确引入并嵌套 `<StoreProvider>`。如果不需要 Store，则不要引入。
+- **关键**: 如果需要 Store，Wrapper 必须正确引入并嵌套 `<StoreProvider>`：
+  - 如果 `useExistingStore=false`：引入 `{{PageName}}StoreProvider` from "./_store"
+  - 如果 `useExistingStore=true`：引入 `{{PageName}}StoreProvider` from "{{existingStorePath}}"
+- 如果不需要 Store，则不要引入。
 - **布局处理**: 优先使用路由层面的统一布局，仅在页面需要独特布局时在 Wrapper 中包含布局组件。
 
 **步骤 3.4: 生成 入口 (Index)**
