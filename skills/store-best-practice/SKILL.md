@@ -21,7 +21,7 @@ description: 使用 Zustand 或类似状态管理库生成最佳实践的 store 
 
 此技能提供文档和示例。按照参考指南中的步骤操作：
 
-- [Store 最佳实践指南](references/store-best-practices-guide.md) - Store 设计和实现的详细规则
+- [Store 最佳实践指南](references/store-best-practice-guide.md) - Store 设计和实现的详细规则
 - [最佳实践示例](best-practice-examples/) - **必须严格参照的** Zustand store 示例
 
 **重要：** 实现时必须严格遵循 best-practice-examples 中的代码结构、命名约定和模式。任何修改都可能破坏类型安全和可维护性。
