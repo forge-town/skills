@@ -8,3 +8,6 @@
 4. [ ] 必须按需生成状态和方法，不允许创建未使用的状态或方法
 5. [ ] 生成的方法必须适合组件直接调用，例如使用 handleXxx 命名，而非 setXxx 之类的 setter
 6. [ ] 不允许将从 useList 或 useQuery 直接得到的 data 数据转存到 store 中
+
+7. [ ] Slice纯函数：`createXxxSlice` 仅负责状态修改，内部禁止包含异步请求、DOM操作、第三方库调用等副作用
+8. [ ] 组件导入限制：仅允许通过桶导出入口使用`import *`导入，禁止直连slice/store源文件
