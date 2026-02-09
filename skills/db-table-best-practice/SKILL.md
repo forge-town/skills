@@ -1,6 +1,6 @@
 ---
-name: db table best practice
-description: 数据库与数据表表名规范验证与自动修正。适用于"数据库是否符合规范"、"表名规范"、"检查表名"、"优化表名"、"数据库命名"、"检查这个文件"、"表名符合规范吗"
+name: db-table-best-practice
+description: 数据库与数据表表名规范验证与自动修正最佳实践。适用于"数据库是否符合规范"、"表名规范"、"检查表名"、"优化表名"、"数据库命名"、"检查这个文件"、"表名符合规范吗"
 ---
 
 # 数据库与数据表表名规范验证最佳实践
@@ -38,29 +38,23 @@ description: 数据库与数据表表名规范验证与自动修正。适用于"
 - 长度控制：控制在3-4个语义段内
 
 ### 补充规则
-- 单名词扩展：`log` → `system_logs`，`product` → `product_items`
+- 单名词扩展：详细规则见 [references/english-plural-rules.md](references/english-plural-rules.md)
 - 避免过长：`user_order_addresses` 合理，`user_order_shipping_receive_addresses` 需简化
 - 常见错误与修正：见 [references/common-errors.md](references/common-errors.md)
+
 ## 验证流程
 
 ### 单个命名验证
-1. 识别类型：数据库名称或数据表表名
-2. 逐项检查：按验证要点逐一检查
-3. 结果反馈：
-   - 正确：说明符合的规则
-   - 错误：指出问题并提供修正建议
+识别类型 → 逐项检查 → 结果反馈
 
 ### 批量命名审查
-1. 分类整理：将数据库名称和数据表表名分开处理
-2. 逐个验证：对每个命名执行验证
-3. 一致性检查：检查同类型命名的风格是否统一
-4. 汇总报告：提供验证结果汇总
+分类整理 → 逐个验证 → 一致性检查 → 汇总报告
 
 ### 文件命名验证与修正
 
 **默认行为**：**直接执行自动修改**，除非用户明确说"只检查"、"只建议"、"不修改"、"不要改"等
 
-**执行流程**：
+**核心流程**：
 1. 识别用户意图和上下文（优先级：文件/文件夹路径 → 主动查找 → 只检查）
 2. 查找或读取文件
 3. 识别表名并验证
@@ -68,10 +62,13 @@ description: 数据库与数据表表名规范验证与自动修正。适用于"
 5. 执行修改（使用 `edit_file`，`limit=-1`）
 6. 验证结果并输出报告
 
+**完整执行流程和示例**：见 [references/usage-examples.md](references/usage-examples.md)
+
 ## 资源索引
 - 常见错误与修正：见 [references/common-errors.md](references/common-errors.md)（何时读取：遇到具体错误类型或需要修正方案时）
-- 使用示例：见 [references/usage-examples.md](references/usage-examples.md)（何时读取：需要参考完整执行流程时）
+- 使用示例：见 [references/usage-examples.md](references/usage-examples.md)（何时读取：需要参考完整执行流程和示例时）
 - 英文复数规则：见 [references/english-plural-rules.md](references/english-plural-rules.md)（何时读取：遇到不确定的英文复数形式时）
+- 最佳实践示例：见 [best-practice-examples/](best-practice-examples/)（何时读取：需要参考 Drizzle ORM 最佳实践代码示例时）
 
 ## 注意事项
 - **适用范围**：仅验证数据库和数据表的**表名**，不涉及表字段命名
