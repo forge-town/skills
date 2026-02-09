@@ -42,6 +42,18 @@ description: 数据库与数据表表名规范验证与自动修正最佳实践�
 - 避免过长：`user_order_addresses` 合理，`user_order_shipping_receive_addresses` 需简化
 - 常见错误与修正：见 [references/common-errors.md](references/common-errors.md)
 
+### 文件命名规范（Drizzle ORM 文件）
+
+**格式要求**：`数据库表名 + _table`
+- 数据库表名必须符合表名规范（复数、小写、下划线）
+- 文件名中的表名必须与 `pgTable()` 函数中的表名一致
+
+**示例**：
+- `users_table.ts` → `pgTable("users", {...})`
+- `user_profiles_table.ts` → `pgTable("user_profiles", {...})`
+
+**常见错误**：见 [references/common-errors.md](references/common-errors.md)
+
 ## 验证流程
 
 ### 单个命名验证
@@ -57,10 +69,11 @@ description: 数据库与数据表表名规范验证与自动修正最佳实践�
 **核心流程**：
 1. 识别用户意图和上下文（优先级：文件/文件夹路径 → 主动查找 → 只检查）
 2. 查找或读取文件
-3. 识别表名并验证
-4. 判断是否修改
-5. 执行修改（使用 `edit_file`，`limit=-1`）
-6. 验证结果并输出报告
+3. 验证文件名（针对 Drizzle ORM 等表定义文件）
+4. 识别表名并验证
+5. 判断是否修改
+6. 执行修改（使用 `edit_file`，`limit=-1`）
+7. 验证结果并输出报告
 
 **完整执行流程和示例**：见 [references/usage-examples.md](references/usage-examples.md)
 
