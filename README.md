@@ -29,7 +29,7 @@ pnpx skills add forge-town/skills
 | [skill-creator](skills/skill-creator) | 创建有效技能的中文指南。当用户想要创建一个新技能（或更新现有技能）来扩展 AI 的能力时，应使用此技能，包括专门知识、工作流程或工具集成。生成的新技能应使用中文描述。 |
 | [store-best-practice](skills/store-best-practice) | 使用 Zustand 或类似状态管理库生成最佳实践的 store 实现。当您需要创建可扩展、类型安全的 store 时使用，包括适当的 slice 模式和 provider 设置。 |
 | [zod-env-integration](skills/zod-env-integration) | 从 .env.example 文件生成基于 Zod 的环境变量管理代码。当您需要创建类型安全的 env 管理、标准化 env 处理或生成 env 模式时使用。 |
-
+| [svg-icon-best-practice](skills/svg-icon-manager) | 将项目的 SVG 图标，封装图标组件、制定使用规范，解决显示异常 / 类型报错等问题，适用于图标重构、存量迁移及规范制定场景|
 ## 许可证
 
 [MIT](LICENSE.md)
