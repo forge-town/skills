@@ -6,7 +6,8 @@
 3. [目录结构检查](#目录结构检查)
 4. [文件清理检查](#文件清理检查)
 5. [依赖元数据检查](#依赖元数据检查)
-6. [报告格式](#报告格式)
+6. [README.md 记录检查](#readmemd-记录检查)
+7. [报告格式](#报告格式)
 
 ---
 
@@ -149,6 +150,53 @@
 
 ---
 
+## README.md 记录检查
+
+### 检查项 15: README.md 文件存在
+- **通过标准**: 项目根目录存在 `README.md` 文件
+- **检查方式**: 检查项目根目录（`/workspace/projects/`）是否有 `README.md` 文件
+- **错误示例**: 项目根目录缺少 `README.md` 文件
+- **通过示例**: 项目根目录包含 `README.md` 文件
+- **修复建议**: 创建 `README.md` 文件
+
+### 检查项 16: skills/ 目录存在
+- **通过标准**: 项目根目录存在 `skills/` 目录
+- **检查方式**: 检查项目根目录（`/workspace/projects/`）是否有 `skills/` 目录
+- **错误示例**: 项目根目录缺少 `skills/` 目录
+- **通过示例**: 项目根目录包含 `skills/` 目录
+- **修复建议**: 创建 `skills/` 目录
+
+### 检查项 17: Skill 在 skills/ 目录中
+- **通过标准**: Skill 目录位于 `skills/` 目录下
+- **检查方式**: 检查 Skill 目录是否在 `/workspace/projects/skills/` 路径下
+- **错误示例**: Skill 目录直接在根目录下，不在 `skills/` 中
+- **通过示例**: Skill 在 `skills/` 目录下，如 `/workspace/projects/skills/check-all-skills/`
+- **修复建议**: 将 Skill 目录移动到 `skills/` 目录下
+
+### 检查项 18: Skill 已记录在 README.md
+- **通过标准**: Skill 已在 README.md 的表格中正确记录
+- **检查方式**: 
+  1. 读取根目录的 `README.md` 文件
+  2. 查找包含 Skills 的表格或章节（通常在"## Skills"或类似章节下）
+  3. 验证表格中是否包含该 Skill 的记录
+- **错误示例**: README.md 中缺少该 Skill 的记录
+- **通过示例**: README.md 中存在类似 `| [check-all-skills](skills/check-all-skills/) | 批量检查Skill是否符合最佳实践规范 |` 的记录
+- **修复建议**: 在 README.md 的 Skills 表格中添加该 Skill 的记录
+
+### 检查项 19: README.md 记录格式正确
+- **通过标准**: README.md 中的 Skill 记录格式正确
+- **检查方式**: 检查记录是否包含：
+  - Skill 名称链接（如 `[check-all-skills](skills/check-all-skills/)`，注意路径是 `skills/skill-name/`）
+  - Skill 描述（通常在第二列）
+- **错误示例**: 
+  - 只有名称没有链接
+  - 链接路径不正确（如 `check-all-skills/` 而不是 `skills/check-all-skills/`）
+  - 格式不正确
+- **通过示例**: 表格格式正确，包含正确的链接和描述
+- **修复建议**: 修正 README.md 中的记录格式和路径
+
+---
+
 ## 报告格式
 
 ### 检查报告模板
@@ -161,11 +209,26 @@
   "status": "pass|warning|error",
   "summary": "通过检查，但有 1 个警告",
   "stats": {
-    "total": 14,
-    "pass": 13,
+    "total": 19,
+    "pass": 18,
     "warning": 1,
     "error": 0
   },
+  "checks": [
+    {
+      "name": "naming_convention",
+      "status": "pass",
+      "message": "目录名 'my-skill' 符合命名规范",
+      "fix_suggestion": ""
+    },
+    {
+      "name": "front_matter_description",
+      "status": "warning",
+      "message": "description 长度为 80 字符，建议 100-150 字符",
+      "fix_suggestion": "补充 description 内容，使其更详细"
+    }
+  ]
+}
   "checks": [
     {
       "name": "naming_convention",
@@ -218,4 +281,11 @@ SKILL.md 前言区检查
 依赖元数据检查
 ☐ dependency.python 格式正确
 ☐ dependency.system 格式正确
+
+README.md 记录检查
+☐ README.md 文件存在
+☐ skills/ 目录存在
+☐ Skill 在 skills/ 目录中
+☐ Skill 已记录在 README.md
+☐ README.md 记录格式正确
 ```

@@ -18,30 +18,32 @@ description: 批量检查Skill是否符合最佳实践规范；自动验证命�
 ### 标准流程
 
 #### 步骤 1：读取检查规范
-- 阅读 [references/checklist.md](references/checklist.md)，了解完整的 14 项检查清单
+- 阅读 [references/checklist.md](references/checklist.md)，了解完整的 19 项检查清单
 - 阅读 [references/quality-standards.md](references/quality-standards.md)，了解各项检查的背景说明
 
 #### 步骤 2：检查单个 Skill
 - 阅读目标 Skill 的 `SKILL.md` 文件
 - 检查目录结构和文件列表
-- 按照 checklist.md 中的 14 项检查清单逐项验证：
+- 按照 checklist.md 中的 19 项检查清单逐项验证：
   1. 命名规范检查（3 项）：目录名格式、目录名后缀、最佳实践后缀
   2. 前言区检查（5 项）：name 字段存在、name 与目录名一致、description 存在、description 单行、description 长度
   3. 目录结构检查（3 项）：SKILL.md 存在、固定结构目录、空目录检查
   4. 文件清理检查（1 项）：临时文件清理
   5. 依赖元数据检查（2 项）：dependency.python 格式、dependency.system 格式
+  6. README.md 记录检查（5 项）：README.md 存在、skills/ 目录存在、Skill 在 skills/ 中、Skill 已记录、记录格式正确
 
 #### 步骤 3：批量检查多个 Skill（自动遍历）
+- 检查 Skills 是否位于 `skills/` 目录下
 - 使用目录遍历命令列出目标目录下所有 Skill：
   ```bash
-  find /workspace/projects -maxdepth 2 -name "SKILL.md" -exec dirname {} \;
+  find /workspace/projects/skills -maxdepth 1 -name "SKILL.md" -exec dirname {} \;
   ```
 - 获取所有 Skill 目录列表后，对每个 Skill 重复步骤 2 的检查流程
 
 #### 步骤 4：生成检查报告
 - 汇总所有检查结果
 - 对每个 Skill 生成报告，包含：
-  - 14 项检查的明细（pass/warning/error）
+  - 19 项检查的明细（pass/warning/error）
   - 总体状态（pass/warning/error）
   - 修复建议
 - 提供总体统计：Skill 数量、通过率、最常见问题
@@ -55,7 +57,7 @@ description: 批量检查Skill是否符合最佳实践规范；自动验证命�
 
 ## 资源索引
 - 检查清单:见 [references/checklist.md](references/checklist.md)
-  - 内容:完整的 14 项 Skill 检查清单（命名规范、前言区、目录结构、文件清理、依赖元数据）
+  - 内容:完整的 19 项 Skill 检查清单（命名规范、前言区、目录结构、文件清理、依赖元数据、README.md 记录）
   - 何时读取:开始检查前阅读，检查过程中逐项对照
 - 质量标准:见 [references/quality-standards.md](references/quality-standards.md)
   - 内容:各项检查的背景说明、通过标准定义、检查级别说明（pass/warning/error）
