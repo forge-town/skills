@@ -86,10 +86,10 @@
 - **修复建议**: 创建 `SKILL.md` 文件
 
 ### 检查项 10: 固定结构目录
-- **通过标准**: 根目录仅包含以下目录：`scripts/`、`references/`、`assets/`
+- **通过标准**: 根目录仅包含以下目录：`scripts/`、`references/`、`assets/`、`best-practice-examples/`
 - **检查方式**: 列出根目录下所有文件和目录，确认无额外项
 - **错误示例**: 包含 `README.md`、`LICENSE`、`test/` 等额外文件/目录
-- **通过示例**: 仅包含 `SKILL.md` 和三个固定子目录
+- **通过示例**: 仅包含 `SKILL.md` 和允许的子目录
 - **修复建议**: 删除不符合规范的文件或目录
 
 ### 检查项 11: 空目录检查
@@ -118,11 +118,18 @@
 - **通过示例**: 不存在任何临时文件
 - **修复建议**: 删除所有临时文件和缓存目录
 
+### 检查项 13: 禁止 Python 脚本
+- **通过标准**: 不存在任何 `.py` 文件
+- **检查方式**: 遍历目录，查找 `.py` 后缀的文件
+- **错误示例**: 包含 `scripts/run_test.py`
+- **通过示例**: 所有脚本均为 Shell 或 Node.js 脚本
+- **修复建议**: 删除 Python 脚本，使用 Shell 或 Node.js 重写
+
 ---
 
 ## 依赖元数据检查
 
-### 检查项 13: dependency.python 格式
+### 检查项 14: dependency.python 格式
 - **通过标准**（如果存在）: `dependency.python` 为列表，每个元素符合 requirement.txt 格式
 - **检查方式**: 检查 `dependency.python` 是否为列表，每个元素是否符合 `package==1.0.0` 或 `package>=1.0.0` 格式
 - **错误示例**: `dependency: pip install package` （不在 python 字段中）
@@ -135,7 +142,7 @@
   ```
 - **修复建议**: 将依赖项改为列表格式，使用正确的版本号表示法
 
-### 检查项 14: dependency.system 格式
+### 检查项 15: dependency.system 格式
 - **通过标准**（如果存在）: `dependency.system` 为列表，不包含 Python 包安装命令
 - **检查方式**: 检查 `dependency.system` 是否为列表，是否包含 `pip install`、`pip3 install`、`python -m pip` 等命令
 - **错误示例**: `dependency.system: ["pip install requests"]`
@@ -152,28 +159,28 @@
 
 ## README.md 记录检查
 
-### 检查项 15: README.md 文件存在
+### 检查项 16: README.md 文件存在
 - **通过标准**: 项目根目录存在 `README.md` 文件
 - **检查方式**: 检查项目根目录（`/workspace/projects/`）是否有 `README.md` 文件
 - **错误示例**: 项目根目录缺少 `README.md` 文件
 - **通过示例**: 项目根目录包含 `README.md` 文件
 - **修复建议**: 创建 `README.md` 文件
 
-### 检查项 16: skills/ 目录存在
+### 检查项 17: skills/ 目录存在
 - **通过标准**: 项目根目录存在 `skills/` 目录
 - **检查方式**: 检查项目根目录（`/workspace/projects/`）是否有 `skills/` 目录
 - **错误示例**: 项目根目录缺少 `skills/` 目录
 - **通过示例**: 项目根目录包含 `skills/` 目录
 - **修复建议**: 创建 `skills/` 目录
 
-### 检查项 17: Skill 在 skills/ 目录中
+### 检查项 18: Skill 在 skills/ 目录中
 - **通过标准**: Skill 目录位于 `skills/` 目录下
 - **检查方式**: 检查 Skill 目录是否在 `/workspace/projects/skills/` 路径下
 - **错误示例**: Skill 目录直接在根目录下，不在 `skills/` 中
 - **通过示例**: Skill 在 `skills/` 目录下，如 `/workspace/projects/skills/check-all-skills/`
 - **修复建议**: 将 Skill 目录移动到 `skills/` 目录下
 
-### 检查项 18: Skill 已记录在 README.md
+### 检查项 19: Skill 已记录在 README.md
 - **通过标准**: Skill 已在 README.md 的表格中正确记录
 - **检查方式**: 
   1. 读取根目录的 `README.md` 文件
@@ -183,7 +190,7 @@
 - **通过示例**: README.md 中存在类似 `| [check-all-skills](skills/check-all-skills/) | 批量检查Skill是否符合最佳实践规范 |` 的记录
 - **修复建议**: 在 README.md 的 Skills 表格中添加该 Skill 的记录
 
-### 检查项 19: README.md 记录格式正确
+### 检查项 20: README.md 记录格式正确
 - **通过标准**: README.md 中的 Skill 记录格式正确
 - **检查方式**: 检查记录是否包含：
   - Skill 名称链接（如 `[check-all-skills](skills/check-all-skills/)`，注意路径是 `skills/skill-name/`）
@@ -209,8 +216,8 @@
   "status": "pass|warning|error",
   "summary": "通过检查，但有 1 个警告",
   "stats": {
-    "total": 19,
-    "pass": 18,
+    "total": 20,
+    "pass": 19,
     "warning": 1,
     "error": 0
   },

@@ -19,8 +19,9 @@ pnpx skills add forge-town/skills
 
 | 技能 | 描述 |
 |-------|-------------|
-| [barrel-export](skills/barrel-export) | 支持自动生成/优化/修复/检查 index 文件，确保所有 index 文件（index.ts / index.js）都遵循桶导出规范。核心原则：所有 index 文件都必须遵循桶导出规范。 |
+| [barrel-export-best-practice](skills/barrel-export-best-practice) | 支持自动生成/优化/修复/检查 index 文件，确保所有 index 文件（index.ts / index.js）都遵循桶导出规范。核心原则：所有 index 文件都必须遵循桶导出规范。 |
 | [check-all-items](skills/check-all-items) | 自动扫描并执行所有以best-practice结尾的技能，检查项目是否符合最佳实践。通过自动发现机制确保所有相关最佳实践都被检查，并强制执行标准化验证指令提升输出稳定性。 |
+| [check-all-skills](skills/check-all-skills) | 批量检查Skill是否符合最佳实践规范；自动验证命名、前言区、结构、文件清理、依赖等维度；支持单个或批量检查；生成详细检查报告；适用于Skill开发完成后的质量验证 |
 | [classname-refactor](skills/classname-refactor) | 自动检查并转换 React/Vue 文件中 className 的模板字符串为 cn 函数调用；支持递归扫描文件夹、详细报告所有 className 位置。 |
 | [dao-best-practice](skills/dao-best-practice) | 用于规范化DAO文件，确保遵循Drizzle ORM最佳实践，包括文件结构、方法命名、类型安全和性能优化。当需要重构或创建DAO文件以符合项目标准时使用。 |
 | [db-table-best-practice](skills/db-table-best-practice) | 数据库与数据表表名规范验证与自动修正最佳实践。适用于"数据库是否符合规范"、"表名规范"、"检查表名"、"优化表名"、"数据库命名"、"检查这个文件"、"表名符合规范吗" |
