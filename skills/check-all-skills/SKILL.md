@@ -29,8 +29,7 @@ description: 批量检查Skill是否符合最佳实践规范；自动验证命�
   2. 前言区检查（5 项）：name 字段存在、name 与目录名一致、description 存在、description 单行、description 长度
   3. 目录结构检查（3 项）：SKILL.md 存在、固定结构目录、空目录检查
   4. 文件清理检查（1 项）：临时文件清理
-  5. 依赖元数据检查（2 项）：dependency.python 格式、dependency.system 格式
-  6. README.md 记录检查（5 项）：README.md 存在、skills/ 目录存在、Skill 在 skills/ 中、Skill 已记录、记录格式正确
+  5. README.md 记录检查（5 项）：README.md 存在、skills/ 目录存在、Skill 在 skills/ 中、Skill 已记录、记录格式正确
 
 #### 步骤 3：批量检查多个 Skill（自动遍历）
 - 检查 Skills 是否位于 `skills/` 目录下

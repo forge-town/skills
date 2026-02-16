@@ -129,34 +129,6 @@
 
 ## 依赖元数据检查
 
-### 检查项 14: dependency.python 格式
-- **通过标准**（如果存在）: `dependency.python` 为列表，每个元素符合 requirement.txt 格式
-- **检查方式**: 检查 `dependency.python` 是否为列表，每个元素是否符合 `package==1.0.0` 或 `package>=1.0.0` 格式
-- **错误示例**: `dependency: pip install package` （不在 python 字段中）
-- **通过示例**:
-  ```yaml
-  dependency:
-    python:
-      - PyYAML>=5.1
-      - pandas>=1.3.0
-  ```
-- **修复建议**: 将依赖项改为列表格式，使用正确的版本号表示法
-
-### 检查项 15: dependency.system 格式
-- **通过标准**（如果存在）: `dependency.system` 为列表，不包含 Python 包安装命令
-- **检查方式**: 检查 `dependency.system` 是否为列表，是否包含 `pip install`、`pip3 install`、`python -m pip` 等命令
-- **错误示例**: `dependency.system: ["pip install requests"]`
-- **通过示例**:
-  ```yaml
-  dependency:
-    system:
-      - mkdir -p output/results
-      - chmod +x scripts/*.sh
-  ```
-- **修复建议**: 移除 pip install 命令，Python 依赖应在 `dependency.python` 字段中声明
-
----
-
 ## README.md 记录检查
 
 ### 检查项 16: README.md 文件存在
@@ -284,10 +256,6 @@ SKILL.md 前言区检查
 
 文件清理检查
 ☐ 无临时文件和缓存
-
-依赖元数据检查
-☐ dependency.python 格式正确
-☐ dependency.system 格式正确
 
 README.md 记录检查
 ☐ README.md 文件存在

@@ -7,11 +7,11 @@
 ```markdown
 填写 PDF 表单涉及以下步骤：
 
-1. 分析表单（运行 analyze_form.py）
+1. 分析表单（运行 analyze_form.sh）
 2. 创建字段映射（编辑 fields.json）
-3. 验证映射（运行 validate_fields.py）
-4. 填写表单（运行 fill_form.py）
-5. 验证输出（运行 verify_output.py）
+3. 验证映射（运行 validate_fields.sh）
+4. 填写表单（运行 fill_form.sh）
+5. 验证输出（运行 verify_output.sh）
 ```
 
 ## 条件工作流程

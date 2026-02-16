@@ -50,7 +50,7 @@
 ## SKILL.md 前言区说明
 
 ### 为什么需要 YAML 前言区？
-- **机器可读**: 智能体可以轻松解析元数据（name、description、dependency）
+- **机器可读**: 智能体可以轻松解析元数据（name、description）
 - **渐进式披露**: 前言区始终加载，正文在需要时加载，节省上下文
 - **结构化**: 便于自动化工具处理和管理 Skill
 
@@ -80,24 +80,6 @@
 - **macOS**: `.DS_Store`
 - **Windows**: `Thumbs.db`
 - **临时目录**: `tmp/`, `temp/`, `.cache/`
-
----
-
-## 依赖管理说明
-
-### 为什么禁止在 system 中使用 pip install？
-- **包管理职责分离**:
-  - `dependency.python`: Python 包应由 Python 包管理器（pip）处理
-  - `dependency.system`: 系统级命令（如创建目录、设置权限）
-- **可追溯性**: 包依赖应在 python 字段中声明，便于版本管理
-- **跨环境一致性**: pip install 命令在不同环境中可能有差异
-
-### 依赖声明最佳实践
-- **精确版本**: `package==1.0.0`（确保完全一致）
-- **最低版本**: `package>=1.0.0`（允许升级，但不破坏 API）
-- **兼容版本**: `package~=1.0.0`（允许补丁升级，如 1.0.x）
-
----
 
 ## 检查级别说明
 

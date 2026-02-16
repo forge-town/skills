@@ -1,9 +1,6 @@
 ---
 name: defensive-programming-best-practice
 description: 强制使用卫语句（Guard Clauses）和提前返回（Early Return）模式，避免深层嵌套的 if-else 结构。核心原则：尽早检查异常情况并返回或抛出异常，让主逻辑保持在最外层。
-dependency:
-  python: []
-  system: []
 ---
 
 # 防御性编程最佳实践 (Early Return / Guard Clauses)

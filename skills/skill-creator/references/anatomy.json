@@ -5,14 +5,37 @@
     {
       "name": "SKILL.md",
       "type": "file",
-      "description": "主文档，描述技能作用与使用场景。"
+      "description": "主文档，描述技能作用与使用场景。必需包含 name, description 等元数据。"
     },
     {
       "name": "references",
       "type": "dir",
       "optional": true,
-      "description": "参考资料和模板，用于补充文档。"
+      "description": "参考资料和模板，用于补充文档。如 checklist.md, check-report-template.md 等。"
+    },
+    {
+      "name": "scripts",
+      "type": "dir",
+      "optional": true,
+      "description": "辅助脚本。注意：严禁使用 .py 文件，请使用 shell 脚本或其他被允许的格式。"
+    },
+    {
+      "name": "assets",
+      "type": "dir",
+      "optional": true,
+      "description": "静态资源文件，如图片、示例文件等。"
+    },
+    {
+      "name": "best-practice-examples",
+      "type": "dir",
+      "optional": true,
+      "description": "最佳实践示例代码库。用于存放正确、推荐的代码示例。"
+    },
+    {
+      "name": "bad-practice-examples",
+      "type": "dir",
+      "optional": true,
+      "description": "反面教材示例代码库。用于存放错误、不推荐的代码示例，用于对比学习。"
     }
   ]
 }
-
