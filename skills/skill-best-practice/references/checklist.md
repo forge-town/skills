@@ -5,8 +5,7 @@
 2. [SKILL.md 前言区检查](#skillmd-前言区检查)
 3. [目录结构检查](#目录结构检查)
 4. [文件清理检查](#文件清理检查)
-5. [依赖元数据检查](#依赖元数据检查)
-6. [报告格式](#报告格式)
+5. [报告格式](#报告格式)
 
 ---
 
@@ -119,74 +118,9 @@
 
 ---
 
-## 依赖元数据检查
-
-### 检查项 13: dependency.python 格式
-- **通过标准**（如果存在）: `dependency.python` 为列表，每个元素符合 requirement.txt 格式
-- **检查方式**: 检查 `dependency.python` 是否为列表，每个元素是否符合 `package==1.0.0` 或 `package>=1.0.0` 格式
-- **错误示例**: `dependency: pip install package` （不在 python 字段中）
-- **通过示例**:
-  ```yaml
-  dependency:
-    python:
-      - PyYAML>=5.1
-      - pandas>=1.3.0
-  ```
-- **修复建议**: 将依赖项改为列表格式，使用正确的版本号表示法
-
-### 检查项 14: dependency.system 格式
-- **通过标准**（如果存在）: `dependency.system` 为列表，不包含 Python 包安装命令
-- **检查方式**: 检查 `dependency.system` 是否为列表，是否包含 `pip install`、`pip3 install`、`python -m pip` 等命令
-- **错误示例**: `dependency.system: ["pip install requests"]`
-- **通过示例**:
-  ```yaml
-  dependency:
-    system:
-      - mkdir -p output/results
-      - chmod +x scripts/*.sh
-  ```
-- **修复建议**: 移除 pip install 命令，Python 依赖应在 `dependency.python` 字段中声明
-
----
 
 ## 报告格式
-
-### 检查报告模板
-完成所有检查项后，生成结构化报告：
-
-```json
-{
-  "skill_name": "my-skill",
-  "skill_path": "/path/to/skill",
-  "status": "pass|warning|error",
-  "summary": "通过检查，但有 1 个警告",
-  "stats": {
-    "total": 14,
-    "pass": 13,
-    "warning": 1,
-    "error": 0
-  },
-  "checks": [
-    {
-      "name": "naming_convention",
-      "status": "pass",
-      "message": "目录名 'my-skill' 符合命名规范",
-      "fix_suggestion": ""
-    },
-    {
-      "name": "front_matter_description",
-      "status": "warning",
-      "message": "description 长度为 80 字符，建议 100-150 字符",
-      "fix_suggestion": "补充 description 内容，使其更详细"
-    }
-  ]
-}
-```
-
-### 状态定义
-- **pass**: 所有检查项通过
-- **warning**: 无错误，但存在警告项
-- **error**: 存在必须修复的错误项
+详细的报告格式规范请参考：[check-report-template.md](check-report-template.md)
 
 ---
 
@@ -214,8 +148,4 @@ SKILL.md 前言区检查
 
 文件清理检查
 ☐ 无临时文件（__pycache__、.DS_Store 等）
-
-依赖元数据检查
-☐ dependency.python 格式正确（如存在）
-☐ dependency.system 无 pip 命令（如存在）
 ```
