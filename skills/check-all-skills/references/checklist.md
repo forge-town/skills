@@ -86,7 +86,7 @@
 - **修复建议**: 创建 `SKILL.md` 文件
 
 ### 检查项 10: 固定结构目录
-- **通过标准**: 根目录仅包含以下目录：`scripts/`、`references/`、`assets/`、`best-practice-examples/`
+- **通过标准**: 根目录仅包含以下目录：`scripts/`、`references/`、`assets/`、`best-practice-examples/`、`bad-practice-examples/`
 - **检查方式**: 列出根目录下所有文件和目录，确认无额外项
 - **错误示例**: 包含 `README.md`、`LICENSE`、`test/` 等额外文件/目录
 - **通过示例**: 仅包含 `SKILL.md` 和允许的子目录
