@@ -1,12 +1,12 @@
 ---
-name: barrel-export
+name: barrel-export-best-practice
 description: 支持自动生成/优化/修复/检查 index 文件，确保所有 index 文件（index.ts / index.js）都遵循桶导出规范。核心原则：所有 index 文件都必须遵循桶导出规范。
 dependency:
   python: []
   system: []
 ---
 
-# 桶导出操作工具
+# 桶导出最佳实践
 
 ## 任务目标
 本 Skill 用于自动生成、优化、修复和检查桶导出文件，确保所有 index 文件都遵循统一的规范：
@@ -15,6 +15,11 @@ dependency:
 - 自动生成符合规范的 index.ts 文件
 - 修复不符合规范的导出
 - 检查导出规范并生成报告
+
+## 最佳实践示例
+参考 `best-practice-examples` 目录下的示例：
+- **普通目录**：导出目录下所有非排除文件（如 `Button.tsx`, `Input.tsx`）。
+- **_store 目录**：遵循特殊规则，仅导出 `store.ts` 和 `provider.ts`。
 
 ## 触发条件
 当用户提出以下需求时触发本 Skill：
