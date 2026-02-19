@@ -1,0 +1,33 @@
+命名规范检查
+☐ 目录名格式（小写字母+连字符）
+☐ 目录名不以 -skill 结尾
+☐ 最佳实践后缀（仅限检查类 Skill）
+
+SKILL.md 前言区检查
+☐ name 字段存在
+☐ name 字段与目录名一致
+☐ description 字段存在
+☐ description 为单行格式
+☐ description 长度 100-150 字符
+
+目录结构检查
+☐ SKILL.md 文件存在
+☐ 目录结构合理（可包含scripts/references/assets等，以及必要额外目录）
+☐ 无空目录
+
+文件清理检查
+☐ 无临时文件和缓存
+
+依赖元数据检查
+☐ dependency.python 格式正确
+☐ dependency.system 格式正确
+
+README.md 记录检查
+☐ README.md 文件存在
+☐ skills/ 目录存在
+☐ Skill 在 skills/ 目录中
+☐ Skill 已记录在 README.md
+☐ README.md 记录格式正确
+
+Markdown文档最佳实践检查
+☐ Markdown文档无内联代码块

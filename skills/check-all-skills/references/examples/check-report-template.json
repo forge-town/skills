@@ -1,0 +1,26 @@
+{
+  "skill_name": "my-skill",
+  "skill_path": "/path/to/skill",
+  "status": "pass|warning|error",
+  "summary": "通过检查，但有 1 个警告",
+  "stats": {
+    "total": 20,
+    "pass": 19,
+    "warning": 1,
+    "error": 0
+  },
+  "checks": [
+    {
+      "name": "naming_convention",
+      "status": "pass",
+      "message": "目录名 'my-skill' 符合命名规范",
+      "fix_suggestion": ""
+    },
+    {
+      "name": "front_matter_description",
+      "status": "warning",
+      "message": "description 长度为 80 字符，建议 100-150 字符",
+      "fix_suggestion": "补充 description 内容，使其更详细"
+    }
+  ]
+}
