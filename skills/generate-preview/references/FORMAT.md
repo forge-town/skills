@@ -2,22 +2,7 @@
 
 ## ComponentSplitSchema
 
-```typescript
-{
-  componentPath: string;        // 组件路径（例如 "src/components/Dice8"）
-  splitStructure: {
-    root: string;              // 拆分根目录（例如 "src/components/dice8"）
-    files: Array<{
-      path: string;            // 文件相对路径
-      type: "component";       // 仅允许 "component" 类型
-      description: string;     // 文件描述
-      dependencies?: string[]; // 对其他文件的依赖（可选）
-    }>;
-    folders: [];               // 必须为空数组
-  };
-  rationale: string;           // 拆分理由和设计思路
-}
-```
+TypeScript 类型定义请参见：[schema.ts](schema.ts)
 
 ## 字段描述
 
@@ -43,40 +28,12 @@
 - **文件类型**: 仅允许 `"component"` 类型
 
 **文件对象结构**:
-```typescript
-{
-  path: string;              // 相对文件路径
-  type: "component";         // 必须为 "component"
-  description: string;       // 此文件的作用
-  dependencies?: string[];   // 可选的文件依赖数组
-}
-```
+TypeScript 类型定义请参见：[schema.ts](schema.ts)
 
 **文件对象示例**:
-```json
-{
-  "path": "index.ts",
-  "type": "component",
-  "description": "导出所有子组件"
-}
-```
-
-```json
-{
-  "path": "Dice8.tsx",
-  "type": "component",
-  "description": "带有状态和交互逻辑的主 Dice8 组件",
-  "dependencies": ["./Dice8Face.tsx"]
-}
-```
-
-```json
-{
-  "path": "Dice8Face.tsx",
-  "type": "component",
-  "description": "单个骰子面渲染组件"
-}
-```
+- [index.ts 示例](examples/file-object-index-example.json)
+- [Dice8.tsx 示例](examples/file-object-dice8-example.json)
+- [Dice8Face.tsx 示例](examples/file-object-dice8face-example.json)
 
 #### folders (必需)
 - **类型**: 空数组
@@ -106,35 +63,7 @@
 
 **位置**: `src/components/{component-name-lowercase}/{ComponentName}.temp.json`
 
-**示例内容**:
-```json
-{
-  "componentPath": "src/components/Dice8",
-  "splitStructure": {
-    "root": "src/components/dice8",
-    "files": [
-      {
-        "path": "index.ts",
-        "type": "component",
-        "description": "导出所有子组件"
-      },
-      {
-        "path": "dice8.tsx",
-        "type": "component",
-        "description": "主 Dice8 组件",
-        "dependencies": ["./dice8-face.tsx"]
-      },
-      {
-        "path": "dice8-face.tsx",
-        "type": "component",
-        "description": "骰子面渲染"
-      }
-    ],
-    "folders": []
-  },
-  "rationale": "为清晰度和可重用性而拆分"
-}
-```
+**示例内容**: [完整 JSON 示例](examples/component-split-schema-example.json)
 
 ### 2. 可视化文件 ({ComponentName}.temp.md)
 
@@ -190,63 +119,19 @@ Dice8 组件拆分为主组件和面组件。主组件处理状态/交互，面�
 ## 常见错误
 
 ### ❌ 错误: 包含非组件类型
-```json
-{
-  "path": "types.ts",
-  "type": "type",  // ❌ 仅允许 "component"
-  "description": "类型定义"
-}
-```
+[错误示例](examples/error-non-component-type-example.json)
 
 ### ✅ 正确: 仅组件类型
-```json
-{
-  "path": "dice8.tsx",
-  "type": "component",  // ✅ 正确
-  "description": "主组件"
-}
-```
+[正确示例](examples/correct-component-type-example.json)
 
 ### ❌ 错误: 非空文件夹数组
-```json
-{
-  "folders": [  // ❌ 必须为空
-    {
-      "path": "components",
-      "purpose": "子组件"
-    }
-  ]
-}
-```
+[错误示例](examples/error-non-empty-folders-example.json)
 
 ### ✅ 正确: 空文件夹数组
-```json
-{
-  "folders": []  // ✅ 正确
-}
-```
+[正确示例](examples/correct-empty-folders-example.json)
 
 ### ❌ 错误: 缺少必需字段
-```json
-{
-  "componentPath": "src/components/Dice8",
-  "splitStructure": {
-    "files": [...]
-    // ❌ 缺少 "root" 和 "folders"
-  }
-  // ❌ 缺少 "rationale"
-}
-```
+[错误示例](examples/error-missing-fields-example.json)
 
 ### ✅ 正确: 所有必需字段存在
-```json
-{
-  "componentPath": "src/components/Dice8",
-  "splitStructure": {
-    "root": "src/components/dice8",  // ✅ 存在
-    "files": [...],
-    "folders": []  // ✅ 存在
-  },
-  "rationale": "..."  // ✅ 存在
-}
-```
+[正确示例](examples/correct-all-fields-example.json)

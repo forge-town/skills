@@ -7,34 +7,7 @@
 Dice8 组件是一个具有最少文件的简单示例。
 
 ### JSON 计划
-```json
-{
-  "componentPath": "src/components/Dice8",
-  "splitStructure": {
-    "root": "src/components/dice8",
-    "files": [
-      {
-        "path": "index.ts",
-        "type": "component",
-        "description": "导出所有子组件"
-      },
-      {
-        "path": "Dice8.tsx",
-        "type": "component",
-        "description": "带有状态管理和交互逻辑的主 Dice8 组件",
-        "dependencies": ["./Dice8Face.tsx"]
-      },
-      {
-        "path": "Dice8Face.tsx",
-        "type": "component",
-        "description": "单个骰子面渲染组件"
-      }
-    ],
-    "folders": []
-  },
-  "rationale": "Dice8 组件按 UI 结构拆分为主组件 (Dice8) 和面组件 (Face)。主组件处理状态管理和交互逻辑，面组件处理单个骰子面的视觉渲染。不需要额外的钩子、工具或类型文件，保持简单和专注。"
-}
-```
+[Dice8 拆分计划](examples/dice8-split-plan.json)
 
 ### 可视化
 ```
@@ -61,34 +34,7 @@ src/components/dice8/
 Switch 组件是另一个简单示例，展示容器/子模式。
 
 ### JSON 计划
-```json
-{
-  "componentPath": "src/components/Switch",
-  "splitStructure": {
-    "root": "src/components/switch",
-    "files": [
-      {
-        "path": "index.ts",
-        "type": "component",
-        "description": "导出所有子组件"
-      },
-      {
-        "path": "SwitchRoot.tsx",
-        "type": "component",
-        "description": "Switch 根容器组件，处理切换状态和交互",
-        "dependencies": ["./SwitchThumb.tsx"]
-      },
-      {
-        "path": "SwitchThumb.tsx",
-        "type": "component",
-        "description": "Switch 拇指/滑块组件，视觉指示器"
-      }
-    ],
-    "folders": []
-  },
-  "rationale": "Switch 组件按 UI 结构拆分为容器 (Root) 和滑块 (Thumb) 作为两个独立子组件。Root 处理状态管理和交互逻辑，Thumb 处理视觉呈现。"
-}
-```
+[Switch 拆分计划](examples/switch-split-plan.json)
 
 ### 可视化
 ```
@@ -111,48 +57,7 @@ src/components/switch/
 Dialog 组件是一个具有多个 UI 部分的更复杂示例。
 
 ### JSON 计划
-```json
-{
-  "componentPath": "src/components/Dialog",
-  "splitStructure": {
-    "root": "src/components/dialog",
-    "files": [
-      {
-        "path": "index.ts",
-        "type": "component",
-        "description": "导出所有子组件"
-      },
-      {
-        "path": "DialogTrigger.tsx",
-        "type": "component",
-        "description": "触发按钮组件"
-      },
-      {
-        "path": "DialogOverlay.tsx",
-        "type": "component",
-        "description": "背景覆盖层组件"
-      },
-      {
-        "path": "DialogContent.tsx",
-        "type": "component",
-        "description": "对话框主内容容器"
-      },
-      {
-        "path": "DialogHeader.tsx",
-        "type": "component",
-        "description": "对话框头部部分"
-      },
-      {
-        "path": "DialogFooter.tsx",
-        "type": "component",
-        "description": "对话框尾部操作区域"
-      }
-    ],
-    "folders": []
-  },
-  "rationale": "Dialog 组件按模态对话框 UI 结构拆分：Trigger 用于打开，Overlay 用于背景遮罩，Content 用于主体，Header 用于顶部部分，Footer 用于底部操作。仅包含必要的 UI 组件，无额外工具文件。"
-}
-```
+[Dialog 拆分计划](examples/dialog-split-plan.json)
 
 ### 可视化
 ```
@@ -178,48 +83,7 @@ src/components/dialog/
 具有分组和多个交互点的复杂下拉菜单。
 
 ### JSON 计划
-```json
-{
-  "componentPath": "src/components/Select",
-  "splitStructure": {
-    "root": "src/components/select",
-    "files": [
-      {
-        "path": "index.ts",
-        "type": "component",
-        "description": "导出所有子组件"
-      },
-      {
-        "path": "SelectTrigger.tsx",
-        "type": "component",
-        "description": "触发组件，显示当前选中值"
-      },
-      {
-        "path": "SelectContent.tsx",
-        "type": "component",
-        "description": "下拉内容容器"
-      },
-      {
-        "path": "SelectItem.tsx",
-        "type": "component",
-        "description": "单个选择选项组件"
-      },
-      {
-        "path": "SelectGroup.tsx",
-        "type": "component",
-        "description": "选项组容器"
-      },
-      {
-        "path": "SelectLabel.tsx",
-        "type": "component",
-        "description": "组标签组件"
-      }
-    ],
-    "folders": []
-  },
-  "rationale": "Select 组件按下拉 UI 结构拆分：Trigger 用于显示和交互，Content 用于下拉容器，Item 用于单个选项，Group 和 Label 用于选项分组。遵循常见选择/下拉模式。"
-}
-```
+[Select 拆分计划](examples/select-split-plan.json)
 
 ### 可视化
 ```
@@ -317,19 +181,7 @@ src/components/dice8/
 
 ### ❌ 错误: 非空文件夹数组
 
-**坏示例**:
-```json
-{
-  "splitStructure": {
-    "folders": [
-      {
-        "path": "components",
-        "purpose": "子组件文件夹"
-      }
-    ]
-  }
-}
-```
+**坏示例**: [非空文件夹数组示例](examples/antipattern-non-empty-folders.json)
 
 **为什么**: 组件文件应在一个目录中扁平化。
 
@@ -337,18 +189,7 @@ src/components/dice8/
 
 ### ❌ 错误: 缺少索引文件
 
-**坏示例**:
-```json
-{
-  "files": [
-    {
-      "path": "Dice8.tsx",
-      "type": "component",
-      "description": "主组件"
-    }
-  ]
-}
-```
+**坏示例**: [缺少索引文件示例](examples/antipattern-missing-index.json)
 
 **为什么**: index.ts 对于干净的导出是必需的。
 

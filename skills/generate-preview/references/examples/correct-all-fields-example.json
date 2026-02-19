@@ -1,0 +1,15 @@
+{
+  "componentPath": "src/components/Dice8",
+  "splitStructure": {
+    "root": "src/components/dice8",
+    "files": [
+      {
+        "path": "index.ts",
+        "type": "component",
+        "description": "导出所有子组件"
+      }
+    ],
+    "folders": []
+  },
+  "rationale": "拆分理由"
+}

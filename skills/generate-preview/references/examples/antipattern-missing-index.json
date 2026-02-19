@@ -1,0 +1,9 @@
+{
+  "files": [
+    {
+      "path": "Dice8.tsx",
+      "type": "component",
+      "description": "主组件"
+    }
+  ]
+}

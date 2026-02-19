@@ -1,0 +1,26 @@
+{
+  "componentPath": "src/components/Switch",
+  "splitStructure": {
+    "root": "src/components/switch",
+    "files": [
+      {
+        "path": "index.ts",
+        "type": "component",
+        "description": "导出所有子组件"
+      },
+      {
+        "path": "SwitchRoot.tsx",
+        "type": "component",
+        "description": "Switch 根容器组件，处理切换状态和交互",
+        "dependencies": ["./SwitchThumb.tsx"]
+      },
+      {
+        "path": "SwitchThumb.tsx",
+        "type": "component",
+        "description": "Switch 拇指/滑块组件，视觉指示器"
+      }
+    ],
+    "folders": []
+  },
+  "rationale": "Switch 组件按 UI 结构拆分为容器 (Root) 和滑块 (Thumb) 作为两个独立子组件。Root 处理状态管理和交互逻辑，Thumb 处理视觉呈现。"
+}
