@@ -1,0 +1,4 @@
+dependency:
+  system:
+    - mkdir -p output/results
+    - chmod +x scripts/*.sh

@@ -1,0 +1,6 @@
+{
+  "path": "Dice8.tsx",
+  "type": "component",
+  "description": "带有状态和交互逻辑的主 Dice8 组件",
+  "dependencies": ["./Dice8Face.tsx"]
+}

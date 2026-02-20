@@ -7,7 +7,8 @@
 4. [文件清理检查](#文件清理检查)
 5. [依赖元数据检查](#依赖元数据检查)
 6. [README.md 记录检查](#readmemd-记录检查)
-7. [报告格式](#报告格式)
+7. [Markdown文档最佳实践检查](#markdown文档最佳实践检查)
+8. [报告格式](#报告格式)
 
 ---
 
@@ -86,10 +87,10 @@
 - **修复建议**: 创建 `SKILL.md` 文件
 
 ### 检查项 10: 固定结构目录
-- **通过标准**: 根目录仅包含以下目录：`scripts/`、`references/`、`assets/`
-- **检查方式**: 列出根目录下所有文件和目录，确认无额外项
-- **错误示例**: 包含 `README.md`、`LICENSE`、`test/` 等额外文件/目录
-- **通过示例**: 仅包含 `SKILL.md` 和三个固定子目录
+- **通过标准**: 根目录可以包含 `scripts/`、`references/`、`assets/` 等目录，以及其他必要目录如 `best-practice-examples/`，但不包含不符合规范的文件或目录
+- **检查方式**: 列出根目录下所有文件和目录，确认无不符合规范的文件/目录（如临时文件、LICENSE、README.md等）
+- **错误示例**: 包含 `README.md`、`LICENSE`、`test/`、`__pycache__/`、`tmp/` 等不符合规范的文件/目录
+- **通过示例**: 包含 `SKILL.md` 和相关子目录，无不符合规范的文件
 - **修复建议**: 删除不符合规范的文件或目录
 
 ### 检查项 11: 空目录检查
@@ -126,26 +127,14 @@
 - **通过标准**（如果存在）: `dependency.python` 为列表，每个元素符合 requirement.txt 格式
 - **检查方式**: 检查 `dependency.python` 是否为列表，每个元素是否符合 `package==1.0.0` 或 `package>=1.0.0` 格式
 - **错误示例**: `dependency: pip install package` （不在 python 字段中）
-- **通过示例**:
-  ```yaml
-  dependency:
-    python:
-      - PyYAML>=5.1
-      - pandas>=1.3.0
-  ```
+- **通过示例**: 见 [dependency-python.yaml](examples/dependency-python.yaml)
 - **修复建议**: 将依赖项改为列表格式，使用正确的版本号表示法
 
 ### 检查项 14: dependency.system 格式
 - **通过标准**（如果存在）: `dependency.system` 为列表，不包含 Python 包安装命令
 - **检查方式**: 检查 `dependency.system` 是否为列表，是否包含 `pip install`、`pip3 install`、`python -m pip` 等命令
 - **错误示例**: `dependency.system: ["pip install requests"]`
-- **通过示例**:
-  ```yaml
-  dependency:
-    system:
-      - mkdir -p output/results
-      - chmod +x scripts/*.sh
-  ```
+- **通过示例**: 见 [dependency-system.yaml](examples/dependency-system.yaml)
 - **修复建议**: 移除 pip install 命令，Python 依赖应在 `dependency.python` 字段中声明
 
 ---
@@ -197,54 +186,21 @@
 
 ---
 
+## Markdown文档最佳实践检查
+
+### 检查项 20: Markdown文档无内联代码块
+- **通过标准**: Markdown文档中不包含内联代码块或JSON，应将代码/JSON存为独立文件并通过链接引用，以提高可读性
+- **检查方式**: 检查 SKILL.md 和 references/ 下的 .md 文件是否包含 ``` 代码块标记
+- **错误示例**: 文档中包含 ```bash 或 ```json 等内联代码块
+- **通过示例**: 所有代码和JSON通过链接引用，如 [example.sh](examples/example.sh)
+- **修复建议**: 将内联代码块提取为独立文件，并替换为链接引用
+
+---
+
 ## 报告格式
 
 ### 检查报告模板
-完成所有检查项后，生成结构化报告：
-
-```json
-{
-  "skill_name": "my-skill",
-  "skill_path": "/path/to/skill",
-  "status": "pass|warning|error",
-  "summary": "通过检查，但有 1 个警告",
-  "stats": {
-    "total": 19,
-    "pass": 18,
-    "warning": 1,
-    "error": 0
-  },
-  "checks": [
-    {
-      "name": "naming_convention",
-      "status": "pass",
-      "message": "目录名 'my-skill' 符合命名规范",
-      "fix_suggestion": ""
-    },
-    {
-      "name": "front_matter_description",
-      "status": "warning",
-      "message": "description 长度为 80 字符，建议 100-150 字符",
-      "fix_suggestion": "补充 description 内容，使其更详细"
-    }
-  ]
-}
-  "checks": [
-    {
-      "name": "naming_convention",
-      "status": "pass",
-      "message": "目录名 'my-skill' 符合命名规范",
-      "fix_suggestion": ""
-    },
-    {
-      "name": "front_matter_description",
-      "status": "warning",
-      "message": "description 长度为 80 字符，建议 100-150 字符",
-      "fix_suggestion": "补充 description 内容，使其更详细"
-    }
-  ]
-}
-```
+完成所有检查项后，生成结构化报告：见 [check-report-template.json](examples/check-report-template.json)
 
 ### 状态定义
 - **pass**: 所有检查项通过
@@ -255,37 +211,4 @@
 
 ## 快速检查表
 
-打印此表用于快速勾选检查：
-
-```
-命名规范检查
-☐ 目录名格式（小写字母+连字符）
-☐ 目录名不以 -skill 结尾
-☐ 最佳实践后缀（仅限检查类 Skill）
-
-SKILL.md 前言区检查
-☐ name 字段存在
-☐ name 字段与目录名一致
-☐ description 字段存在
-☐ description 为单行格式
-☐ description 长度 100-150 字符
-
-目录结构检查
-☐ SKILL.md 文件存在
-☐ 固定结构目录（scripts/references/assets）
-☐ 无空目录
-
-文件清理检查
-☐ 无临时文件和缓存
-
-依赖元数据检查
-☐ dependency.python 格式正确
-☐ dependency.system 格式正确
-
-README.md 记录检查
-☐ README.md 文件存在
-☐ skills/ 目录存在
-☐ Skill 在 skills/ 目录中
-☐ Skill 已记录在 README.md
-☐ README.md 记录格式正确
-```
+打印此表用于快速勾选检查：见 [quick-checklist.txt](examples/quick-checklist.txt)

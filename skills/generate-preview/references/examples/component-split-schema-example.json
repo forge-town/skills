@@ -1,0 +1,26 @@
+{
+  "componentPath": "src/components/Dice8",
+  "splitStructure": {
+    "root": "src/components/dice8",
+    "files": [
+      {
+        "path": "index.ts",
+        "type": "component",
+        "description": "导出所有子组件"
+      },
+      {
+        "path": "Dice8.tsx",
+        "type": "component",
+        "description": "带有状态和交互逻辑的主 Dice8 组件",
+        "dependencies": ["./Dice8Face.tsx"]
+      },
+      {
+        "path": "Dice8Face.tsx",
+        "type": "component",
+        "description": "单个骰子面渲染组件"
+      }
+    ],
+    "folders": []
+  },
+  "rationale": "Dice8 组件拆分为主组件 (Dice8) 和面组件 (Face)。主组件处理状态和交互逻辑，面组件处理视觉渲染。不需要额外的钩子、工具或类型文件，保持简单。"
+}

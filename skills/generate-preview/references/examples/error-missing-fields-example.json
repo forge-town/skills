@@ -1,0 +1,12 @@
+{
+  "componentPath": "src/components/Dice8",
+  "splitStructure": {
+    "files": [
+      {
+        "path": "Dice8.tsx",
+        "type": "component",
+        "description": "主组件"
+      }
+    ]
+  }
+}

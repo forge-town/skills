@@ -1,0 +1,40 @@
+{
+  "componentPath": "src/components/Dialog",
+  "splitStructure": {
+    "root": "src/components/dialog",
+    "files": [
+      {
+        "path": "index.ts",
+        "type": "component",
+        "description": "导出所有子组件"
+      },
+      {
+        "path": "DialogTrigger.tsx",
+        "type": "component",
+        "description": "触发按钮组件"
+      },
+      {
+        "path": "DialogOverlay.tsx",
+        "type": "component",
+        "description": "背景覆盖层组件"
+      },
+      {
+        "path": "DialogContent.tsx",
+        "type": "component",
+        "description": "对话框主内容容器"
+      },
+      {
+        "path": "DialogHeader.tsx",
+        "type": "component",
+        "description": "对话框头部部分"
+      },
+      {
+        "path": "DialogFooter.tsx",
+        "type": "component",
+        "description": "对话框尾部操作区域"
+      }
+    ],
+    "folders": []
+  },
+  "rationale": "Dialog 组件按模态对话框 UI 结构拆分：Trigger 用于打开，Overlay 用于背景遮罩，Content 用于主体，Header 用于顶部部分，Footer 用于底部操作。仅包含必要的 UI 组件，无额外工具文件。"
+}

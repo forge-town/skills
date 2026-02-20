@@ -1,0 +1,1 @@
+find /workspace/projects/skills -maxdepth 1 -name "SKILL.md" -exec dirname {} \;
