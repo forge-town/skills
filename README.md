@@ -38,6 +38,7 @@ pnpx skills add forge-town/skills
 | [check-refine-trpc](skills/check-refine-trpc) | 检查前端组件是否直接使用 `trpc`；禁止组件直接使用 `trpc`，组件必须通过 `refine` 的 hooks 或项目的 `DataProvider` 访问数据。 |
 | [use-store-not-props-best-practice](skills/use-store-not-props-best-practice) | 查看给出的组件并进行修改，尽可能的不要使用props，尽可能直接从store中获取数据。 |
 | [remove-comments](skills/remove-comments) | 删除AI生成的注释 |
+| [check-try-catch](skills/check-try-catch) | 识别并修复空catch块和纯console日志catch块问题 |
 ## 许可证
 
 [MIT](LICENSE.md)
