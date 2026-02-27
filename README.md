@@ -32,6 +32,7 @@ pnpx skills add forge-town/skills
 | [skill-best-practice](skills/skill-best-practice) | 检查或验证 Skill 是否符合最佳实践规范，涵盖命名规范、目录结构、元数据完整性、临时文件清理和依赖格式验证，提供详细的检查清单、自动修复建议和报告模板，同时支持技能库文档完整性检查与自动修复，适用于创建或修改 Skill 后的质量验证 |
 | [skill-creator](skills/skill-creator) | 创建有效技能的中文指南。当用户想要创建一个新技能（或更新现有技能）来扩展 AI 的能力时，应使用此技能，包括专门知识、工作流程或工具集成。生成的新技能应使用中文描述。 |
 | [store-best-practice](skills/store-best-practice) | 使用 Zustand 或类似状态管理库生成最佳实践的 store 实现。当您需要创建可扩展、类型安全的 store 时使用，包括适当的 slice 模式和 provider 设置。 |
+| [storybook-best-practice](skills/storybook-best-practice) | 为给定的 React 组件生成符合规范的 Storybook stories 文件。当用户需要为组件创建 Storybook stories、展示组件用法或生成组件文档时使用。触发短语包括："为这个组件创建stories"、"生成storybook"、"写storybook"等。 |
 | [zod-env-integration](skills/zod-env-integration) | 从 .env.example 文件生成基于 Zod 的环境变量管理代码。当您需要创建类型安全的 env 管理、标准化 env 处理或生成 env 模式时使用。 |
 | [svg-icon-best-practice](skills/svg-icon-best-practice) | 统一管理 React TypeScript 项目中的 SVG 图标；支持图标组件封装、命名规范、迁移指导；适用于项目图标重构、新项目图标规范制定、图标维护优化场景 |
 | [check-svg](skills/check-svg) | 检查项目中 SVG 的使用是否符合最佳实践：要求将内联 SVG 抽离为组件，禁止内嵌脚本，提供迁移与复核建议。 |
