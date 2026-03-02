@@ -1,6 +1,6 @@
 ---
 name: dao-best-practice
-description: 用于规范化DAO文件，确保遵循Drizzle ORM最佳实践，包括文件结构、方法命名、类型安全和性能优化。当需要重构或创建DAO文件以符合项目标准时使用。
+description: 用于规范化DAO文件，确保遵循Drizzle ORM最佳实践，包括文件结构、方法命名、类型安全和性能优化。当需要重构或创建DAO文件以符合项目标准时使用。完成后强制评估是否需要创建对应的 Repository 层以封装跨表事务。
 ---
 
 # DAO规范化技能
@@ -18,6 +18,17 @@ description: 用于规范化DAO文件，确保遵循Drizzle ORM最佳实践，�
 5. 重构文件以匹配指南中的模式。
 
 **重要：** 调用完毕技能后，强制查看[检查清单](references/checklist.md)，并确保返回的内容完全匹配清单中的所有项目。
+
+## ⚠️ 强制后置步骤：Repository 评估
+
+**每次完成 DAO 写方法的创建或修改后，必须立即执行以下评估：**
+
+> "当前 DAO 的写操作是否涉及多张表？"
+
+- **否（单表写入）** → 流程结束，确保 DAO 方法签名包含可选 `tx` 参数即可
+- **是（跨表写入）** → **必须触发 `repository-best-practice` 技能**，为该写操作创建对应的 Repository
+
+此评估不可跳过，漏掉 Repository 会导致跨表写入缺乏原子性保证。
 
 ## 核心规范
 
