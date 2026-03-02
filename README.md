@@ -29,6 +29,7 @@ pnpx skills add forge-town/skills
 | [implement-split](skills/implement-split) | 基于预览文档和 Best Practice，实际拆分组件代码，生成符合规范的子组件。优先从 store 获取数据，避免 props 透传。 |
 | [page-best-practice](skills/page-best-practice) | 基于标准化解剖学规范（Anatomy）生成前端页面结构；主动询问用户选择生成模式（无监督/有监督），支持自动生成 Wrapper、Content 和 Optional Store 模块。 |
 | [service-best-practice](skills/service-best-practice) | 帮助开发者根据项目指南编写 Services，以 tRPC + Service + DAO 架构的最佳实践。提供 Service 结构、依赖注入、错误处理、代码示例、模板、样板代码生成和最佳实践验证的指导。在创建或重构代码库中的 Service 文件时使用。 |
+| [repository-best-practice](skills/repository-best-practice) | 为跨表事务性写操作创建 Repository 层，封装多张表的写入事务，确保原子性与数据一致性。当需要跨表写入、事务封装或创建包含业务输入 Schema 的 Repository 文件时使用。触发短语："创建repository"、"写repository"。 |
 | [skill-best-practice](skills/skill-best-practice) | 检查或验证 Skill 是否符合最佳实践规范，涵盖命名规范、目录结构、元数据完整性、临时文件清理和依赖格式验证，提供详细的检查清单、自动修复建议和报告模板，同时支持技能库文档完整性检查与自动修复，适用于创建或修改 Skill 后的质量验证 |
 | [skill-creator](skills/skill-creator) | 创建有效技能的中文指南。当用户想要创建一个新技能（或更新现有技能）来扩展 AI 的能力时，应使用此技能，包括专门知识、工作流程或工具集成。生成的新技能应使用中文描述。 |
 | [store-best-practice](skills/store-best-practice) | 使用 Zustand 或类似状态管理库生成最佳实践的 store 实现。当您需要创建可扩展、类型安全的 store 时使用，包括适当的 slice 模式和 provider 设置。 |
