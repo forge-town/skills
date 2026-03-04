@@ -1,0 +1,12 @@
+Controller（tRPC Router）
+  ↓ 接收请求，使用 InputSchema.parse() 校验
+Service
+  ↓ 调用 Repository 完成写入（传入 InputSchema 类型数据）
+  ↓ 调用多个 DAO 查询（DAO 返回 Drizzle $inferSelect 类型）
+  ↓ 拼装并 BusinessViewSchema.parse(result)
+  ↑ 返回 z.infer<typeof BusinessViewSchema>
+Repository
+  ↓ 只接受 InputSchema 类型，执行事务写入
+  ↑ 只返回 { id: number }（关键标识）
+DAO
+  ↓ 使用 Drizzle 的 $inferInsert / $inferSelect —— 不使用 Zod Schema

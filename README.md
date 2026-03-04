@@ -23,7 +23,7 @@ pnpx skills add forge-town/skills
 | [check-all-items](skills/check-all-items) | 自动扫描并执行所有以best-practice结尾的技能，检查项目是否符合最佳实践。通过自动发现机制确保所有相关最佳实践都被检查，并强制执行标准化验证指令提升输出稳定性。 |
 | [check-all-skills](skills/check-all-skills) | 批量检查Skill是否符合最佳实践规范；自动验证命名、前言区、结构、文件清理、依赖等维度；支持单个或批量检查；生成详细检查报告；适用于Skill开发完成后的质量验证 |
 | [classname-refactor](skills/classname-refactor) | 自动检查并转换 React/Vue 文件中 className 的模板字符串为 cn 函数调用；支持递归扫描文件夹、详细报告所有 className 位置。 |
-| [dao-best-practice](skills/dao-best-practice) | 用于规范化DAO文件，确保遵循Drizzle ORM最佳实践，包括文件结构、方法命名、类型安全和性能优化。当需要重构或创建DAO文件以符合项目标准时使用。 |
+| [dao-best-practice](skills/dao-best-practice) | 用于规范化DAO文件，确保遵循Drizzle ORM最佳实践，包括文件结构、方法命名、类型安全和性能优化。当需要重构或创建DAO文件以符合项目标准时使用。完成后强制评估是否需要创建对应的 Repository 层以封装跨表事务。 |
 | [db-table-best-practice](skills/db-table-best-practice) | 数据库与数据表表名规范验证与自动修正最佳实践。适用于"数据库是否符合规范"、"表名规范"、"检查表名"、"优化表名"、"数据库命名"、"检查这个文件"、"表名符合规范吗" |
 | [generate-preview](skills/generate-preview) | 输入一个 React 组件，输出结构化描述的 .json 和可视化目录树的 .md 预览文档。用于组件拆分前的预览分析。 |
 | [implement-split](skills/implement-split) | 基于预览文档和 Best Practice，实际拆分组件代码，生成符合规范的子组件。优先从 store 获取数据，避免 props 透传。 |
@@ -38,7 +38,9 @@ pnpx skills add forge-town/skills
 | [check-refine-trpc](skills/check-refine-trpc) | 检查前端组件是否直接使用 `trpc`；禁止组件直接使用 `trpc`，组件必须通过 `refine` 的 hooks 或项目的 `DataProvider` 访问数据。 |
 | [use-store-not-props-best-practice](skills/use-store-not-props-best-practice) | 查看给出的组件并进行修改，尽可能的不要使用props，尽可能直接从store中获取数据。 |
 | [remove-comments](skills/remove-comments) | 删除AI生成的注释 |
+| [schema-best-practice](skills/schema-best-practice) | 使用 Zod Schema 替代传统 DTO，定义表结构 Schema 与业务视图 Schema，支持类型推导、运行时校验与前后端契约共享。适用于 Service、Repository、Controller 各层的数据结构规范化。 |
 | [check-try-catch](skills/check-try-catch) | 识别并修复空catch块和纯console日志catch块问题 |
+
 ## 许可证
 
 [MIT](LICENSE.md)
