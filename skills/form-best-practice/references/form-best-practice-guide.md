@@ -41,7 +41,7 @@
 
 ## 四、标准组件结构（Anatomy）
 
-正确的 shadcn/ui 表单结构层级：[examples/FormAnatomy.txt](examples/FormAnatomy.txt)
+正确的 shadcn/ui 表单结构层级：[examples/anatomy.json](examples/anatomy.json)
 
 每个字段必须通过 `render={({ field }) => ...}` 模式接入，**禁止手动处理 `value` 和 `onChange`**。
 
