@@ -29,9 +29,9 @@
 
 ## 三、三步执行流程
 
-三步执行顺序：[examples/ThreeStepFlow.txt](examples/ThreeStepFlow.txt)
+三步执行顺序：[ThreeStepFlow.txt](ThreeStepFlow.txt)
 
-详细实现：[examples/RouterExample.ts](examples/RouterExample.ts)
+详细实现：[RouterExample.ts](RouterExample.ts)
 
 ---
 
@@ -41,9 +41,10 @@
 
 - `include` 使用 `z.array(z.enum([...]))` 枚举所有已支持的扩展字段名，值必须与处理器中的条件分支一一对应
 - `fields` 使用 `z.array(z.string()).optional()`
+- `fields` 仅支持**顶层字段名**（如 `["id", "name"]`），不支持嵌套路径（如 `["user.name"]`）
 - 响应的 TypeScript 类型使用**完整模型**（运行时裁剪，静态类型保持完整，避免过度工程化）
 
-示例：[examples/BattleSchema.ts](examples/BattleSchema.ts)、[examples/BattleExtendedSchema.ts](examples/BattleExtendedSchema.ts)、[examples/GetBattleInputSchema.ts](examples/GetBattleInputSchema.ts)
+示例：[BattleSchema.ts](SchemaExample/BattleSchema.ts)、[BattleExtendedSchema.ts](SchemaExample/BattleExtendedSchema.ts)、[GetBattleInputSchema.ts](SchemaExample/GetBattleInputSchema.ts)
 
 ### 前端类型使用规则
 

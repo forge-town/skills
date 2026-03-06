@@ -10,8 +10,8 @@ description: 在不引入 GraphQL 的前提下，为 tRPC 接口添加 include�
 ## 使用说明
 
 1. 阅读 [按需查询设计指南](references/guide.md)，了解参数设计规范与执行流程
-2. 参考 [Router 实现示例](references/examples/RouterExample.ts) 了解完整实现
-3. 参考 [Schema 定义示例](references/examples/SchemaExample.ts) 了解 Zod Schema 写法
+2. 参考 [Router 实现示例](references/RouterExample.ts) 了解完整实现
+3. 参考 Schema 定义示例：[BattleSchema.ts](references/SchemaExample/BattleSchema.ts)、[BattleExtendedSchema.ts](references/SchemaExample/BattleExtendedSchema.ts)、[GetBattleInputSchema.ts](references/SchemaExample/GetBattleInputSchema.ts)
 4. 使用 [检查清单](references/checklist.md) 验证实现是否符合规范
 
 ## 核心规范
