@@ -1,6 +1,6 @@
 ---
 name: better-auth-integration
-description: 在 TanStack Start + Drizzle ORM + PostgreSQL 项目中集成 Better Auth 认证，支持邮箱登录与 GitHub/Google OAuth，含完整 Schema、核心文件实现及踩坑修复，当用户说接入认证或新项目需要登录注册时激活。
+description: 在 TanStack Start + Drizzle ORM + PostgreSQL 项目中集成 Better Auth 认证，支持邮箱登录与 GitHub/Google OAuth
 ---
 
 # Better Auth Integration Skill
