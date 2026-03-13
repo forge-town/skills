@@ -26,6 +26,7 @@ pnpx skills add forge-town/skills
 | [dao-best-practice](skills/dao-best-practice) | 用于规范化DAO文件，确保遵循Drizzle ORM最佳实践，包括文件结构、方法命名、类型安全和性能优化。当需要重构或创建DAO文件以符合项目标准时使用。完成后强制评估是否需要创建对应的 Repository 层以封装跨表事务。 |
 | [db-table-best-practice](skills/db-table-best-practice) | 数据库与数据表表名规范验证与自动修正最佳实践。适用于"数据库是否符合规范"、"表名规范"、"检查表名"、"优化表名"、"数据库命名"、"检查这个文件"、"表名符合规范吗" |
 | [generate-preview](skills/generate-preview) | 输入一个 React 组件，输出结构化描述的 .json 和可视化目录树的 .md 预览文档。用于组件拆分前的预览分析。 |
+| [form-best-practice](skills/form-best-practice) | 使用 react-hook-form 管理所有表单状态，结合 shadcn/ui Form 组件与 Zod 校验，禁止使用 useState 或 zustand 直接管理表单字段，实现表单与全局状态的"两棵树"隔离模型。 |
 | [implement-split](skills/implement-split) | 基于预览文档和 Best Practice，实际拆分组件代码，生成符合规范的子组件。优先从 store 获取数据，避免 props 透传。 |
 | [page-best-practice](skills/page-best-practice) | 基于标准化解剖学规范（Anatomy）生成前端页面结构；主动询问用户选择生成模式（无监督/有监督），支持自动生成 Wrapper、Content 和 Optional Store 模块。 |
 | [service-best-practice](skills/service-best-practice) | 帮助开发者根据项目指南编写 Services，以 tRPC + Service + DAO 架构的最佳实践。提供 Service 结构、依赖注入、错误处理、代码示例、模板、样板代码生成和最佳实践验证的指导。在创建或重构代码库中的 Service 文件时使用。 |
