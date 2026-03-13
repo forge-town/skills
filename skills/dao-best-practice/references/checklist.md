@@ -37,3 +37,7 @@
 - [ ] 遵循标准 CRUD 方法模式
 - [ ] 方法签名标准化
 - [ ] 重要逻辑有注释说明
+## ⚠️ Repository 评估（强制）
+- [ ] 已评估当前 DAO 写方法是否涉及多张表写入
+- [ ] 若**单表写入**：写方法签名包含可选 `tx` 参数（`tx?: DbExecutor`）
+- [ ] 若**跨表写入**：已触发 `repository-best-practice` 技能，完成对应 Repository 的创建
