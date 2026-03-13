@@ -39,6 +39,7 @@ pnpx skills add forge-town/skills
 | [svg-icon-best-practice](skills/svg-icon-best-practice) | 统一管理 React TypeScript 项目中的 SVG 图标；支持图标组件封装、命名规范、迁移指导；适用于项目图标重构、新项目图标规范制定、图标维护优化场景 |
 | [check-svg](skills/check-svg) | 检查项目中 SVG 的使用是否符合最佳实践：要求将内联 SVG 抽离为组件，禁止内嵌脚本，提供迁移与复核建议。 |
 | [check-refine-trpc](skills/check-refine-trpc) | 检查前端组件是否直接使用 `trpc`；禁止组件直接使用 `trpc`，组件必须通过 `refine` 的 hooks 或项目的 `DataProvider` 访问数据。 |
+| [trpc-on-demand-query](skills/trpc-on-demand-query) | 在不引入 GraphQL 的前提下，为 tRPC 接口添加 include（按需加载关联字段）和 fields（响应字段裁剪）参数，实现接口的选择性查询能力，降低过量数据传输、解析成本与前端类型维护难度。 |
 | [use-store-not-props-best-practice](skills/use-store-not-props-best-practice) | 查看给出的组件并进行修改，尽可能的不要使用props，尽可能直接从store中获取数据。 |
 | [remove-comments](skills/remove-comments) | 删除AI生成的注释 |
 | [schema-best-practice](skills/schema-best-practice) | 使用 Zod Schema 替代传统 DTO，定义表结构 Schema 与业务视图 Schema，支持类型推导、运行时校验与前后端契约共享。适用于 Service、Repository、Controller 各层的数据结构规范化。 |
