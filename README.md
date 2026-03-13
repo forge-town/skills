@@ -40,7 +40,9 @@ pnpx skills add forge-town/skills
 | [check-refine-trpc](skills/check-refine-trpc) | 检查前端组件是否直接使用 `trpc`；禁止组件直接使用 `trpc`，组件必须通过 `refine` 的 hooks 或项目的 `DataProvider` 访问数据。 |
 | [use-store-not-props-best-practice](skills/use-store-not-props-best-practice) | 查看给出的组件并进行修改，尽可能的不要使用props，尽可能直接从store中获取数据。 |
 | [remove-comments](skills/remove-comments) | 删除AI生成的注释 |
+| [schema-best-practice](skills/schema-best-practice) | 使用 Zod Schema 替代传统 DTO，定义表结构 Schema 与业务视图 Schema，支持类型推导、运行时校验与前后端契约共享。适用于 Service、Repository、Controller 各层的数据结构规范化。 |
 | [check-try-catch](skills/check-try-catch) | 识别并修复空catch块和纯console日志catch块问题 |
+
 ## 许可证
 
 [MIT](LICENSE.md)
