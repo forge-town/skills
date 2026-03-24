@@ -11,17 +11,34 @@
 - 不能包含连续连字符
 - 最多 64 个字符
 
+### 步骤 1.2: 确定技能分类
+
+根据技能名称判断所属分类，并读取对应规范文件后再继续：
+
+| 判断条件 | 分类 | 需读取的规范 |
+|---------|------|-----------|
+| 名称以 `-best-practice` 结尾（如 `dao-best-practice`） | **best-practice** | `references/best-practice/checklist-guide.md` |
+| 无特定后缀 | **普通技能** | 无额外规范 |
+
+> **新增分类时**：在 `references/` 下创建对应目录，编写该分类的规范文件，并在此表格中添加新行。
+
+#### best-practice 分类规范
+
+创建名称以 `-best-practice` 结尾的技能时，必须先阅读：
+
+- **Checklist 写法规范**：见 `references/best-practice/checklist-guide.md`
+  - 何时读取：创建或修改 `references/checklist.md` 前
+  - 内容：checklist 文件结构模板、内容质量要求（唯一映射原则）、SKILL.md 引用格式、AI 执行要求
+
 ## 步骤 2: 创建技能目录结构
 
-在适当的位置创建技能目录（例如 `skills/public/` 或 `skills/private/`）：
+在适当的位置创建技能目录（例如 `skills/public/` 或 `skills/private/`），包含以下组件（按需选择）：
 
-```
-skills/
-  your-skill-name/           # kebab-case 目录名
-    SKILL.md                 # 必需：技能定义
-    scripts/                 # 可选：可执行脚本
-    references/              # 可选：参考资料
-```
+- `SKILL.md`（**必需**）：YAML 前言（`name`+`description`）+ Markdown 主体。主体仅触发后加载。
+- `scripts/`（可选）：确定性可重复执行的脚本，可在不加载到上下文的情况下运行
+- `references/`（可选）：按需加载的文档、模板。信息只在一处维护——避免与 SKILL.md 内容重叠
+
+完整结构规范见 `references/anatomy.json`。
 
 ## 步骤 3: 创建 SKILL.md 文件
 
@@ -74,35 +91,6 @@ description: [TODO: 完成并提供关于此技能做什么以及何时使用的
 - 复杂工作流程的决策树
 - 具有现实用户请求的具体示例
 - 根据需要引用脚本/模板/参考资料]
-
-## 资源
-
-此技能包含演示如何组织不同类型捆绑资源的示例资源目录：
-
-### scripts/
-可执行代码（Python/Bash/等），可以直接运行以执行特定操作。
-
-**来自其他技能的示例：**
-- PDF 技能：`fill_fillable_fields.py`、`extract_form_field_info.py` - PDF 操作的实用工具
-- DOCX 技能：`document.py`、`utilities.py` - 文档处理的 Python 模块
-
-**适用于：** Python 脚本、shell 脚本或任何执行自动化、数据处理或特定操作的可执行代码。
-
-**注意：** 脚本可以在不加载到上下文中时执行，但仍可由 AI 阅读以进行修补或环境调整。
-
-### references/
-文档和参考资料，旨在根据需要加载到上下文中以告知 AI 的过程和思考，包括样例代码、模板和详细示例。
-
-**来自其他技能的示例：**
-- 产品管理：`communication.md`、`context_building.md` - 详细工作流程指南
-- BigQuery：API 参考文档和带有示例代码的查询示例
-- 财务：模式文档、公司政策、代码模板
-
-**适用于：** 深入文档、API 参考、数据库模式、综合指南、示例代码、模板或任何 AI 在工作时应参考的详细信息。
-
----
-
-**任何不需要的目录都可以删除。** 并非每个技能都需要两种类型的资源。
 ```
 
 ## 步骤 4: 创建可选资源目录
@@ -110,20 +98,46 @@ description: [TODO: 完成并提供关于此技能做什么以及何时使用的
 如果技能需要脚本或参考资料，创建相应的目录：
 
 ### 创建 scripts/ 目录
-- 创建 `scripts/` 目录
-- 添加可执行脚本文件（例如 `example.py`）
-- 确保脚本有适当的执行权限
+创建 `scripts/` 目录并添加脚本文件。
 
 ### 创建 references/ 目录
-- 创建 `references/` 目录
-- 添加参考文档和示例文件（例如 `code_examples.md`）
+创建 `references/` 目录并添加文档文件。SKILL.md 主体保持 500 行以内；超出时将内容拆到 references 文件，并在 SKILL.md 中明确引用。
+
+**常见组织模式：**
+
+**模式 1：按领域/变体组织**（适合多领域或多框架技能）
+```
+skill/
+├── SKILL.md（工作流程 + 路由）
+└── references/
+    ├── finance.md
+    ├── sales.md
+    └── product.md
+```
+用户选择领域/框架时，AI 只读对应文件。
+
+**模式 2：带参考链接的高级指南**（适合功能丰富的技能）
+```markdown
+## 高级功能
+- **表单填写**：见 [FORMS.md](references/FORMS.md)
+- **API 参考**：见 [API.md](references/API.md)
+```
+
+**模式 3：条件细节**（适合大多数技能）
+```markdown
+**对于跟踪更改**：见 [REDLINING.md](references/REDLINING.md)
+```
+
+所有 references 文件保持一级深度（直接从 SKILL.md 链接）；超过 100 行的文件在顶部加目录。
 
 ## 步骤 5: 自定义和完善
 
 1. 编辑 `SKILL.md` 以完成所有 TODO 项目
 2. 更新描述以准确反映技能的功能
 3. 自定义或删除示例资源文件
-4. 验证技能结构（参见 `skill-validation-guide.md`）
+4. 检查技能结构（参见 `checklist.md`）
+
+> 禁止创建 README.md、INSTALLATION_GUIDE.md、QUICK_REFERENCE.md、CHANGELOG.md 等辅助文档——技能只应包含 AI 完成任务所需的文件。
 
 ## 后续步骤
 

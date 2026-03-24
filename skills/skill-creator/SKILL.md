@@ -40,138 +40,9 @@ description: 创建有效技能的中文指南。当用户想要创建一个新�
 
 将 AI 视为探索路径：有悬崖的狭窄桥梁需要具体护栏（低自由度），而开放田野允许许多路线（高自由度）。
 
-### 技能剖析
+### 渐进式披露原则
 
-每个技能由必需的 SKILL.md 文件和可选捆绑资源组成。详细的目录结构规范请参考 `references/anatomy.json`，其中以 JSON 格式定义了技能的完整结构要求，包括必需和可选组件。
-
-#### SKILL.md (必需)
-
-每个 SKILL.md 由以下组成：
-
-- **前言** (YAML)：包含 `name` 和 `description` 字段。这些是 AI 读取的唯一字段，用于确定何时使用技能，因此非常重要的是清楚而全面地描述技能是什么以及何时使用它。
-- **主体** (Markdown)：使用技能的说明和指导。只有在技能触发后才会加载（如果有的话）。
-
-#### 捆绑资源 (可选)
-
-##### 脚本 (`scripts/`)
-
-可执行代码 (Python/Bash/等)，用于需要确定性可靠性或反复重写的任务。
-
-- **何时包含**：当反复重写相同代码或需要确定性可靠性时
-- **示例**：`scripts/rotate_pdf.py` 用于 PDF 旋转任务
-- **好处**：token 高效、确定性、可能在不加载到上下文窗口的情况下执行
-- **注意**：脚本可能仍需要由 AI 阅读以进行修补或环境特定调整
-
-##### 参考资料 (`references/`)
-
-文档和参考资料，旨在根据需要加载到上下文中以告知 AI 的过程和思考，包括样例代码、模板和详细示例。
-
-- **何时包含**：对于 AI 在工作时应参考的文档，包括样例代码和模板
-- **示例**：`references/finance.md` 用于财务模式，`references/mnda.md` 用于公司 NDA 模板，`references/policies.md` 用于公司政策，`references/api_docs.md` 用于 API 规范，`references/code_examples.md` 用于样例代码和模板
-- **用例**：数据库模式、API 文档、领域知识、公司政策、详细工作流程指南、样例代码、模板代码
-- **好处**：保持 SKILL.md 精简，仅在 AI 确定需要时加载
-- **最佳实践**：如果文件很大（>10k 字），在 SKILL.md 中包含 grep 搜索模式
-- **避免重复**：信息应位于 SKILL.md 或参考文件之一，而不是两者兼有。偏好参考文件用于详细信息，除非它真正核心于技能——这保持 SKILL.md 精简，同时使信息可发现而不会占用上下文窗口。只在 SKILL.md 中保留基本程序说明和工作流程指导；将详细参考资料、模式和示例移到参考文件。
-
-#### 技能中不应包含什么
-
-技能应仅包含直接支持其功能的必需文件。不要创建无关文档或辅助文件，包括：
-
-- README.md
-- INSTALLATION_GUIDE.md
-- QUICK_REFERENCE.md
-- CHANGELOG.md
-- 等。
-
-技能应仅包含 AI 代理完成手头工作的所需信息。它不应包含关于创建过程的辅助上下文、设置和测试程序、面向用户的文档等。创建额外文档文件只会增加混乱。
-
-### 渐进式披露设计原则
-
-技能使用三级加载系统来高效管理上下文：
-
-1. **元数据 (name + description)** - 始终在上下文中 (~100 字)
-2. **SKILL.md 主体** - 当技能触发时 (<5k 字)
-3. **捆绑资源** - AI 根据需要 (无限制，因为脚本可以在不阅读到上下文窗口的情况下执行)
-
-#### 渐进式披露模式
-
-保持 SKILL.md 主体为基本内容且低于 500 行，以最小化上下文膨胀。当接近此限制时，将内容拆分为单独文件。在将内容拆分到其他文件时，非常重要的是从 SKILL.md 引用它们并清楚描述何时阅读它们，以确保技能的读者知道它们存在以及何时使用它们。
-
-**关键原则：** 当技能支持多个变体、框架或选项时，仅在 SKILL.md 中保留核心工作流程和选择指导。将变体特定细节（模式、示例、配置）移到单独的参考文件中。
-
-**模式 1：带有参考的高级指南**
-
-```markdown
-# PDF 处理
-
-## 快速开始
-
-使用 pdfplumber 提取文本：
-[代码示例]
-
-## 高级功能
-
-- **表单填写**：请参阅 [FORMS.md](FORMS.md) 以获取完整指南
-- **API 参考**：请参阅 [REFERENCE.md](REFERENCE.md) 以获取所有方法
-- **示例**：请参阅 [EXAMPLES.md](EXAMPLES.md) 以获取常见模式
-```
-
-AI 仅在需要时加载 FORMS.md、REFERENCE.md 或 EXAMPLES.md。
-
-**模式 2：特定领域组织**
-
-对于具有多个领域的技能，按领域组织内容以避免加载无关上下文：
-
-```
-bigquery-skill/
-├── SKILL.md (概述和导航)
-└── reference/
-    ├── finance.md (收入、计费指标)
-    ├── sales.md (机会、管道)
-    ├── product.md (API 使用、功能)
-    └── marketing.md (活动、归因)
-```
-
-当用户询问销售指标时，AI 仅阅读 sales.md。
-
-类似地，对于支持多个框架或变体的技能，按变体组织：
-
-```
-cloud-deploy/
-├── SKILL.md (工作流程 + 提供商选择)
-└── references/
-    ├── aws.md (AWS 部署模式)
-    ├── gcp.md (GCP 部署模式)
-    └── azure.md (Azure 部署模式)
-```
-
-当用户选择 AWS 时，AI 仅阅读 aws.md。
-
-**模式 3：条件细节**
-
-显示基本内容，链接到高级内容：
-
-```markdown
-# DOCX 处理
-
-## 创建文档
-
-使用 docx-js 创建新文档。请参阅 [DOCX-JS.md](DOCX-JS.md)。
-
-## 编辑文档
-
-对于简单编辑，直接修改 XML。
-
-**对于跟踪更改**：请参阅 [REDLINING.md](REDLINING.md)
-**对于 OOXML 细节**：请参阅 [OOXML.md](OOXML.md)
-```
-
-AI 仅在用户需要这些功能时阅读 REDLINING.md 或 OOXML.md。
-
-**重要指南：**
-
-- **避免深度嵌套参考** - 保持参考从 SKILL.md 一级深度。所有参考文件应直接从 SKILL.md 链接。
-- **构建更长的参考文件** - 对于超过 100 行的文件，在顶部包含目录，以便 AI 在预览时看到完整范围。
+三级加载：元数据（始终）→ SKILL.md 主体（触发后，500 行以内）→ 捆绑资源（按需）。references 常见组织模式（按领域、按变体、条件细节）见 `references/skill-initialization-guide.md`。
 
 ## 技能创建过程
 
@@ -181,7 +52,7 @@ AI 仅在用户需要这些功能时阅读 REDLINING.md 或 OOXML.md。
 2. 规划可重用技能内容 (脚本、参考资料、资产)
 3. 初始化技能 (请参阅 `references/skill-initialization-guide.md`)
 4. 编辑技能 (实现资源并编写 SKILL.md)
-5. 验证技能 (请参阅 `references/skill-validation-guide.md`)
+5. 检查技能 (请参阅 `references/checklist.md`)
 6. 打包技能 (请参阅 `references/skill-packaging-guide.md`)
 7. 基于实际使用迭代
 
@@ -247,6 +118,7 @@ AI 仅在用户需要这些功能时阅读 REDLINING.md 或 OOXML.md。
 - **多步骤过程**：请参阅 `references/workflows.md` 以获取顺序工作流程和条件逻辑
 - **特定输出格式或质量标准**：请参阅 `references/output-patterns.md` 以获取模板和示例模式
 - **技能结构剖析**：请参阅 `references/anatomy.json` 以获取完整的目录结构规范
+- **分类专属规范**：请参阅 `references/{分类名}/` 目录下的规范文件（如 best-practice 分类还需参照`references/best-practice/checklist-guide.md`）
 
 这些文件包含有效技能设计的既定最佳实践。
 
@@ -259,6 +131,8 @@ AI 仅在用户需要这些功能时阅读 REDLINING.md 或 OOXML.md。
 不需要的任何示例文件和目录应删除。初始化过程在 `scripts/` 和 `references/` 中创建示例文件以演示结构，但大多数技能不需要所有这些。
 
 #### 更新 SKILL.md
+
+> **提示：** 编写前请先确认分类（见 `references/skill-initialization-guide.md` 步骤 1.2），不同分类有额外的文件要求。
 
 **编写指南：** 始终使用祈使/不定式形式。
 
@@ -280,9 +154,9 @@ AI 仅在用户需要这些功能时阅读 REDLINING.md 或 OOXML.md。
 
 **重要：** 所有生成的技能应使用中文编写 SKILL.md，包括描述和主体内容，以匹配用户的语言偏好。
 
-### 步骤 5：验证技能
+### 步骤 5：检查技能
 
-一旦技能开发完成，在打包或分发之前验证其结构和内容。请遵循 `references/skill-validation-guide.md` 中的详细检查清单，确保技能符合所有标准并能正常工作。
+一旦技能开发完成，在打包或分发之前检查其结构和内容。请遵循 `references/checklist.md` 中的详细检查清单，确保技能符合所有标准并能正常工作。
 
 ### 步骤 6：打包技能
 
