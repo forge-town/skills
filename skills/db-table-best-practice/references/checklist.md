@@ -19,11 +19,15 @@
 ### 1.3 Bad Case 确认（以下情况不得出现）
 - [ ] ❌ 不存在以单数命名的表（`user`、`log`、`item` 等）
 - [ ] ❌ 不存在无意义后缀（`_data`、`_info`、`_tbl`、`_table`、`_list` 缀于末尾）
+  - ⚠ 此规则针对 **SQL 表名**（`pgTable()` 第一参数）；
+  - TypeScript 文件名的 `_table.ts` 后缀是独立的文件命名规范，不受此限制
 - [ ] ❌ 不存在无意义缩写（`usr_mgr`、`sys_log` → 必须改为 `user_managers`、`system_logs`）
 
 ---
 
 ## 二、Drizzle 文件命名检查
+
+> ⚠️ `_table.ts` 是 TypeScript **文件类型标记后缀**，不是 SQL 表名的一部分。一、1.3 中禁止 SQL 表名带 `_table` 后缀的规则**不适用于此处的文件命名**。
 
 ### 2.1 文件名规范
 - [ ] ✅ 文件名格式严格为 `{sql_tablename}_table.ts`（如 `users_table.ts`、`order_items_table.ts`）
@@ -34,9 +38,11 @@
 - [ ] ✅ `pgTable("sql_tablename", ...)` 的第一个参数 = 文件名去掉 `_table.ts` 的部分
   - 正确示例：`users_table.ts` → `pgTable("users", ...)`
   - 错误示例：`users_table.ts` → `pgTable("user", ...)` ❌
-- [ ] ✅ 导出的 TypeScript 变量名与 SQL 表名语义一致
-  - 正确示例：`export const users = pgTable("users", ...)`
-  - 错误示例：`export const user = pgTable("users", ...)` ❌
+- [ ] ✅ 导出的 TypeScript 变量名格式为 `{sqlTableName}Table`（camelCase + `Table` 后缀）
+  - 正确示例：`export const usersTable = pgTable("users", ...)`
+  - 正确示例：`export const accountsTable = pgTable("accounts", ...)`
+  - 错误示例：`export const users = pgTable("users", ...)` ❌（缺少 `Table` 后缀）
+  - 错误示例：`export const user = pgTable("users", ...)` ❌（单数且缺后缀）
 
 ---
 
@@ -47,7 +53,9 @@
 - [ ] ✅ 严禁在 SQL 列名中使用驼峰（`createdAt` → 必须改为 `created_at`）
 
 ### 3.2 TypeScript 属性名（ORM 层）
-- [ ] ✅ Drizzle 将 SQL 列映射为驼峰属性，无需手动转换（如 `created_at` → `createdAt`）
+- [ ] ✅ 在 `pgTable()` 中，TypeScript 属性键名使用 camelCase，SQL 列名字符串使用 snake_case，两侧均需显式声明
+  - 示例：`createdAt: timestamp("created_at")` —— TS 键 `createdAt`，SQL 列 `"created_at"`
+  - Drizzle 将在查询结果中使用 camelCase 属性名返回，应用层无需额外的字段映射函数
 - [ ] ✅ 不得在 `pgTable()` 定义中手写驼峰列名（`text("createdAt")` → 必须改为 `text("created_at")`）
 
 ---

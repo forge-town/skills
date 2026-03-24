@@ -8,8 +8,8 @@ description: 数据库与数据表表名规范验证与自动修正最佳实践�
 ## 任务目标
 
 - 验证数据库名称和数据表**表名**是否符合团队规范
-- 支持自动修改文件中的表名（默认行为）
-- 仅适用于数据库和数据表的**名称**，不涉及表字段命名
+- 支持自动修改文件中的表名和列名（默认行为）
+- 覆盖数据库名、数据表表名、Drizzle 列字段命名（sql 层 snake_case ↔ TS 层 camelCase）
 
 ## 数据库命名规范
 
@@ -26,7 +26,7 @@ description: 数据库与数据表表名规范验证与自动修正最佳实践�
 
 ## 数据表表名命名规范
 
-> **说明**：仅验证数据表的**表名**（table name），不涉及表字段（column/field）命名。
+> **说明**：验证数据表的**表名**（table name）及 Drizzle 文件中的**列字段命名**（column/field）规范。
 
 ### 格式要求
 
@@ -46,11 +46,13 @@ description: 数据库与数据表表名规范验证与自动修正最佳实践�
 
 - 避免过长：`user_order_addresses` 合理，`user_order_shipping_receive_addresses` 需简化
 
-### 文件命名规范（Drizzle ORM 文件）
+## TypeScript 文件命名规范（Drizzle ORM）
 
-**格式要求**：`数据库表名 + _table`
+> **说明**：独立于 SQL 表名规范，专为 Drizzle ORM 的 `.ts` 文件命名设计。`_table` 后缀是固定的文件类型标记，**不受 SQL 表名中"禁止 `_table` 后缀"规则约束**。
 
-- 数据库表名必须符合表名规范（复数、小写、下划线）
+**格式要求**：`{sql_tablename}_table.ts`
+
+- SQL 表名部分必须符合表名规范（复数、小写、下划线）
 - 文件名中的表名必须与 `pgTable()` 函数中的表名一致
 
 **示例**：
@@ -82,17 +84,14 @@ description: 数据库与数据表表名规范验证与自动修正最佳实践�
 6. 执行修改（使用 `edit_file`，`limit=-1`）
 7. 验证结果并输出报告
 
-**完整执行流程和示例**：见 [references/usage-examples.md](references/usage-examples.md)
-
 ## 资源索引
 
 - **检查清单（强制执行）**：见 [references/checklist.md](references/checklist.md)（每次生成或审查后必须逐项勾选）
-- 使用示例：见 [references/usage-examples.md](references/usage-examples.md)（参考完整执行流程时查阅）
 - 最佳实践示例：见 [best-practice-examples/](best-practice-examples/)（参考 Drizzle ORM 代码示例时查阅）
 
 ## 注意事项
 
-- **适用范围**：仅验证数据库和数据表的**表名**，不涉及表字段命名
+- **适用范围**：验证数据库名、数据表表名，以及 Drizzle ORM 文件中的列字段命名（snake_case 规范）
 - **默认行为**：提供文件路径或说"数据库/表是否符合规范"时，**默认执行自动修改**
 - **只检查模式**：用户说"只检查"、"只建议"、"不要修改"、"不修改"、"不要改"等 → 只检查不修改
 - **文件查找策略**：
@@ -103,7 +102,8 @@ description: 数据库与数据表表名规范验证与自动修正最佳实践�
   - 使用 `limit=-1` 替换所有匹配项
   - 保持原文件格式和缩进不变
   - 修改前读取，修改后验证
-  - 提供详细的修改报告，包括文件路径
+  - 输出修改报告（格式：修改完成，共修改N处：1. 原名 → 新名）
+  - Drizzle 文件报告包含三项：文件名 / SQL表名 / TS导出变量名
 
 ## 使用场景
 
