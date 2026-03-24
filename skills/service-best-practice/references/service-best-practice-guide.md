@@ -41,7 +41,7 @@ PostgreSQL（通过 pg Pool 执行 SQL）
 ```typescript
 // 推荐：通过参数注入 DAO，便于测试和替换实现
 export const createAuthService = (deps: {
-  usersDao: typeof import("@/db/models/daos/users").usersDao;
+  usersDao: typeof import("@/models/daos/users").usersDao;
 }) => ({
   // methods 使用 deps.usersDao
 });

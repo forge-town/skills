@@ -17,7 +17,7 @@ description: 帮助开发者根据项目指南编写 Services，以 tRPC + Servi
 
 ### 1. 文件结构
 
-- 位置：`apps/web/src/services/`
+- 位置：`services/`
 - 命名：`{feature}Service.ts`
 - 导出：`export const {Feature}Service = { ... }`
 
