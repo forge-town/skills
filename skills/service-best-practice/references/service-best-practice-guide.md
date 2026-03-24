@@ -16,9 +16,9 @@
 ↓
 `src/integrations/trpc/routers/battles.ts#getOne`（子路由处理器）
 ↓
-`src/services/battleService.ts#findById(1)`（业务逻辑层 — Service）
+`services/battleService.ts#findById(1)`（业务逻辑层 — Service）
 ↓
-`src/db/models/daos/battlesDao.ts#findById(1)`（数据访问层 — DAO）
+`models/daos/battlesDao.ts#findById(1)`（数据访问层 — DAO）
 ↓
 `src/db/index.ts` 中的 drizzle(db) 实例
 ↓
@@ -30,13 +30,13 @@ PostgreSQL（通过 pg Pool 执行 SQL）
 
 ### 1. 文件结构
 
-- Service文件位于 `apps/web/src/services/` 下
+- Service文件位于 `services/` 下
 - 文件名使用驼峰命名：`{feature}Service.ts`
 - 导出为对象形式：`export const {Feature}Service = { ... }`
 
 ### 2. 依赖注入（强制建议）
 
-重要规则：Service 绝对不得直接导入或使用 `db`（例如 `import { db } from "@/db"`）。所有对数据库的操作必须通过 DAO（`apps/web/src/db/models/daos/*`）。
+重要规则：Service 绝对不得直接导入或使用 `db`（例如 `import { db } from "@/db"`）。所有对数据库的操作必须通过 DAO（`models/daos/*`）。
 
 ```typescript
 // 推荐：通过参数注入 DAO，便于测试和替换实现
@@ -61,7 +61,7 @@ export const createAuthService = (deps: {
 ### 4. 标准 Service 结构（示例：依赖注入 + DAO）
 
 ```typescript
-// apps/web/src/services/userService.ts
+// services/userService.ts
 import { z } from "zod";
 
 export const createUserService = (deps: { usersDao: any }) => {

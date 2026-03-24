@@ -20,3 +20,9 @@ description: 查看给出的组件并进行修改，尽可能的不要使用prop
 ## 使用方法
 
 在重构组件时应用此原则：优先检查 store 数据可用性，然后修改组件代码以直接访问 store 而非依赖 props 传递。
+
+## 资源索引
+
+- **检查清单（强制执行）**：见 [references/checklist.md](references/checklist.md)（每次重构后必须逐项勾选）
+
+**重要：** 调用完毕技能后，强制查看 [检查清单](references/checklist.md)，并确保返回的内容完全匹配清单中的所有项目。

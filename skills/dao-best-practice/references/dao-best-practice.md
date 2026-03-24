@@ -8,7 +8,7 @@
 
 ### 1. 文件结构
 
-- 每个DAO文件位于 `apps/web/src/db/models/daos/` 下
+- 每个DAO文件位于 `models/daos/` 下
 - 文件名与表名一致（如 `users.ts` 对应 `users` 表）
 - 导出为对象形式：`export const {tableName}Dao = { ... }`
 

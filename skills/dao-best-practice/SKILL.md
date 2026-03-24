@@ -9,7 +9,7 @@ description: 用于规范化DAO文件，确保遵循Drizzle ORM最佳实践，�
 
 ## 使用说明
 
-1. 识别需要规范化的DAO文件，通常位于 `apps/web/src/db/models/daos/`。
+1. 识别需要规范化的DAO文件，通常位于 `models/daos/`。
 
 2. 阅读参考指南：[DAO最佳实践指南](references/dao-best-practice.md) 以了解规范。
 3. 代码示例：[DAO代码参考](references/template-dao.ts) 作为参考。
