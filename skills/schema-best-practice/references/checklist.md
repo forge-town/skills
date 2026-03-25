@@ -26,8 +26,28 @@
   - ❌ 错误示例：`CatInputSchema`（无 Action）→ 必须改为 `CreateCatInputSchema` 或 `UpdateCatInputSchema`
 - [ ] ✅ 对应 TypeScript 类型通过 `z.infer<typeof XxxSchema>` 推导，不手写 `interface` 或 `type` 字面量
   - ❌ 错误示例：`interface Cat { id: string; name: string }` → 必须改为 `type Cat = z.infer<typeof CatSchema>`
-- [ ] ✅ 每个 Schema 定义在独立文件中，文件名 = Schema 名（PascalCase，如 `CatSchema.ts`），一个文件只导出一个 Schema 及其 `z.infer<>` 类型
-  - ❌ 错误示例：`schemas.ts` 包含多个 Schema → 必须拆分为独立文件
+- [ ] ✅ 每个 Schema 定义在独立文件中，文件名 = Schema 名（PascalCase，如 `CatSchema.ts`），一个文件**只允许**导出一个 Schema 常量及其对应的 `z.infer<>` 类型别名，不得在同一文件中定义多个 Schema
+  - ❌ 错误示例：同一文件导出多个 Schema
+    ```ts
+    // ❌ ChatSessionSchema.ts —— 一个文件两个 Schema，违规
+    export const ChatSessionSummarySchema = z.object({ ... });
+    export type ChatSessionSummary = z.infer<typeof ChatSessionSummarySchema>;
+
+    export const ChatSessionDetailSchema = z.object({ ... });
+    export type ChatSessionDetail = z.infer<typeof ChatSessionDetailSchema>;
+    ```
+  - ✅ 正确做法：拆分为两个独立文件
+    ```ts
+    // ✅ ChatSessionSummarySchema.ts
+    export const ChatSessionSummarySchema = z.object({ ... });
+    export type ChatSessionSummary = z.infer<typeof ChatSessionSummarySchema>;
+
+    // ✅ ChatSessionDetailSchema.ts
+    export const ChatSessionDetailSchema = z.object({ ... });
+    export type ChatSessionDetail = z.infer<typeof ChatSessionDetailSchema>;
+    ```
+  - ❌ 错误示例：`schemas.ts` 或 `types.ts` 包含多个 Schema → 必须按"一 Schema 一文件"拆分
+  - ⚠️ **文件名强制规范**：文件名必须与 Schema 常量名完全一致（含 `Schema` 后缀），如 `CreateCatInputSchema.ts` 对应 `CreateCatInputSchema`，不得缩写或省略
 
 ---
 
