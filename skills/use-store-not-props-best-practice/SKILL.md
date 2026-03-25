@@ -1,6 +1,6 @@
 ---
 name: use-store-not-props-best-practice
-description: 查看给出的组件并进行修改，尽可能的不要使用props，尽可能直接从store中获取数据。
+description: 审查并重构 React 组件，将 props 透传替换为直接从 Zustand Store 获取数据，减少组件间耦合。适用于"减少 props 透传"、"改用 store 获取"、"组件重构优化"等触发场景。
 ---
 
 # 使用 Store 而非 Props 最佳实践

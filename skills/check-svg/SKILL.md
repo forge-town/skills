@@ -1,6 +1,6 @@
 ---
 name: check-svg
-description: 检查项目中 SVG 的使用是否符合最佳实践：SVG 需作为独立组件（非内联），并通过 import 使用。
+description: 检查项目中 SVG 的使用是否符合最佳实践：SVG 必须封装为独立 React 组件（.tsx）并通过 import 使用，禁止在业务组件中内联 SVG 代码。适用于代码审查与 SVG 规范化场景。
 ---
 
 # SVG 组件检查 Skill

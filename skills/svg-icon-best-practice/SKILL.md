@@ -14,7 +14,7 @@ description: 统一管理 React TypeScript 项目中的 SVG 图标；支持图�
 ## 前置准备
 
 - 依赖说明：无外部依赖，使用 React + TypeScript 内置能力
-- 目录结构准备：确保项目中存在 `components/` 目录，创建 `components/icons/` 子目录
+- 目录结构准备：确保项目中存在 `src/components/icons/` 目录（如不存在则创建）
   ```bash
   mkdir -p src/components/icons
   ```
@@ -74,7 +74,7 @@ description: 统一管理 React TypeScript 项目中的 SVG 图标；支持图�
 
 在项目根目录执行以下操作：
 
-- 创建 `components/icons/` 目录（如果不存在）
+- 创建 `src/components/icons/` 目录（如果不存在）
 - 该目录将存放所有图标组件
 
 ### 2. 提取并封装 SVG 为 React 组件
@@ -140,7 +140,7 @@ description: 统一管理 React TypeScript 项目中的 SVG 图标；支持图�
 
 #### 3.2 使用封装的 Icon 组件
 
-- 从 `components/icons` 导入图标组件
+- 从 `@/components/icons` 导入图标组件
 - 按需传递 props（size、color 等）
 - 支持通过 className 自定义样式
 
@@ -163,13 +163,13 @@ description: 统一管理 React TypeScript 项目中的 SVG 图标；支持图�
 
 - ❌ 禁止在业务组件内直接写 SVG 代码
 - ❌ 禁止在 icons 目录外存放独立的 SVG 组件文件
-- ❌ 禁止在非 components/icons 目录下创建图标组件
+- ❌ 禁止在非 `src/components/icons` 目录下创建图标组件
 
 **规范要求：**
 
 - ✅ 所有 SVG 图标必须封装为 React 组件
-- ✅ 组件必须保存在 `components/icons/` 目录下
-- ✅ 必须从 `components/icons` 导入使用
+- ✅ 组件必须保存在 `src/components/icons/` 目录下
+- ✅ 必须从 `@/components/icons` 导入使用
 - ✅ 组件必须包含 TypeScript 类型定义
 - ✅ 支持通过 props 配置常用属性
 
@@ -214,7 +214,7 @@ description: 统一管理 React TypeScript 项目中的 SVG 图标；支持图�
 
 **执行方式：** 智能体自然语言指导
 
-1. 创建 components/icons/ 目录
+1. 创建 `src/components/icons/` 目录
 2. 参考 [references/icon-component-template.md](references/icon-component-template.md) 创建图标组件
 3. 参考 [best-practice-examples/components/icons/](best-practice-examples/components/icons/) 中的桶导出方式
 4. 在项目中推行统一的图标使用方式

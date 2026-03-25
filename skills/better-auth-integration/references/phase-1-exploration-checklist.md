@@ -9,6 +9,7 @@
 - 检查 env 是否已有 BETTER_AUTH_SECRET
 - 检查路由是否采用 TanStack Start createFileRoute
 - 检查是否存在 server-env 或 getServerEnv 读取模式
+- **检查现有 users / accounts / sessions 表的 id 列类型**：必须为 `text`，不可为 `uuid`（better-auth 写入字符串 ID，uuid 列会报 invalid input syntax 错误）
 
 ## 输出模板
 

@@ -1,11 +1,12 @@
 ---
 name: remove-comments
-description: 通过自然语言指导删除代码注释，适用于Python、JavaScript、TypeScript(.ts/.tsx)、Java、C/C++、Go、HTML等语言的简单场景
+description: 识别并删除代码中 AI 生成的冗余注释，支持 TypeScript/JavaScript/Python/Go 等主流语言。适用于"删除注释"、"清理 AI 注释"、"移除多余注释"等自然语言指导场景。
 ---
 
 # 代码注释删除器
 
 ## 任务目标
+
 - 本 Skill 用于：通过智能体的语言理解能力删除代码文件中的注释
 - 触发条件：用户提到"删除注释"、"清理注释"、"去注释"、"remove comments"等
 - 适用场景：简单代码的注释清理，复杂代码建议使用专业工具
@@ -26,6 +27,7 @@ description: 通过自然语言指导删除代码注释，适用于Python、Java
 - **HTML/XML**：删除 `<!-- -->` 注释
 
 **重要原则**：
+
 - 保护字符串中的注释符号（如 URL `http://`、路径 `//server`）
 - 保持代码缩进和格式
 - 不影响代码逻辑
