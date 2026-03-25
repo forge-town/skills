@@ -1,6 +1,6 @@
 ---
 name: zod-env-integration
-description: Generate Zod-based environment variable management code from .env.example files. Use when you need to create type-safe env management, standardize env handling, or generate env schemas.
+description: 从 .env.example 自动生成基于 Zod 的环境变量类型安全管理代码，支持运行时校验与 TypeScript 类型推导。适用于"新建 env 管理"、"规范化环境变量"、"生成 zod env schema"等场景。
 ---
 
 # Zod 环境变量集成

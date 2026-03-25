@@ -1,6 +1,6 @@
 ---
 name: generate-preview
-description: 输入一个 React 组件，输出结构化描述的 .json 和可视化目录树的 .md 预览文档。用于组件拆分前的预览分析。
+description: 接收 React 组件文件，输出结构化描述的 .json 和可视化目录树的 .md 预览文档，用于组件拆分前的结构分析与规划。适用于"预览组件结构"、"拆分前分析"、"生成组件文档"等场景。
 ---
 
 # generatePreview

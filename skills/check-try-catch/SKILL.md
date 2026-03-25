@@ -1,20 +1,19 @@
 ---
 name: check-try-catch
-description: 提供代码审查指南，识别并修复空catch块和纯console日志catch块问题
-dependency:
-  python: []
-  system: []
+description: 代码审查指南，识别并修复反模式的 try/catch 用法：包括空 catch 块与纯 console.log 捕获问题。适用于"检查 try catch"、"修复错误处理"、"审查异常捕获规范"等场景。
 ---
 
 # Check Try-Catch 代码审查指南
 
 ## 任务目标
+
 - 识别代码中的空 catch 块（没有实际处理逻辑）
 - 识别 catch 块中只有 console.log/print 等日志语句
 - 提供修复建议和最佳实践
 - 支持多语言代码审查
 
 ## 前置准备
+
 无特殊依赖，本指南适用于人工代码审查或智能体辅助审查。
 
 ## 操作步骤
@@ -37,9 +36,11 @@ dependency:
    - 确保每个 catch/except 块都有明确的错误处理意图
 
 ## 资源索引
+
 - 模式参考: [references/patterns.md](references/patterns.md) (何时读取:需要具体的错误示例、修复策略和检查清单时)
 
 ## 注意事项
+
 - 本指南适用于 JavaScript/TypeScript 和 Python 代码
 - 代码审查应结合业务上下文判断错误的处理策略
 - 建议在代码评审阶段执行此检查
@@ -48,12 +49,14 @@ dependency:
 ## 使用示例
 
 **场景 1：人工代码审查**
+
 ```bash
 # 在代码评审时，按照本指南检查提交的代码
 # 重点关注新增或修改的 try-catch 块
 ```
 
 **场景 2：智能体辅助审查**
+
 ```
 请按照 check-try-catch 指南审查以下代码：
 [粘贴代码]

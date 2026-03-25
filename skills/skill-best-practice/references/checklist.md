@@ -1,221 +1,129 @@
 # Skill 检查清单
 
-## 目录
-1. [命名规范检查](#命名规范检查)
-2. [SKILL.md 前言区检查](#skillmd-前言区检查)
-3. [目录结构检查](#目录结构检查)
-4. [文件清理检查](#文件清理检查)
-5. [依赖元数据检查](#依赖元数据检查)
-6. [报告格式](#报告格式)
+执行规则：**逐项勾选，若有任何一项为 ❌，必须修正后重新检查，不得跳过输出。**
 
 ---
 
-## 命名规范检查
+## 一、命名规范检查
 
-### 检查项 1: 目录名格式
-- **通过标准**: 目录名仅使用小写字母、数字和连字符（-）
-- **检查方式**: 查看目录名是否符合正则表达式 `^[a-z0-9]+(-[a-z0-9]+)*$`
-- **错误示例**: `ExamGrading`, `pdf_parser`, `MySkill-1.0`
-- **通过示例**: `exam-grading`, `pdf-parser`, `my-skill-1`
-- **修复建议**: 重命名目录为符合规范的名称
+### 1.1 目录名格式（正则：`^[a-z0-9]+(-[a-z0-9]+)*$`）
+- [ ] ✅ 目录名仅使用小写字母、数字和连字符（`-`），不含大写字母、下划线或空格
+  - ❌ 错误示例：`ExamGrading` → 必须改为 `exam-grading`
+  - ❌ 错误示例：`pdf_parser` → 必须改为 `pdf-parser`
+  - ❌ 错误示例：`My Skill` → 必须改为 `my-skill`
 
-### 检查项 2: 目录名后缀
-- **通过标准**: 目录名不以 `-skill` 结尾
-- **检查方式**: 检查目录名末尾是否包含 `-skill`
-- **错误示例**: `exam-grading-skill`, `pdf-parser-skill`
-- **通过示例**: `exam-grading`, `pdf-parser`
-- **修复建议**: 移除目录名末尾的 `-skill` 后缀
+### 1.2 目录名禁止 `-skill` 后缀
+- [ ] ✅ 目录名末尾不含 `-skill`
+  - ❌ 错误示例：`exam-grading-skill` → 必须改为 `exam-grading`
+  - ❌ 错误示例：`pdf-parser-skill` → 必须改为 `pdf-parser`
 
-### 检查项 3: 目录名最佳实践后缀
-- **通过标准**: 目录名以 `-best-practice` 结尾（仅适用于最佳实践检查类 Skill）
-- **检查方式**: 检查目录名末尾是否包含 `-best-practice`
-- **错误示例**: `best-practice-checker`, `skill-quality`, `skill-validator`
-- **通过示例**: `skill-best-practice`, `quality-best-practice`
-- **修复建议**: 对于最佳实践检查类 Skill，添加 `-best-practice` 后缀
-- **说明**: 此检查项仅适用于最佳实践检查类的 Skill，其他 Skill 可忽略
+### 1.3 最佳实践类 Skill 必须有 `-best-practice` 后缀（仅适用于最佳实践检查类）
+- [ ] ✅ 最佳实践检查类 Skill 目录名以 `-best-practice` 结尾
+  - ❌ 错误示例（最佳实践类）：`skill-quality`、`skill-validator` → 必须改为 `skill-best-practice`
+  - ✅ 非最佳实践类 Skill 跳过此项（如 `exam-grading`、`pdf-parser` 无需此后缀）
 
 ---
 
-## SKILL.md 前言区检查
+## 二、SKILL.md 前言区检查
 
-### 检查项 4: name 字段存在
-- **通过标准**: SKILL.md 前言区包含 `name` 字段
-- **检查方式**: 打开 SKILL.md，查看 YAML 前言区（`---` 之间）是否有 `name` 字段
-- **错误示例**: 前言区缺少 `name` 字段
-- **通过示例**: `name: my-skill`
-- **修复建议**: 在前言区添加 `name` 字段
+### 2.1 `name` 字段存在
+- [ ] ✅ SKILL.md 的 YAML 前言区（`---` 之间）包含 `name` 字段
+  - ❌ 错误示例：前言区只有 `description`，无 `name` → 必须添加 `name: skill-name`
 
-### 检查项 5: name 字段与目录名一致
-- **通过标准**: 前言区 `name` 字段值与目录名完全一致
-- **检查方式**: 对比 `name` 字段值和目录名
-- **警告示例**: 目录名为 `exam-grading`，但 `name` 字段为 `exam-grading-skill`
-- **通过示例**: 目录名和 `name` 字段均为 `exam-grading`
-- **修复建议**: 修改 `name` 字段值使其与目录名一致
+### 2.2 `name` 字段与目录名完全一致
+- [ ] ✅ `name` 字段值 = 目录名（字符完全匹配）
+  - ❌ 错误示例：目录名 `dao-best-practice`，但 `name: dao-best-practice-skill` → 必须改为 `name: dao-best-practice`
 
-### 检查项 6: description 字段存在
-- **通过标准**: SKILL.md 前言区包含 `description` 字段
-- **检查方式**: 查看前言区是否有 `description` 字段
-- **错误示例**: 前言区缺少 `description` 字段
-- **通过示例**: `description: 自动批改考试答案，支持多种题型`
-- **修复建议**: 在前言区添加 `description` 字段
+### 2.3 `description` 字段存在
+- [ ] ✅ 前言区包含 `description` 字段
+  - ❌ 错误示例：前言区缺少 `description` 字段 → 必须添加
 
-### 检查项 7: description 单行格式
-- **通过标准**: `description` 为单行文本（不含换行符）
-- **检查方式**: 检查 `description` 值中是否包含 `\n` 换行符
-- **错误示例**: `description: 自动批改考试答案\n支持多种题型`
-- **通过示例**: `description: 自动批改考试答案，支持多种题型`
-- **修复建议**: 将 `description` 改为单行文本
+### 2.4 `description` 为单行文本
+- [ ] ✅ `description` 值不含换行符（单行）
+  - ❌ 错误示例：description 值跨多行 → 必须改为单行文本
 
-### 检查项 8: description 长度
-- **通过标准**: `description` 长度在 100-150 字符之间
-- **检查方式**: 统计 `description` 值的字符数（不含空格和标点建议单独统计）
-- **警告示例**: 长度 < 100 或 > 150 字符
-- **通过示例**: 长度为 125 字符
-- **修复建议**: 补充或精简 `description` 内容，使其长度符合要求
+### 2.5 `description` 长度在 100-150 字符之间
+- [ ] ✅ `description` 字符数在 100-150 之间（字符数 = len(description_value)）
+  - ❌ 错误示例：`description: 检查 DAO 文件` （14 字符，过短）→ 必须扩展到 100+ 字符，描述核心能力和触发场景
+  - ❌ 错误示例：超过 150 字符的 description → 必须精简
 
 ---
 
-## 目录结构检查
+## 三、目录结构检查
 
-### 检查项 9: SKILL.md 存在
-- **通过标准**: Skill 根目录包含 `SKILL.md` 文件
-- **检查方式**: 查看 Skill 根目录下是否有 `SKILL.md`
-- **错误示例**: 根目录缺少 `SKILL.md` 文件
-- **通过示例**: 根目录包含 `SKILL.md` 文件
-- **修复建议**: 创建 `SKILL.md` 文件
+### 3.1 SKILL.md 文件存在
+- [ ] ✅ Skill 根目录下存在 `SKILL.md` 文件
+  - ❌ 错误示例：只有 `README.md`，无 `SKILL.md` → 必须创建 `SKILL.md`
 
-### 检查项 10: 固定结构目录
-- **通过标准**: 根目录仅包含以下目录：`scripts/`、`references/`、`assets/`
-- **检查方式**: 列出根目录下所有文件和目录，确认无额外项
-- **错误示例**: 包含 `README.md`、`LICENSE`、`test/` 等额外文件/目录
-- **通过示例**: 仅包含 `SKILL.md` 和三个固定子目录
-- **修复建议**: 删除不符合规范的文件或目录
+### 3.2 仅包含合法子目录（`scripts/`、`references/`、`assets/`）
+- [ ] ✅ 根目录下除 `SKILL.md` 外，只存在 `scripts/`、`references/`、`assets/` 三个目录，无其他文件/目录
+  - ❌ 错误示例：存在 `README.md`、`LICENSE`、`test/` → 必须删除不符合规范的文件/目录
+  - ❌ 错误示例：存在 `docs/` 目录 → 必须移动到 `references/` 下或删除
 
-### 检查项 11: 空目录检查
-- **通过标准**: 不存在空目录（不包含任何文件的目录）
-- **检查方式**: 递归遍历所有子目录，检查是否为空
-- **警告示例**: `scripts/` 目录为空（无任何脚本文件）
-- **通过示例**: 所有目录都包含必要文件
-- **修复建议**: 删除空目录或添加必要文件
+### 3.3 无空目录
+- [ ] ✅ 不存在任何空子目录（不含任何文件的目录）
+  - ❌ 错误示例：`scripts/` 目录为空 → 必须删除空目录或添加必要文件
 
 ---
 
-## 文件清理检查
+## 四、文件清理检查
 
-### 检查项 12: 临时文件清理
-- **通过标准**: 不存在以下临时文件或目录：
-  - `__pycache__/` （Python 缓存）
-  - `*.pyc`、`*.pyo` （Python 字节码）
-  - `.DS_Store` （macOS 系统文件）
-  - `Thumbs.db` （Windows 缩略图）
-  - `tmp/`、`temp/` （临时目录）
-  - `.cache/` （缓存目录）
-  - `.pytest_cache/` （pytest 缓存）
-  - `*.log` （日志文件）
-- **检查方式**: 遍历目录，查找上述模式
-- **错误示例**: 包含 `__pycache__/` 或 `.DS_Store`
-- **通过示例**: 不存在任何临时文件
-- **修复建议**: 删除所有临时文件和缓存目录
+- [ ] ✅ 不存在以下临时文件或目录：`__pycache__/`、`*.pyc`、`*.pyo`、`.DS_Store`、`Thumbs.db`、`tmp/`、`temp/`、`.cache/`、`.pytest_cache/`、`*.log`
+  - ❌ 错误示例：存在 `.DS_Store` → 必须删除
+  - ❌ 错误示例：存在 `__pycache__/` → 必须删除
 
 ---
 
-## 依赖元数据检查
+## 五、依赖元数据检查
 
-### 检查项 13: dependency.python 格式
-- **通过标准**（如果存在）: `dependency.python` 为列表，每个元素符合 requirement.txt 格式
-- **检查方式**: 检查 `dependency.python` 是否为列表，每个元素是否符合 `package==1.0.0` 或 `package>=1.0.0` 格式
-- **错误示例**: `dependency: pip install package` （不在 python 字段中）
-- **通过示例**:
-  ```yaml
-  dependency:
-    python:
-      - PyYAML>=5.1
-      - pandas>=1.3.0
-  ```
-- **修复建议**: 将依赖项改为列表格式，使用正确的版本号表示法
+### 5.1 `dependency.python` 格式（如存在）
+- [ ] ✅ `dependency.python` 为列表，每个元素符合 requirements.txt 格式（`package>=1.0.0`）
+  - ❌ 错误示例：`dependency: pip install PyYAML` → 必须改为 `dependency: { python: ["PyYAML>=5.1"] }`
+  - ❌ 错误示例：`python: "PyYAML"` 字符串而非列表 → 必须改为列表格式
 
-### 检查项 14: dependency.system 格式
-- **通过标准**（如果存在）: `dependency.system` 为列表，不包含 Python 包安装命令
-- **检查方式**: 检查 `dependency.system` 是否为列表，是否包含 `pip install`、`pip3 install`、`python -m pip` 等命令
-- **错误示例**: `dependency.system: ["pip install requests"]`
-- **通过示例**:
-  ```yaml
-  dependency:
-    system:
-      - mkdir -p output/results
-      - chmod +x scripts/*.sh
-  ```
-- **修复建议**: 移除 pip install 命令，Python 依赖应在 `dependency.python` 字段中声明
+### 5.2 `dependency.system` 格式（如存在）
+- [ ] ✅ `dependency.system` 为列表，不包含 `pip install`、`pip3 install`、`python -m pip` 命令
+  - ❌ 错误示例：`system: ["pip install requests"]` → 必须移到 `dependency.python`
 
 ---
 
-## 报告格式
+## 六、Best Practice Skill 额外检查（仅适用于 `-best-practice` 类 Skill）
 
-### 检查报告模板
-完成所有检查项后，生成结构化报告：
-
-```json
-{
-  "skill_name": "my-skill",
-  "skill_path": "/path/to/skill",
-  "status": "pass|warning|error",
-  "summary": "通过检查，但有 1 个警告",
-  "stats": {
-    "total": 14,
-    "pass": 13,
-    "warning": 1,
-    "error": 0
-  },
-  "checks": [
-    {
-      "name": "naming_convention",
-      "status": "pass",
-      "message": "目录名 'my-skill' 符合命名规范",
-      "fix_suggestion": ""
-    },
-    {
-      "name": "front_matter_description",
-      "status": "warning",
-      "message": "description 长度为 80 字符，建议 100-150 字符",
-      "fix_suggestion": "补充 description 内容，使其更详细"
-    }
-  ]
-}
-```
-
-### 状态定义
-- **pass**: 所有检查项通过
-- **warning**: 无错误，但存在警告项
-- **error**: 存在必须修复的错误项
+- [ ] ✅ `references/checklist.md` 文件存在（强制要求）
+  - ❌ 错误示例：缺少 `references/checklist.md` → 必须创建
+- [ ] ✅ checklist 中每一项都能映射到**唯一**的正确代码模式（Unique Mapping Principle）
+  - ❌ 错误示例：`- [ ] 命名要规范`（无法判断是/否）→ 必须改为 `- [ ] ✅ 文件名格式为 {feature}Dao.ts（如 catsDao.ts），❌ 错误：CatsDAO.ts、cats-dao.ts`
+- [ ] ✅ checklist 包含 Bad Case 确认节（列出**不得出现**的反模式）
+  - ❌ 错误示例：checklist 只有正面规则，无 `## Bad Case 确认` 节 → 必须添加
 
 ---
 
-## 快速检查表
+## 七、报告格式（执行完成后必须输出）
 
-打印此表用于快速勾选检查：
+**检查级别说明**：
+
+| 级别 | 含义 | 处理方式 |
+|------|------|---------|
+| **pass**（通过） | 完全符合规范 | 无需操作 |
+| **warning**（警告） | 建议修复但不影响核心功能（如 description 长度略超/略低于范围、存在不影响运行的空目录） | 视情况修复 |
+| **error**（错误） | 违反强制规范，必须修复（如缺少 name/description、文件名不合规、带 -skill 后缀） | 必须修复后才能通过检查 |
+
+完成所有检查项后，输出以下格式的报告：
 
 ```
-命名规范检查
-☐ 目录名格式（小写字母+连字符）
-☐ 目录名不以 -skill 结尾
-☐ 目录名以 -best-practice 结尾（仅适用于最佳实践检查类 Skill）
-
-SKILL.md 前言区检查
-☐ name 字段存在
-☐ name 字段与目录名一致
-☐ description 字段存在
-☐ description 单行格式
-☐ description 长度 100-150 字符
-
-目录结构检查
-☐ SKILL.md 存在
-☐ 仅包含固定结构目录
-☐ 无空目录
-
-文件清理检查
-☐ 无临时文件（__pycache__、.DS_Store 等）
-
-依赖元数据检查
-☐ dependency.python 格式正确（如存在）
-☐ dependency.system 无 pip 命令（如存在）
+Skill 检查报告
+- 技能名称: {skill-name}
+- 总体状态: ✅ 通过 / ⚠️ 警告 / ❌ 有错误需修复
+- 检查统计: 通过 {n} / 警告 {n} / 错误 {n} / 总计 {n}
+- 错误详情: [逐条列出 ❌、⚠️ 项及修复建议]
 ```
+
+---
+
+## Bad Case 确认（Skill 本身的反模式，以下情况不得出现）
+
+- [ ] ❌ 不存在 `README.md` 替代 `SKILL.md` 作为入口文档的情况
+- [ ] ❌ 不存在 `name` 字段与目录名不一致的情况
+- [ ] ❌ 不存在 description 字符数少于 100 的情况
+- [ ] ❌ 不存在带 `-skill` 后缀的目录名的情况
+- [ ] ❌ 不存在 `__pycache__`、`.DS_Store` 等临时文件被提交进 Skill 的情况

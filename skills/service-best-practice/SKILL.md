@@ -17,7 +17,7 @@ description: 帮助开发者根据项目指南编写 Services，以 tRPC + Servi
 
 ### 1. 文件结构
 
-- 位置：`apps/web/src/services/`
+- 位置：`services/`
 - 命名：`{feature}Service.ts`
 - 导出：`export const {Feature}Service = { ... }`
 
@@ -55,4 +55,7 @@ Service 可发起 `db.transaction()`，DAO 接收可选 `tx` 参数。
 
 ## 资源
 
+- **检查清单（强制执行）**：见 [references/checklist.md](references/checklist.md)（每次生成或重构后必须逐项勾选）
 - [service-best-practice-guide.md](references/service-best-practice-guide.md)：完整的 Service 编写指南
+
+**重要：** 调用完毕技能后，强制查看 [检查清单](references/checklist.md)，并确保返回的内容完全匹配清单中的所有项目。

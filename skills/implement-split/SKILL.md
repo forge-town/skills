@@ -1,6 +1,6 @@
 ---
 name: implement-split
-description: 基于预览文档和 Best Practice，实际拆分组件代码，生成符合规范的子组件。优先从 store 获取数据，避免 props 透传。
+description: 基于 generate-preview 输出的预览文档和最佳实践，实际执行组件拆分，生成符合规范的子组件文件，优先从 store 获取数据避免 props 透传。适用于"拆分组件"、"重构大组件"等场景。
 ---
 
 # implementSplit

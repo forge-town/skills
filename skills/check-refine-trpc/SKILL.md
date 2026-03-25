@@ -1,6 +1,6 @@
 ---
 name: check-refine-trpc
-description: 检查组件是否直接使用 trpc，组件必须使用 refine。
+description: 检查 React 组件是否违规直接调用 tRPC，强制所有数据请求必须通过 Refine 数据层（useList/useOne 等）封装。适用于代码审查、PR Review 等场景，触发词：检查 tRPC 使用、检查 Refine 规范。
 ---
 
 # 组件级强制规则：禁止直接使用 trpc
