@@ -60,15 +60,22 @@
 - [ ] ✅ 写方法（`create` / `update` / `delete`）**必须同时提供** `xxxWithTx` 变体
   - 即使当前无跨表场景也必须提供，保证上层可在需要时注入事务而无需改 DAO
   - ❌ 错误示例：只有 `update()`，无 `updateWithTx()` → 上层事务无法注入
+  - ⚠️ **例外情形**：由外部库（如 better-auth）完全托管的表（如 `users`），若满足以下**全部条件**，可豁免 `WithTx` 变体：
+    1. 该表的写入操作**仅由外部库内部完成**，项目代码不直接写入
+    2. 整个项目中**不存在**任何需要将该表写入纳入自定义事务的场景
+    3. 团队已明确记录豁免决策（在 DAO 文件顶部注释说明）
+  - 若 DAG 的 Service 层存在任何自定义写入（如 `updateProfile`），则**不满足例外条件**，必须提供 `WithTx` 变体
 - [ ] ✅ `WithTx` 变体的 executor 参数类型使用 `DbExecutor` 联合类型，同时覆盖 db 实例与事务对象：
   ```
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   export type DbExecutor = NodePgDatabase<any> | PgTransaction<any, any, any>;
   ```
   需从 `drizzle-orm/node-postgres` 导入 `NodePgDatabase`，从 `drizzle-orm/pg-core` 导入 `PgTransaction`
+  - ⚠️ **命名强制规范**：类型名称必须统一为 `DbExecutor`，**不得**添加特征前缀（如 `UsersDbExecutor`、`CatsDbExecutor`）。每个 DAO 文件各自声明同名类型，内容完全一致，保证项目内类型名称统一
   - ❌ 错误示例：`tx: any` → 类型不安全，IDE 无法补全
   - ❌ 错误示例：`tx: NodePgDatabase<typeof schema>` → 只覆盖 db 实例，不能接收 `PgTransaction`，事务场景会有 TS 报错
   - ❌ 错误示例：`type Transaction = Parameters<Parameters<typeof db.transaction>[0]>[0]` → 只覆盖事务对象，无法在非事务场景复用（可读性差）
+  - ❌ 错误示例：`export type UsersDbExecutor = ...` → 带前缀命名破坏全局统一性，禁止使用
 
 ---
 

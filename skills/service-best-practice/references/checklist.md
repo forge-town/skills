@@ -12,6 +12,10 @@
   - ❌ 错误示例：`CatsService.ts`、`cats-service.ts` → 必须改为 `catsService.ts`
 - [ ] ✅ 顶层导出格式严格为 `export const {feature}Service = { ... }`（对象形式，非 class）
   - ❌ 错误示例：`export class CatsService { ... }` → 必须改为 `export const catsService = { ... }`
+  - ⚠️ **工具函数豁免**：若文件内容为纯工具函数（URL 构建、请求体构造、Thread ID 生成等）而非 Service 对象，在满足以下**全部条件**时无需封装为对象：
+    1. 文件中**不包含**任何数据库/外部 API 调用
+    2. 所有函数为无副作用的纯函数或简单 `fetch` 封装
+    3. 文件命名应优先考虑重命名为 `{feature}Utils.ts` 或 `{feature}Helpers.ts` 以体现职责；若历史原因保留 `Service` 后缀，须在文件顶部注释说明豁免原因
 
 ---
 
@@ -51,6 +55,7 @@
   - ❌ 错误示例：DAO 方法内部检查 `if (status !== "available") throw Error` → 必须移到 Service 层
 - [ ] ✅ 找不到记录时返回 `null` 或抛出语义明确的 `Error`，不返回 `undefined`
   - ❌ 错误示例：`return undefined` → 必须改为 `return null` 或 `throw new Error("Cat not found")`
+  - ⚠️ **例外情形**：由外部库（如 better-auth）托管的 Service（如 `userService`）若其底层 DAO 尚未对齐 `null` 语义，执行此规范前须先完成 DAO 层修正，再同步 Service 返回类型。不得在 DAO 仍返回 `undefined` 的情况下强行将 Service 返回类型改为 `null`（会产生类型不一致的隐患）
 - [ ] ✅ `catch` 块不为空，不允许仅 `console.log` 而不重新抛出
   - ❌ 错误示例：`catch (e) { console.log(e) }` → 必须改为 `catch (e) { throw e }` 或包裹语义错误后重抛
 
