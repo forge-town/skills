@@ -4,7 +4,7 @@
 
 - 读取 package.json，确认框架、ORM、数据库驱动版本
 - 检查 src/integrations 是否已有 better-auth 文件
-- 确认 schema 是单文件还是按表拆分
+- 确认 schema 按表拆分
 - 确认 DATABASE_URL 写法与运行环境（本机或 Docker）
 - 检查 env 是否已有 BETTER_AUTH_SECRET
 - 检查路由是否采用 TanStack Start createFileRoute

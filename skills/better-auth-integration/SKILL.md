@@ -49,10 +49,9 @@ description: 在 TanStack Start + Drizzle ORM + PostgreSQL 项目中集成 Bette
 
 关键约束：所有 better-auth 托管表的 id 及关联 user_id 必须使用 text，不可使用 uuid
 
-- 单文件 schema 示例见 [schema-single-file.ts](references/schema/schema-single-file.ts)
-- 按表拆分 schema 示例见 [users_table.ts](references/schema/split/users_table.ts)
-- schema 聚合导出见 [index.ts](references/schema/split/index.ts)
-- 业务表外键类型要求见 [business-fk-rules.md](references/schema/business-fk-rules.md)
+- 按表拆分 schema 示例见 [users_table.ts](references/db-schema/tables/users_table.ts)
+- schema 聚合导出见 [index.ts](references/db-schema/tables/index.ts)
+- 业务表外键类型要求见 [business-fk-rules.md](references/db-schema/business-fk-rules.md)
 
 如果项目已有 uuid 历史数据：
 
