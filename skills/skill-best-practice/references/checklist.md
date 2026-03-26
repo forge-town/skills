@@ -109,6 +109,9 @@
 
 - [ ] ✅ `references/checklist.md` 文件存在（强制要求）
   - ❌ 错误示例：缺少 `references/checklist.md` → 必须创建
+- [ ] ✅ `best-practice-examples/` 目录存在且包含至少一个示例文件/文件夹（强制要求）
+  - ❌ 错误示例：缺少 `best-practice-examples/` 或目录为空 → 必须创建包含真实代码示例的文件
+  - ✅ 正确示例：`best-practice-examples/userDao.ts`、`best-practice-examples/UserCard/`（含完整代码）
 - [ ] ✅ checklist 中每一项都能映射到**唯一**的正确代码模式（Unique Mapping Principle）
   - ❌ 错误示例：`- [ ] 命名要规范`（无法判断是/否）→ 必须改为 `- [ ] ✅ 文件名格式为 {feature}Dao.ts（如 catsDao.ts），❌ 错误：CatsDAO.ts、cats-dao.ts`
 - [ ] ✅ checklist 包含 Bad Case 确认节（列出**不得出现**的反模式）

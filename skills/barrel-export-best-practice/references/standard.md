@@ -6,30 +6,27 @@
 
 ```ts
 // ✅ 正确的桶导出文件：src/components/index.ts
-export { Button } from './Button'
-export { Input } from './Input'
-export type { ButtonProps } from './Button'
-export type { InputProps } from './Input'
+export * from './Button'
+export * from './Input'
 ```
 
 ---
 
 ## 合规示例
 
-### 显式命名导出（推荐）
+### 通配符导出（推荐）
+```ts
+// src/components/index.ts
+export * from './Button'
+export * from './Input'
+```
+
+### 显式命名导出（需要隐藏内部符号时使用）
 ```ts
 // src/lib/index.ts
 export { formatDate } from './formatDate'
 export { parseJSON } from './parseJSON'
 export type { DateConfig } from './formatDate'
-```
-
-### 通配符导出（无冲突时可用）
-```ts
-// src/utils/index.ts
-export * from './string'
-export * from './number'
-// 注意：确保 string.ts 和 number.ts 之间无同名导出
 ```
 
 ---
