@@ -1,6 +1,6 @@
 ---
 name: trpc-on-demand-query
-description: 在不引入 GraphQL 的前提下，为 tRPC 接口添加 include（按需加载关联字段）和 fields（响应字段裁剪）参数，实现接口的选择性查询能力，降低过量数据传输、解析成本与前端类型维护难度。
+description: Use when 需要实现 tRPC 按需查询（on-demand query）模式，确保查询逻辑和数据获取方式符合项目 tRPC 规范和最佳实践。触发词：tRPC按需查询、实现tRPC查询、on-demand查询模式。
 ---
 
 # tRPC 按需查询接口设计规范

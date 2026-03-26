@@ -1,68 +1,16 @@
 ---
 name: check-try-catch
-description: 代码审查指南，识别并修复反模式的 try/catch 用法：包括空 catch 块与纯 console.log 捕获问题。适用于"检查 try catch"、"修复错误处理"、"审查异常捕获规范"等场景。
+description: Use when 需要扫描代码中 try-catch 的使用情况，识别不规范的错误处理模式，确保异常处理符合项目规范；适用于代码审查阶段。触发词：检查try-catch写法、错误处理规范检查、异常捕获审查。
 ---
 
 # Check Try-Catch 代码审查指南
 
-## 任务目标
+## 使用说明
 
-- 识别代码中的空 catch 块（没有实际处理逻辑）
-- 识别 catch 块中只有 console.log/print 等日志语句
-- 提供修复建议和最佳实践
-- 支持多语言代码审查
+1. 扫描代码中所有 `try-catch` / `try-except` 结构
+2. 识别以下违规模式（详细示例与修复策略见 [references/patterns.md](references/patterns.md)）：
+   - 空 catch 块（错误被完全忽略）
+   - catch 块中只有 `console.log`（错误被记录但未处理）
+3. 对每个违规点提供修复建议
 
-## 前置准备
-
-无特殊依赖，本指南适用于人工代码审查或智能体辅助审查。
-
-## 操作步骤
-
-### 标准流程
-
-1. **识别问题代码模式**
-   - 搜索代码中的 try-catch 或 try-except 结构
-   - 检查 catch/except 块的内容
-
-2. **评估问题严重性**
-   - 空 catch：高严重性，错误被完全忽略
-   - 纯 console 日志：中严重性，错误被记录但未处理
-
-3. **应用修复策略**
-   - 参考 [references/patterns.md](references/patterns.md) 中的修复模式
-   - 根据具体场景选择合适的处理方式
-
-4. **验证修复结果**
-   - 确保每个 catch/except 块都有明确的错误处理意图
-
-## 资源索引
-
-- 模式参考: [references/patterns.md](references/patterns.md) (何时读取:需要具体的错误示例、修复策略和检查清单时)
-
-## 注意事项
-
-- 本指南适用于 JavaScript/TypeScript 和 Python 代码
-- 代码审查应结合业务上下文判断错误的处理策略
-- 建议在代码评审阶段执行此检查
-- 可以配合静态分析工具自动化检测
-
-## 使用示例
-
-**场景 1：人工代码审查**
-
-```bash
-# 在代码评审时，按照本指南检查提交的代码
-# 重点关注新增或修改的 try-catch 块
-```
-
-**场景 2：智能体辅助审查**
-
-```
-请按照 check-try-catch 指南审查以下代码：
-[粘贴代码]
-
-智能体将：
-1. 识别所有 try-catch 结构
-2. 检测空 catch 和纯 console 日志 catch
-3. 提供具体的修复建议
-```
+**适用语言：** JavaScript/TypeScript 和 Python

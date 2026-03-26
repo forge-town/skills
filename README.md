@@ -32,8 +32,10 @@ pnpx skills add forge-town/skills
 | [form-best-practice](skills/form-best-practice) | 使用 react-hook-form 管理所有表单状态，结合 shadcn/ui Form 组件与 Zod 校验，禁止使用 useState 或 zustand 直接管理表单字段，实现表单与全局状态的"两棵树"隔离模型。 |
 | [generate-preview](skills/generate-preview) | 接收 React 组件文件，输出结构化描述的 .json 和可视化目录树的 .md 预览文档，用于组件拆分前的结构分析与规划。适用于"预览组件结构"、"拆分前分析"、"生成组件文档"等场景。 |
 | [implement-split](skills/implement-split) | 基于 generate-preview 输出的预览文档和最佳实践，实际执行组件拆分，生成符合规范的子组件文件，优先从 store 获取数据避免 props 透传。适用于"拆分组件"、"重构大组件"等场景。 |
+| [one-component-per-file-best-practice](skills/one-component-per-file-best-practice) | 检查并修复 React/Vue 组件文件，确保每个文件只导出一个主组件（一文件一组件原则）。当发现或被告知某个文件包含多个组件定义时使用，触发短语包括："一个文件一个组件"、"拆分组件文件"、"检查组件是否规范"、"一文件多组件"、"组件文件违规"等。 |
 | [page-best-practice](skills/page-best-practice) | 基于标准化解剖学规范（Anatomy）生成前端页面结构；主动询问用户选择生成模式（无监督/有监督），支持自动生成 Wrapper、Content 和 Optional Store 模块。 |
 | [remove-comments](skills/remove-comments) | 识别并删除代码中 AI 生成的冗余注释，保持代码整洁。适用于"删除注释"、"清理 AI 注释"、"移除多余注释"等场景。 |
+| [repository-best-practice](skills/repository-best-practice) | 为跨表事务性写操作创建 Repository 层，封装多张表的写入事务，确保原子性与数据一致性。当需要跨表写入、事务封装或创建包含业务输入 Schema 的 Repository 文件时使用。触发短语："创建repository"、"写repository" |
 | [schema-best-practice](skills/schema-best-practice) | 使用 Zod Schema 替代传统 DTO，定义表结构 Schema 与业务视图 Schema，支持类型推导、运行时校验与前后端契约共享。适用于 Service、Repository、Controller 各层的数据结构规范化。 |
 | [service-best-practice](skills/service-best-practice) | 帮助开发者根据项目指南编写 Services，以 tRPC + Service + DAO 架构的最佳实践。提供 Service 结构、依赖注入、错误处理、代码示例、模板、样板代码生成和最佳实践验证的指导。在创建或重构代码库中的 Service 文件时使用。 |
 | [skill-best-practice](skills/skill-best-practice) | 检查或验证 Skill 是否符合最佳实践规范，涵盖命名规范、目录结构、元数据完整性、临时文件清理和依赖格式验证，提供详细的检查清单、自动修复建议和报告模板，同时支持技能库文档完整性检查与自动修复，适用于创建或修改 Skill 后的质量验证 |

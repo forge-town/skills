@@ -1,6 +1,6 @@
 ---
 name: form-best-practice
-description: 使用 react-hook-form 管理所有表单状态，结合 shadcn/ui Form 组件与 Zod 校验，禁止使用 useState 或 zustand 直接管理表单字段，实现表单与全局状态的"两棵树"隔离模型。
+description: Must follow when 创建或重构前端表单组件，确保表单结构、字段验证逻辑和状态管理遵循项目表单设计规范与组件化标准。触发词：表单规范、创建表单组件、表单最佳实践审查、form-best-practice。
 ---
 
 # 表单最佳实践

@@ -1,28 +1,14 @@
 ---
 name: use-store-not-props-best-practice
-description: 审查并重构 React 组件，将 props 透传替换为直接从 Zustand Store 获取数据，减少组件间耦合。适用于"减少 props 透传"、"改用 store 获取"、"组件重构优化"等触发场景。
+description: Must follow when 设计组件数据流——优先通过 Store 访问全局状态，不得通过 Props 层层传递；适用于代码审查和新功能设计阶段。触发词：用store替代props、组件传参规范。
 ---
 
 # 使用 Store 而非 Props 最佳实践
 
-此最佳实践的核心原则是：
+## 使用说明
 
-1. **查看给出的组件并进行修改**：分析现有组件的代码结构
-2. **尽可能的不要使用props**：减少或避免通过 props 传递数据
-3. **尽可能直接从store中获取数据**：优先使用全局状态管理库直接访问数据
+1. 检查组件是否通过 props 接收了 store 中已有的数据
+2. 确认所需数据在全局 store 中可用后，重构组件直接从 store 获取，移除无需透传的 props
+3. 完成后使用 [检查清单](references/checklist.md) 逐项验证
 
-## 工作原理
-
-- 检查组件是否通过 props 接收数据
-- 确认所需数据是否在全局 store 中可用
-- 重构组件以直接从 store 获取数据，移除不必要的 props
-
-## 使用方法
-
-在重构组件时应用此原则：优先检查 store 数据可用性，然后修改组件代码以直接访问 store 而非依赖 props 传递。
-
-## 资源索引
-
-- **检查清单（强制执行）**：见 [references/checklist.md](references/checklist.md)（每次重构后必须逐项勾选）
-
-**重要：** 调用完毕技能后，强制查看 [检查清单](references/checklist.md)，并确保返回的内容完全匹配清单中的所有项目。
+**重要：** 完成后强制对照 [检查清单](references/checklist.md)，所有项目必须通过
