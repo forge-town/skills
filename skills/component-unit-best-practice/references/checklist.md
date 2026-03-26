@@ -26,9 +26,11 @@
 - [ ] 4.4 遵循 [storybook-best-practice](../../storybook-best-practice/SKILL.md) 规范
 
 ## 桶导出（index.ts）
-- [ ] 5.1 导出组件本体
-- [ ] 5.2 导出 Props 类型（如有）
-- [ ] 5.3 无除组件外的额外内容混入
+- [ ] 5.1 使用 `export * from './ComponentName'` 导出组件
+- [ ] 5.2 无除组件外的额外内容混入
 
-## 汇总
-- [ ] 所有检查项通过 → Component Unit 规范合格
+## Bad Case 确认
+- [ ] ❌ 不存在组件以单文件形式（不含文件夹）存放的情况
+- [ ] ❌ 不存在文件夹内缺少单元测试或 Storybook 故事文件的情况
+- [ ] ❌ 不存在一个文件夹内包含多个组件的情况
+- [ ] ❌ 不存在测试或故事文件放在单独的 `__tests__/` / `stories/` 目录而非与组件同级的情况
