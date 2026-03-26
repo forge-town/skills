@@ -59,6 +59,12 @@
   - ❌ 错误示例：`description: 规范化 DAO 文件...` → 必须改为 `description: Must follow when 创建或重构 DAO...`
   - ✅ 判断依据：目录名以 `-best-practice` 结尾 → Must follow；否则 → Use when
 
+### 2.8 动词型 Skill 必须有 `references/checklist.md`
+- [ ] ✅ 动词型 Skill（名称不以 `-best-practice` 结尾、不以 `-integration` 结尾）必须在 `references/` 下包含 `checklist.md`（执行完成后的验证清单）
+  - ❌ 错误示例：无 `references/checklist.md`，无法判断操作是否正确执行完毕
+  - ✅ 正确示例：`references/checklist.md` 包含"执行完毕后逐项确认"的 5-8 条可勾选验证项
+  - 🔍 与名词型 Skill 的区别：名词型的 checklist 描述**代码规范**；动词型的 checklist 描述**操作完成校验**
+
 ---
 
 ## 三、目录结构检查
@@ -142,3 +148,4 @@ Skill 检查报告
 - [ ] ❌ 不存在 SKILL.md 正文内嵌大量实现细节（步骤代码块、完整清单）而 `references/` 为空的情况
 - [ ] ❌ 不存在动词型 Skill description 未以 `Use when` 开头的情况
 - [ ] ❌ 不存在名词型（`-best-practice`）Skill description 未以 `Must follow` 开头的情况
+- [ ] ❌ 不存在动词型 Skill 缺少 `references/checklist.md` 的情况

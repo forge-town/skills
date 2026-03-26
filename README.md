@@ -28,6 +28,7 @@ pnpx skills add forge-town/skills
 | [check-svg](skills/check-svg) | 检查项目中 SVG 的使用是否符合最佳实践：SVG 必须封装为独立 React 组件（.tsx）并通过 import 使用，禁止在业务组件中内联 SVG 代码。适用于代码审查与 SVG 规范化场景。 |
 | [check-try-catch](skills/check-try-catch) | 代码审查指南，识别并修复反模式的 try/catch 用法：包括空 catch 块与纯 console.log 捕获问题。适用于"检查 try catch"、"修复错误处理"、"审查异常捕获规范"等场景。 |
 | [error-handling-best-practice](skills/error-handling-best-practice) | 定义 try-catch 错误处理规范（6 项规则）：禁止空 catch、禁止仅记录日志、必须处理或重新抛出，与 check-try-catch 配合使用。 |
+| [fix-all-best-practices](skills/fix-all-best-practices) | 一键扫描并自动修复项目中所有最佳实践违规；可直接执行 className/SVG/barrel/try-catch 修复；架构变更类提供建议并请求确认；输出修复汇总报告。 |
 | [refine-trpc-best-practice](skills/refine-trpc-best-practice) | 定义 Refine + tRPC 数据访问规范：组件层禁止直接调用 trpc 客户端，必须通过 Refine hooks（useList/useOne 等）经由 DataProvider 访问，与 check-refine-trpc 配合使用。 |
 | [refactor-classname](skills/refactor-classname) | 自动检查并转换 React/Vue 文件中 className 的模板字符串为 cn 函数调用；支持递归扫描文件夹、详细报告所有 className 位置。 |
 | [dao-best-practice](skills/dao-best-practice) | 用于规范化DAO文件，确保遵循Drizzle ORM最佳实践，包括文件结构、方法命名、类型安全和性能优化。当需要重构或创建DAO文件以符合项目标准时使用。完成后强制评估是否需要创建对应的 Repository 层以封装跨表事务。 |
