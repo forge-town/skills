@@ -1,0 +1,30 @@
+{
+  "description": "一个合规 Skill 的标准目录结构",
+  "structure": {
+    "{skill-name}/": {
+      "_note": "kebab-case，不得以 -skill 结尾；best-practice 类必须以 -best-practice 结尾",
+      "SKILL.md": "必需 — 唯一根目录文件，含 name + description 前言区，正文 ≤20 行",
+      "references/": {
+        "_required": false,
+        "_note": "存放实现细节：清单、流程、示例、模板等",
+        "checklist.md": "（best-practice 类强制要求）",
+        "workflow.md": "（可选）步骤化执行流程",
+        "anatomy.json": "（可选）结构解剖定义",
+        "examples/": "（可选）代码示例子目录",
+        "templates/": "（可选）模板文件子目录"
+      },
+      "scripts/": {
+        "_required": false,
+        "_note": "可执行脚本（.ts 优先，其次 .py/.sh），不得为空目录"
+      },
+      "assets/": {
+        "_required": false,
+        "_note": "静态资源（图片、数据文件等），不得为空目录"
+      }
+    }
+  },
+  "forbidden": [
+    "README.md（必须用 SKILL.md）",
+    "__pycache__/、*.pyc、.DS_Store、Thumbs.db、tmp/、*.log 等临时文件"
+  ]
+}

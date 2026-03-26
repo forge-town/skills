@@ -7,9 +7,9 @@ description: Use when 需要审查或重构 tRPC 路由代码，确保路由结�
 
 ## 使用说明
 
-1. 扫描组件/页面文件，查找违规的 tRPC 直接调用（规则与示例见参考文件）
-2. 违规示例：[bad-example.ts](references/bad-example.ts)
-3. 合规示例：[good-example.ts](references/good-example.ts)
+1. 读取 `refine-trpc-best-practice` 的 [规范标准](../refine-trpc-best-practice/references/checklist.md) 了解禁止/允许模式
+2. 扫描组件/页面文件，查找违规的 tRPC 直接调用
+3. 违规示例：[bad-example.ts](references/bad-example.ts)；合规示例：[good-example.ts](references/good-example.ts)
 
 **规则：** 组件层必须通过 Refine hooks（`useList`/`useOne`/`useCreate`/`useUpdate`）访问数据，禁止直接使用 `trpc` 客户端或 `@tanstack/react-query` hook
 

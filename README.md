@@ -19,13 +19,16 @@ pnpx skills add forge-town/skills
 
 | 技能 | 描述 |
 |-------|-------------|
-| [check-barrel-export](skills/check-barrel-export) | 自动生成、优化、修复与检查 index 文件，确保所有 index.ts / index.js 遵循桶导出规范。适用于"生成 barrel export"、"修复 index"、"检查桶导出"、"优化导出结构"等场景。 |
+| [barrel-export-best-practice](skills/barrel-export-best-practice) | 定义桶导出（index.ts）规范：只做 re-export、命名导出、无业务逻辑、无循环依赖等 8 条规则，与 check-barrel-export 配合使用。 |
+| [check-barrel-export](skills/check-barrel-export) | 自动生成、优化、修复与检查 index 文件，确保所有 index.ts / index.js 遵循 barrel-export-best-practice 规范。适用于"生成 barrel export"、"修复 index"、"检查桶导出"等场景。 |
 | [better-auth-integration](skills/better-auth-integration) | 在 TanStack Start + Drizzle ORM + PostgreSQL 项目中集成 Better Auth 认证，支持邮箱登录与 GitHub/Google OAuth，分阶段执行：探索→安装→Schema→路由→验证。 |
 | [check-all-best-practices](skills/check-all-best-practices) | 自动扫描并执行所有以best-practice结尾的技能，检查项目是否符合最佳实践。通过自动发现机制确保所有相关最佳实践都被检查，并强制执行标准化验证指令提升输出稳定性。 |
 | [check-all-skills](skills/check-all-skills) | 批量检查Skill是否符合最佳实践规范；自动验证命名、前言区、结构、文件清理、依赖等维度；支持单个或批量检查；生成详细检查报告；适用于Skill开发完成后的质量验证 |
 | [check-refine-trpc](skills/check-refine-trpc) | 检查 React 组件是否违规直接调用 tRPC，强制所有数据请求必须通过 Refine 数据层（useList/useOne 等）封装。适用于代码审查、PR Review 等场景，触发词：检查 tRPC 使用、检查 Refine 规范。 |
 | [check-svg](skills/check-svg) | 检查项目中 SVG 的使用是否符合最佳实践：SVG 必须封装为独立 React 组件（.tsx）并通过 import 使用，禁止在业务组件中内联 SVG 代码。适用于代码审查与 SVG 规范化场景。 |
 | [check-try-catch](skills/check-try-catch) | 代码审查指南，识别并修复反模式的 try/catch 用法：包括空 catch 块与纯 console.log 捕获问题。适用于"检查 try catch"、"修复错误处理"、"审查异常捕获规范"等场景。 |
+| [error-handling-best-practice](skills/error-handling-best-practice) | 定义 try-catch 错误处理规范（6 项规则）：禁止空 catch、禁止仅记录日志、必须处理或重新抛出，与 check-try-catch 配合使用。 |
+| [refine-trpc-best-practice](skills/refine-trpc-best-practice) | 定义 Refine + tRPC 数据访问规范：组件层禁止直接调用 trpc 客户端，必须通过 Refine hooks（useList/useOne 等）经由 DataProvider 访问，与 check-refine-trpc 配合使用。 |
 | [refactor-classname](skills/refactor-classname) | 自动检查并转换 React/Vue 文件中 className 的模板字符串为 cn 函数调用；支持递归扫描文件夹、详细报告所有 className 位置。 |
 | [dao-best-practice](skills/dao-best-practice) | 用于规范化DAO文件，确保遵循Drizzle ORM最佳实践，包括文件结构、方法命名、类型安全和性能优化。当需要重构或创建DAO文件以符合项目标准时使用。完成后强制评估是否需要创建对应的 Repository 层以封装跨表事务。 |
 | [db-table-best-practice](skills/db-table-best-practice) | 数据库与数据表表名规范验证与自动修正最佳实践。适用于"数据库是否符合规范"、"表名规范"、"检查表名"、"优化表名"、"数据库命名"、"检查这个文件"、"表名符合规范吗" |

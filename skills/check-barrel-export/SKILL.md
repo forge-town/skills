@@ -7,9 +7,11 @@ description: Use when 需要生成、优化、修复或检查项目中所有 ind
 
 ## 使用说明
 
-根据场景选择操作：
+1. 读取 `barrel-export-best-practice` 技能中的 [规范标准](../barrel-export-best-practice/references/standard.md) 和 [检查清单](../barrel-export-best-practice/references/checklist.md)
+2. 扫描目标目录（递归），找出所有 `index.ts` / `index.js` 文件
+3. 根据场景执行操作：
+   - **检查**：对照清单报告不合规项及修复建议
+   - **生成/修复**：按规范自动生成或修正 `index.ts` 内容
 
-- **生成/优化/修复** `index.ts`：扫描目标目录，按桶导出规范生成或修正导出
-- **检查并报告**：扫描目录，列出不符合规范的 index 文件及修复建议
+**依赖规范：** 所有操作以 `barrel-export-best-practice` 定义的 8 条规则为准
 
-**核心原则：** 所有 `index.ts` / `index.js` 必须遵循桶导出规范，只做 re-export，不包含业务逻辑

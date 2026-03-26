@@ -7,10 +7,8 @@ description: Use when 需要扫描代码中 try-catch 的使用情况，识别�
 
 ## 使用说明
 
-1. 扫描代码中所有 `try-catch` / `try-except` 结构
-2. 识别以下违规模式（详细示例与修复策略见 [references/patterns.md](references/patterns.md)）：
-   - 空 catch 块（错误被完全忽略）
-   - catch 块中只有 `console.log`（错误被记录但未处理）
-3. 对每个违规点提供修复建议
+1. 读取 `error-handling-best-practice` 的 [检查清单](../error-handling-best-practice/references/checklist.md) 了解 6 项规则
+2. 扫描代码中所有 `try-catch` / `try-except` 结构
+3. 识别违规模式；详细示例见 [references/patterns.md](references/patterns.md)
 
 **适用语言：** JavaScript/TypeScript 和 Python
