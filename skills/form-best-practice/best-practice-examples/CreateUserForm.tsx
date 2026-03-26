@@ -1,6 +1,6 @@
-import { z } from 'zod'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
@@ -8,30 +8,33 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const CreateUserSchema = z.object({
-  name: z.string().min(1, 'Name is required'),
-  email: z.string().email('Invalid email address'),
-})
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Invalid email address"),
+});
 
-type CreateUserFormValues = z.infer<typeof CreateUserSchema>
+type CreateUserFormValues = z.infer<typeof CreateUserSchema>;
 
 interface CreateUserFormProps {
-  defaultValues?: Partial<CreateUserFormValues>
-  onSubmit: (values: CreateUserFormValues) => void
+  defaultValues?: Partial<CreateUserFormValues>;
+  onSubmit: (values: CreateUserFormValues) => void;
 }
 
-export function CreateUserForm({ defaultValues, onSubmit }: CreateUserFormProps) {
+export function CreateUserForm({
+  defaultValues,
+  onSubmit,
+}: CreateUserFormProps) {
   const form = useForm<CreateUserFormValues>({
     resolver: zodResolver(CreateUserSchema),
     defaultValues: {
-      name: defaultValues?.name ?? '',
-      email: defaultValues?.email ?? '',
+      name: defaultValues?.name ?? "",
+      email: defaultValues?.email ?? "",
     },
-  })
+  });
 
   return (
     <Form {...form}>
@@ -67,5 +70,5 @@ export function CreateUserForm({ defaultValues, onSubmit }: CreateUserFormProps)
         <Button type="submit">Create User</Button>
       </form>
     </Form>
-  )
+  );
 }
