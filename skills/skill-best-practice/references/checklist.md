@@ -47,6 +47,24 @@
   - ❌ 错误示例：`description: 检查 DAO 文件` （14 字符，过短）→ 必须扩展到 100+ 字符，描述核心能力和触发场景
   - ❌ 错误示例：超过 150 字符的 description → 必须精简
 
+### 2.6 SKILL.md 主体极简原则
+- [ ] ✅ SKILL.md 正文（前言区以外）只包含基本流程入口（如指向 references/ 文件的链接），不包含内联实现细节
+  - ❌ 错误示例：正文包含 Step 1/2/3/4 详细步骤、代码块（``` 包裹内容）、超过 5 条的完整清单 → 必须移入 `references/`
+  - ✅ 正确示例：正文 ≤ 20 行，只有简短说明 + 指向 `references/workflow.md`、`references/checklist.md` 的链接
+
+### 2.7 `description` 前缀协议
+- [ ] ✅ **动词型 Skill**（执行操作/检查，名称不以 `-best-practice` 结尾）`description` 必须以 `Use when` 开头
+  - ❌ 错误示例：`description: 自动检查并转换 className...` → 必须改为 `description: Use when 需要检查或转换...`
+- [ ] ✅ **名词型 Skill**（定义规范/标准，名称以 `-best-practice` 结尾）`description` 必须以 `Must follow` 开头
+  - ❌ 错误示例：`description: 规范化 DAO 文件...` → 必须改为 `description: Must follow when 创建或重构 DAO...`
+  - ✅ 判断依据：目录名以 `-best-practice` 结尾 → Must follow；否则 → Use when
+
+### 2.8 动词型 Skill 必须有 `references/checklist.md`
+- [ ] ✅ 动词型 Skill（名称不以 `-best-practice` 结尾、不以 `-integration` 结尾）必须在 `references/` 下包含 `checklist.md`（执行完成后的验证清单）
+  - ❌ 错误示例：无 `references/checklist.md`，无法判断操作是否正确执行完毕
+  - ✅ 正确示例：`references/checklist.md` 包含"执行完毕后逐项确认"的 5-8 条可勾选验证项
+  - 🔍 与名词型 Skill 的区别：名词型的 checklist 描述**代码规范**；动词型的 checklist 描述**操作完成校验**
+
 ---
 
 ## 三、目录结构检查
@@ -127,3 +145,7 @@ Skill 检查报告
 - [ ] ❌ 不存在 description 字符数少于 100 的情况
 - [ ] ❌ 不存在带 `-skill` 后缀的目录名的情况
 - [ ] ❌ 不存在 `__pycache__`、`.DS_Store` 等临时文件被提交进 Skill 的情况
+- [ ] ❌ 不存在 SKILL.md 正文内嵌大量实现细节（步骤代码块、完整清单）而 `references/` 为空的情况
+- [ ] ❌ 不存在动词型 Skill description 未以 `Use when` 开头的情况
+- [ ] ❌ 不存在名词型（`-best-practice`）Skill description 未以 `Must follow` 开头的情况
+- [ ] ❌ 不存在动词型 Skill 缺少 `references/checklist.md` 的情况

@@ -1,42 +1,16 @@
 ---
 name: check-refine-trpc
-description: 检查 React 组件是否违规直接调用 tRPC，强制所有数据请求必须通过 Refine 数据层（useList/useOne 等）封装。适用于代码审查、PR Review 等场景，触发词：检查 tRPC 使用、检查 Refine 规范。
+description: Use when 需要审查或重构 tRPC 路由代码，确保路由结构、类型定义、输入验证和错误处理均符合项目最佳实践；适用于代码审查和路由重构阶段。触发词：检查trpc代码、重构路由写法、优化tRPC格式。
 ---
 
-# 组件级强制规则：禁止直接使用 trpc
+# 禁止组件层直接使用 tRPC
 
-- 目的：在代码库中识别前端组件/页面中**直接导入或调用 `trpc` 客户端** 或 `@tanstack/react-query` 的 hook 的情况。
-- 规则：组件层必须使用 `refine` 的 hooks（例如 `useList`、`useOne`、`useCreate`、`useUpdate`）或通过已实现的 `DataProvider` 封装后再在组件中使用。**禁止在组件或页面中直接使用 `trpc` 客户端或其 hooks。**
+## 使用说明
 
-## 检测方法
+1. 读取 `refine-trpc-best-practice` 的 [规范标准](../refine-trpc-best-practice/references/checklist.md) 了解禁止/允许模式
+2. 扫描组件/页面文件，查找违规的 tRPC 直接调用
+3. 违规示例：[bad-example.ts](references/bad-example.ts)；合规示例：[good-example.ts](references/good-example.ts)
 
-- 静态扫描组件/页面文件，查找直接导入或使用以下模式（任意匹配即为违规）：
-  - 导入 `trpc` 客户端（如 `import { trpc } from` / `import trpcClient from`）
-  - 直接使用 `trpc.*.useQuery` / `trpc.*.useMutation` 或 `useQuery`/`useMutation` 来自 `@tanstack/react-query` 并用于组件渲染
-  - 直接在组件中调用 `trpcClient` 的方法（如 `trpcClient.query(...)`）
+**规则：** 组件层必须通过 Refine hooks（`useList`/`useOne`/`useCreate`/`useUpdate`）访问数据，禁止直接使用 `trpc` 客户端或 `@tanstack/react-query` hook
 
-## 示例（禁止 / 允许）
-
-- 禁止：在组件中直接使用 trpc hook
-
-- 禁止示例：见 [bad-example.ts](references/bad-example.ts)
-- 允许示例：见 [good-example.ts](references/good-example.ts)
-
-## 核查清单（强制）
-
-- 目标：定位并列出需要从 `trpc`/`react-query` 迁移到 `refine` 的组件使用点，提供最小可执行修复建议。
-- 违规判断（任一成立即违规）：
-  - 文件包含 `import .*\btrpc\b` / `import trpcClient` 等直接导入
-  - 使用 `trpc\.[A-Za-z0-9_]+\.(useQuery|useMutation)`
-  - 在组件中直接使用 `useQuery(` 或 `useMutation(` 来自 `@tanstack/react-query`
-  - 在组件中直接调用 `trpcClient.*` RPC 方法
-- 推荐自动化检测正则（示例）：
-  - 导入检测：`import\s+.*\btrpc\b|import\s+trpcClient`
-  - hook 检测：`trpc\.[a-zA-Z0-9_]+\.(useQuery|useMutation)`
-  - react-query 检测：`from\s+['\"]@tanstack/react-query['\"]|\buseQuery\s*\(`
-
-## 修复建议
-
-- 优先：用 `refine` 的 `useList`/`useOne`/`useCreate`/`useUpdate` 替换组件内数据调用。
-- 可选：在 `DataProvider` 中封装 trpc 调用并在组件中通过 `resource` + `refine` hooks 使用。
-- 复杂查询：在 `DataProvider` 增加 `custom`，并通过 refine 的自定义 hook 使用，保持行为等价（分页/筛选映射）。
+**修复方向：** 将 trpc 调用迁移到 `DataProvider`，组件通过 resource + refine hooks 使用
