@@ -1,5 +1,5 @@
 ---
-name: skill-creator
+name: create-skills
 description: Use when 需要创建新技能或更新现有技能，将领域知识、工作流程、脚本和工具集成打包为可复用 Skill；生成的新技能须使用中文编写。触发词：创建新技能、更新skill、新建技能包、扩展AI能力。
 ---
 

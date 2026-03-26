@@ -1,5 +1,5 @@
 ---
-name: check-all-items
+name: check-all-best-practices
 description: Use when 需要对项目进行全量最佳实践检查——自动发现并依次执行所有以 best-practice 结尾的技能，输出汇总报告并强制执行标准化验证指令。触发词：检查所有技能、全量规范验证、批量最佳实践检查。
 ---
 

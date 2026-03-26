@@ -1,5 +1,5 @@
 ---
-name: classname-refactor
+name: refactor-classname
 description: Use when 需要检查或转换 React/Vue 文件中的 className 模板字符串为 cn 函数调用，支持递归扫描文件夹、详细报告所有位置。触发词：优化className写法、重构模板字符串、检查className规范。
 ---
 
