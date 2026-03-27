@@ -8,11 +8,16 @@
 
 ### 1.1 目录名格式
 - [ ] ✅ 技能目录名仅包含小写字母、数字和连字符（kebab-case），符合正则 `^[a-z0-9]+(-[a-z0-9]+)*$`
-  - ❌ 错误示例：`MySkill`、`pdf_parser`、`exam-grading-skill` → 必须改为 `my-skill`、`pdf-parser`、`exam-grading`
+  - ❌ 错误示例：`MySkill`、`pdf_parser` → 必须改为 `my-skill`、`pdf-parser`
 - [ ] ✅ `name` 长度 ≤ 64 个字符
 - [ ] ❌ 不得以连字符开头或结尾（`-skill` → 必须改为 `skill`，`skill-` → 必须改为 `skill`）
 - [ ] ❌ 不得包含连续连字符（`my--skill` → 必须改为 `my-skill`）
-- [ ] ❌ 不得以 `-skill` 结尾（`pdf-parser-skill` → 必须改为 `pdf-parser`）
+- [ ] ❌ 不得在已是多词的前缀后再追加赘余 `-skill`（前缀已含连字符）
+  - ❌ 错误示例：`exam-grading-skill` → 必须改为 `exam-grading`
+  - ✅ 合法示例：`create-skill` → `create`无连字符，`skill` 是合法名词
+- [ ] ✅ 动词型 Skill 必须以「动词+名词」命名，不得倒置为名词+动词
+  - ❌ 错误示例：`skill-creator`（名词-名词）、`classname-refactor`（名词-动词） → 应改为 `create-skill`、`refactor-classname`
+  - ✅ 正确示例：`create-skill`、`check-components`、`implement-trpc-query`
 
 ### 1.2 name 字段与目录名一致性
 - [ ] ✅ SKILL.md 前言 `name` 字段值与所在目录名完全一致（字符级对比）
@@ -36,7 +41,7 @@
 ### 2.3 description 字段
 - [ ] ✅ 前言包含 `description` 字段，且为单行文本（不含换行符）
   - ❌ 错误示例：`description: 批改考试\n支持多题型` → 必须合并为单行
-- [ ] ✅ `description` 长度在 100–1024 个字符之间（过短描述不足以触发技能）
+- [ ] ✅ `description` 长度在 100–150 个字符之间（过短不足以触发，过长影响扫描评分）
   - ❌ 错误示例：`description: 创建技能` → 太短，缺少触发条件描述
 - [ ] ❌ `description` 不得包含 `<` 或 `>` 字符（会破坏 XML/HTML 渲染）
 - [ ] ❌ `description` 不得包含未完成的 TODO 占位文本（`{todo}`、`[待填写]` 等）
