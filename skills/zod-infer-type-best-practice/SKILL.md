@@ -5,6 +5,13 @@ description: Must follow when 项目中存在 Zod schema 定义时，禁止另�
 
 # Zod 派生类型最佳实践
 
+## 前置条件
+
+**必须先确认项目已安装 Zod**，若未安装则先执行：
+```
+pnpm add zod
+```
+
 ## 使用说明
 
 1. 阅读 [规范说明](references/standard.md) 了解核心原则与禁止行为

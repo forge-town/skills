@@ -51,17 +51,6 @@ export type CreateUserInput = {
 ## 三、文件组织规范
 
 - 类型必须从 schema **同一文件**中导出，或从 schema 文件 `re-export`
-- 禁止创建 `types/` 目录专门存放 Zod schema 已覆盖的类型
-- 纯 UI 专用类型（无需校验，如 `TabVariant`、`ModalSize`）可以是独立的 `type`/`interface`，不受此规范约束
-
----
-
-## 四、例外情况
-
-以下类型可以独立存在，**不强制**从 Zod 派生：
-
-| 场景 | 原因 |
-|---|---|
-| 纯 UI 展示状态（如 `type ButtonVariant = 'primary' \| 'ghost'`） | 无运行时校验需求 |
-| 第三方库类型扩展（如 `augment NextAuth`） | 无法用 Zod 表达 |
-| 泛型工具类型（如 `type Maybe<T> = T \| null`） | 不对应具体数据结构 |
+- **绝对禁止**创建任何 `types.ts`、`type.ts`、`*.types.ts` 文件
+- **绝对禁止**创建 `types/` 目录
+- 项目中不应存在任何与类型相关的独立文件，一切类型均从对应 schema 中派生
