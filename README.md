@@ -20,6 +20,7 @@ pnpx skills add forge-town/skills
 | 技能 | 描述 |
 |-------|-------------|
 | [barrel-export-best-practice](skills/barrel-export-best-practice) | 定义桶导出（index.ts）规范：只做 re-export、命名导出、无业务逻辑、无循环依赖等 8 条规则，与 check-barrel-export 配合使用。 |
+| [no-re-export-best-practice](skills/no-re-export-best-practice) | 禁止在非 index 文件中进行 re-export（间接转发），要求消费方直接从源头 import，配合 `check-*` 系列技能使用以自动检测与修复。 |
 | [check-barrel-export](skills/check-barrel-export) | 自动生成、优化、修复与检查 index 文件，确保所有 index.ts / index.js 遵循 barrel-export-best-practice 规范。适用于"生成 barrel export"、"修复 index"、"检查桶导出"等场景。 |
 | [better-auth-integration](skills/better-auth-integration) | 在 TanStack Start + Drizzle ORM + PostgreSQL 项目中集成 Better Auth 认证，支持邮箱登录与 GitHub/Google OAuth，分阶段执行：探索→安装→Schema→路由→验证。 |
 | [check-all-best-practices](skills/check-all-best-practices) | 自动扫描并执行所有以best-practice结尾的技能，检查项目是否符合最佳实践。通过自动发现机制确保所有相关最佳实践都被检查，并强制执行标准化验证指令提升输出稳定性。 |
