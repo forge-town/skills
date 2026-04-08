@@ -129,6 +129,9 @@
 - [ ] ✅ `.md` 文档（`references/checklist.md`、`references/standard.md` 等）中**不得出现 Good Case 代码块**；所有 Good Case 代码只放在 `best-practice-examples/` 目录下
   - ❌ 错误示例：`standard.md` 里写了 `// ✅ 正确写法` 代码块 → 必须移到 `best-practice-examples/` 文件中
   - ✅ `.md` 中只允许写 Bad Case 代码块（说明错误模式），Good Case 一律以文件形式存放
+- [ ] ✅ `references/` 目录下**不得存在**仅包含 Good Case 代码的 `.md` 文件（如 `patterns.md`、`examples.md` 等）
+  - ❌ 错误示例：`references/patterns.md` 包含 Good Case 代码块 → 必须删除该文件，代码移至 `best-practice-examples/`
+  - ✅ 正确示例：`references/` 只放 checklist、standard（文字描述）、架构图等，不放可运行代码
 - [ ] ✅ checklist 中每一项都能映射到**唯一**的正确代码模式（Unique Mapping Principle）
   - ❌ 错误示例：`- [ ] 命名要规范`（无法判断是/否）→ 必须改为 `- [ ] ✅ 文件名格式为 {feature}Dao.ts（如 catsDao.ts），❌ 错误：CatsDAO.ts、cats-dao.ts`
 - [ ] ✅ checklist 包含 Bad Case 确认节（列出**不得出现**的反模式）
@@ -168,6 +171,7 @@ Skill 检查报告
 - [ ] ❌ 不存在 `__pycache__`、`.DS_Store` 等临时文件被提交进 Skill 的情况
 - [ ] ❌ 不存在 SKILL.md 正文内嵌大量实现细节（步骤代码块、完整清单）而 `references/` 为空的情况
 - [ ] ❌ 不存在 `.md` 文档中出现 Good Case 代码块的情况（Good Case 只能在 `best-practice-examples/` 文件中）
+- [ ] ❌ 不存在 `references/` 目录包含仅放 Good Case 代码的 `.md` 文件（如 `patterns.md`、`examples.md`）的情况
 - [ ] ❌ 不存在动词型 Skill description 未以 `Use when` 开头的情况
 - [ ] ❌ 不存在名词型（`-best-practice`）Skill description 未以 `Must follow` 开头的情况
 - [ ] ❌ 不存在动词型 Skill 缺少 `references/checklist.md` 的情况
