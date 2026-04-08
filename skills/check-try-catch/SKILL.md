@@ -8,7 +8,8 @@ description: Use when 需要扫描代码中 try-catch 的使用情况，识别�
 ## 使用说明
 
 1. 读取 `error-handling-best-practice` 的 [检查清单](../error-handling-best-practice/references/checklist.md) 了解 6 项规则
-2. 扫描代码中所有 `try-catch` / `try-except` 结构
-3. 识别违规模式；详细示例见 [references/patterns.md](references/patterns.md)
+2. 扫描代码中所有 `try-catch` 结构
+3. 识别违规模式
+4. 参考 [最佳实践示例](references/best-practice-examples/GoodExample.tsx) 进行修复
 
-**适用语言：** JavaScript/TypeScript 和 Python
+**核心原则：** catch 块必须有实质性处理（重新抛出、错误恢复或用户通知）
