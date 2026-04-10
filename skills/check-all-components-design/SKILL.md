@@ -1,6 +1,6 @@
 ---
 name: check-all-components-design
-description: Use when 需要全面检查项目中所有 React 组件的设计质量，扫描并报告 God Component、配置驱动、样式封闭、业务耦合等反模式，确保符合 component-design-best-practice 规范。触发词：检查组件设计、扫描组件质量、检查 god component、组件设计审查。
+description: Use when 需要全面检查项目中所有 React 组件的设计质量，扫描并报告 God Component、配置驱动、业务耦合等反模式，确保符合设计规范。触发词：检查组件设计、扫描组件质量、组件设计审查。
 ---
 
 # 检查所有组件设计

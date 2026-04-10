@@ -11,6 +11,9 @@ description: Use when 需要批量验证 Skill 是否符合最佳实践规范，
 2. 如需了解各检查项背景，阅读 [references/quality-standards.md](references/quality-standards.md)
 3. 按清单逐项验证目标 Skill，生成结构化报告
 
-**批量检查：** 遍历目标目录下所有 Skill，逐一检查并汇总；脚本示例见 [examples/bash-command.sh](references/examples/bash-command.sh)
+**批量检查：** 遍历目标目录下所有 Skill，逐一检查并汇总
+
+- **TypeScript 脚本（推荐）：** [check-skills.ts](references/examples/check-skills.ts) - 使用 `npx tsx check-skills.ts`
+- **Bash 脚本（备选）：** [bash-command.sh](references/examples/bash-command.sh)
 
 完成后强制输出检查报告
