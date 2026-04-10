@@ -1,0 +1,26 @@
+{
+  "navigation": {
+    "brand": "Code Arena",
+    "login": "Login",
+    "register": "Register"
+  },
+  "homePage": {
+    "title": "Welcome to Code Arena",
+    "description": "Let your code do the <strong>talking</strong>",
+    "voteFor": "Vote for {{name}}"
+  },
+  "userMenu": {
+    "logout": "Logout",
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "settings": "Settings"
+  },
+  "common": {
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "loading": "Loading...",
+    "error": "Error occurred"
+  }
+}
