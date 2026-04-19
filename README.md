@@ -26,6 +26,7 @@ pnpx skills add forge-town/skills
 | [check-hardcode](skills/check-hardcode) | Use when 需要检查代码中是否存在硬编码内容，包括魔法数字、路径、URL、密钥、环境变量、响应消息等；确保所有可配置值都使用常量或配置文件管理。触发词：硬编码、hard code、magic number。 |
 | [better-auth-integration](skills/better-auth-integration) | Must follow when 需要将 Better Auth 认证系统集成到项目，涵盖安装配置、数据库集成、Provider 设置和认证流程验证等完整步骤。触发词：集成better-auth、配置认证系统、接入鉴权。 |
 | [assess-automation-checklist](skills/assess-automation-checklist) | Use when 需要评估现有 checklist 的脚本化可能性，分析哪些检查项可通过代码自动化，哪些必须依赖 LLM 判断，输出明确的脚本化设计方案和实现指南。触发词：规划检查脚本、评估脚本化、设计自动化检查、checklist转脚本。 |
+| [brainstorming](skills/brainstorming) | Use when 在任何创造性工作之前先精炼需求与方案，包括创建功能、构建组件、添加新功能或修改行为；通过自然对话探索用户意图、约束与成功标准，并产出可审阅设计文档。触发词：brainstorm、头脑风暴、设计方案、需求分析、功能设计。 |
 | [implement-automation-checklist](skills/implement-automation-checklist) | Use when 需要实际编写检查脚本代码，基于 assess-automation-checklist 的设计方案实现自动化检查器；输出可运行的脚本文件和集成指南。触发词：编写检查脚本、实现自动检查、code checker、写检查器代码。 |
 | [check-all-best-practices](skills/check-all-best-practices) | Use when 需要对项目进行全量最佳实践检查——自动发现并依次执行所有以 best-practice 结尾的技能，输出汇总报告并强制执行标准化验证指令。触发词：检查所有技能、全量规范验证、批量最佳实践检查。 |
 | [check-component-consistency](skills/check-component-consistency) | Use when 需要检测多个同类型组件（如 Button、Page）的代码实现一致性，交叉对比 Props、事件、样式、hooks 等实现层面差异，确保代码模式统一。触发词：检查组件一致性、对比组件实现、组件模式审计。 |
@@ -64,10 +65,13 @@ pnpx skills add forge-town/skills
 | [create-skill](skills/create-skill) | Use when 需要创建一个新 Skill 或更新现有 Skill，将领域知识、工作流程或工具集成打包为可复用技能包，须中文编写。触发词：创建新技能、新建技能、更新技能、修改skill、更新现有技能、扩展AI能力。 |
 | [storybook-best-practice](skills/storybook-best-practice) | Must follow when 创建或维护 Storybook Stories，确保组件文档命名、参数定义和装饰器配置符合项目 Storybook 编写规范。触发词：创建storybook、story规范、组件故事文档审查。 |
 | [store-best-practice](skills/store-best-practice) | Must follow when 使用 Zustand 创建或重构状态管理 Store，确保遵循 slice 模式、Provider 设置和类型安全规范。触发词：创建store、zustand规范、状态管理最佳实践、store设计审查。 |
+| [subagent-driven-development](skills/subagent-driven-development) | Use when 需要把已批准的实现计划拆成独立任务并分派给子代理执行，通过规格一致性审查与代码质量审查双阶段把关，确保并行实现结果与设计、计划和验收标准保持一致。触发词：子代理开发、分派任务、并行实现、subagent。 |
 | [svg-icon-best-practice](skills/svg-icon-best-practice) | Must follow when 管理或新增 React TypeScript 项目中的 SVG 图标组件，确保命名、封装方式和导出规范遵循项目标准规范。触发词：svg图标规范、图标组件管理、SVG图标规范审查。 |
+| [test-driven-development](skills/test-driven-development) | Use when 需要以测试先行方式实现功能、修复 bug 或重构行为，严格执行 Red-Green-Refactor 循环，先写失败测试再写最小生产代码并完成重构验证。触发词：TDD、测试先行、红绿重构、先写测试。 |
 | [ui-components-best-practice](skills/ui-components-best-practice) | Must follow when 创建或审查 UI 组件代码，确保在标准场景下使用项目组件库组件（如 shadcn/ui），禁止直接使用原生 HTML 元素。触发词：UI 组件规范、组件库使用规范、禁止原生元素、ui-components-best-practice。 |
 | [implement-trpc-query](skills/implement-trpc-query) | Use when 需要实现 tRPC 按需查询（on-demand query）模式，确保查询逻辑和数据获取方式符合项目 tRPC 规范和最佳实践。触发词：tRPC按需查询、实现tRPC查询、on-demand查询模式。 |
 | [use-store-not-props-best-practice](skills/use-store-not-props-best-practice) | Must follow when 设计组件数据流——优先通过 Store 访问全局状态，不得通过 Props 层层传递；适用于代码审查和新功能设计阶段。触发词：用store替代props、组件传参规范。 |
+| [writing-plans](skills/writing-plans) | Use when 需要将已批准的设计规格拆解为可执行实现计划，按最小任务粒度给出文件路径、完整代码、验证命令、依赖上下文和完成标准，便于低上下文执行者稳定落地实现。触发词：写计划、实现计划、任务拆解、plan、roadmap。 |
 | [zod-env-integration](skills/zod-env-integration) | Must follow when 配置类型安全的环境变量管理模块，基于 .env.example 使用 Zod 生成 env schema 和标准化管理工具。触发词：zod环境变量、env类型安全配置、环境变量schema。 |
 | [zod-infer-type-best-practice](skills/zod-infer-type-best-practice) | Must follow when 项目中存在 Zod schema 定义时，禁止另建 type.ts 文件重复声明类型；所有类型须直接用 z.infer 从 schema 派生，杜绝类型与 schema 不同步。触发词：类型文件、type.ts、zod类型、schema类型。 |
 
