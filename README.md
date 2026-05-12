@@ -20,6 +20,7 @@ pnpx skills add forge-town/skills
 | 技能 | 描述 |
 |-------|-------------|
 | [barrel-export-best-practice](skills/barrel-export-best-practice) | Must follow when 编写或审查 index.ts/index.js 桶导出文件，确保所有导出遵循只做 re-export、无业务逻辑、命名导出等规范。触发词：桶导出规范、index文件规范、barrel export审查、检查桶导出。 |
+| [no-re-export-best-practice](skills/no-re-export-best-practice) | Must follow when 审查或编写非 index 文件中的 import/export，禁止在非桶导出文件中对外部模块做 re-export（间接转发），每个消费文件应直接从来源 import。触发词：禁止重导出、re-export规范、非index文件导出、转发导出审查。 |
 | [check-barrel-export](skills/check-barrel-export) | Use when 需要生成、优化、修复或检查项目中所有 index 文件（桶导出），确保 index.ts/index.js 均遵循标准桶导出规范。触发词：生成barrel导出、优化index文件、检查桶导出规范。 |
 | [check-checklist](skills/check-checklist) | Use when 需要验证 checklist.md 文件是否符合 checklist-best-practice 规范，包括可判定性、示例完整性、分类结构和 Bad Case 节审查。触发词：检查checklist规范、checklist审查、验证清单质量。 |
 | [check-components](skills/check-components) | Use when 需要扫描并验证 React 组件文件夹是否符合 component-unit-best-practice 规范，包括文件夹结构、单元测试和 Storybook 故事文件的完整性检查。触发词：检查组件规范、组件文件夹审查、check components、组件结构扫描。 |
