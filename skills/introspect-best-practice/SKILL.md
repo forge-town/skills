@@ -1,6 +1,6 @@
 ---
 name: introspect-best-practice
-description: Use when 需要深度反思已定义的 best-practice，挖掘潜在盲区、过度设计、隐藏假设和未覆盖场景；通过自我审视挑战既有规范，发现规范本身的局限性。触发词：反思最佳实践、深挖规范盲区、自检 skill、挑战既有规范、规范盲点分析。
+description: Use when 需要深度反思已定义的 best-practice，挖掘潜在盲区、过度设计、隐藏假设和未覆盖场景；通过自我审视挑战既有规范，发现规范本身的局限性。触发词：反思最佳实践、深挖规范盲区、自检 skill、挑战既有规范。
 ---
 
 # Introspect Best Practice

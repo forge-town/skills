@@ -1,6 +1,6 @@
 ---
 name: use-store-not-props-best-practice
-description: Must follow when 设计组件数据流——优先通过 Store 访问全局状态，不得通过 Props 层层传递；适用于代码审查和新功能设计阶段。触发词：用store替代props、组件传参规范。
+description: Must follow when 设计组件数据流——优先通过 Store 访问全局状态，不得通过 Props 层层传递；适用于代码审查和新功能设计阶段。触发词：用store替代props、组件传参规范、消除props透传、store优先取值。
 ---
 
 # 使用 Store 而非 Props 最佳实践
