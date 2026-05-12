@@ -1,6 +1,6 @@
 ---
 name: schema-best-practice
-description: Must follow when 创建或重构数据库 Schema 定义，确保 Drizzle ORM schema 中的命名、关系和索引配置均符合规范。触发词：schema规范、创建数据库schema、schema结构审查。
+description: Must follow when 创建或重构数据库 Schema 定义，确保 Drizzle ORM schema 中的命名、关系和索引配置均符合规范。
 ---
 
 # Schema 最佳实践

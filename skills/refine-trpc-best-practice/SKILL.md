@@ -1,6 +1,6 @@
 ---
 name: refine-trpc-best-practice
-description: Must follow when 在 React 组件中进行数据获取，确保通过 Refine hooks（useList/useOne 等）经由 DataProvider 访问数据，禁止直接调用 trpc 客户端。触发词：refine数据规范、禁止直接使用tRPC、DataProvider最佳实践。
+description: Must follow when 在 React 组件中进行数据获取，确保通过 Refine hooks（useList/useOne 等）经由 DataProvider 访问数据，禁止直接调用 trpc 客户端。
 ---
 
 # Refine + tRPC 数据访问规范

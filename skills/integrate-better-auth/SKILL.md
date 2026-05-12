@@ -1,6 +1,6 @@
 ---
-name: better-auth-integration
-description: Must follow when 需要将 Better Auth 认证系统集成到项目，涵盖安装配置、数据库集成、Provider 设置和认证流程验证等完整步骤。触发词：集成better-auth、配置认证系统、接入鉴权。
+name: integrate-better-auth
+description: Use when 需要把 Better Auth 集成到项目，涵盖安装配置、数据库集成、Provider 设置和认证流程验证等完整步骤。触发词：集成 better-auth、接入 better-auth、better-auth 集成。
 ---
 
 # Better Auth Integration Skill

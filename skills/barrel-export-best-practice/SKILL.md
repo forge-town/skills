@@ -1,6 +1,6 @@
 ---
 name: barrel-export-best-practice
-description: Must follow when 编写或审查 index.ts/index.js 桶导出文件，确保所有导出遵循只做 re-export、无业务逻辑、命名导出等规范。触发词：桶导出规范、index文件规范、barrel export审查、检查桶导出。
+description: Must follow when 编写或审查 index.ts/index.js 桶导出文件，确保所有导出遵循只做 re-export、无业务逻辑、命名导出等规范。
 ---
 
 # 桶导出最佳实践 (Barrel Export Best Practice)

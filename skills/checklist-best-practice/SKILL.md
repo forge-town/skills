@@ -1,6 +1,6 @@
 ---
 name: checklist-best-practice
-description: Must follow when 为 Skill 或项目模块编写检查清单（checklist.md），确保每一项可判断、有示例、结构清晰、支持自动化验证。触发词：写checklist、检查清单规范、checklist最佳实践、创建验证清单。
+description: Must follow when 为 Skill 或项目模块编写检查清单（checklist.md），确保每一项可判断、有示例、结构清晰、支持自动化验证。
 ---
 
 # 检查清单（Checklist）最佳实践

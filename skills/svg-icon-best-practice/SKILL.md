@@ -1,6 +1,6 @@
 ---
 name: svg-icon-best-practice
-description: Must follow when 管理或新增 React TypeScript 项目中的 SVG 图标组件，确保命名、封装方式和导出规范遵循项目标准规范。触发词：svg图标规范、图标组件管理、SVG图标规范审查。
+description: Must follow when 管理或新增 React TypeScript 项目中的 SVG 图标组件，确保命名、封装方式和导出规范遵循项目标准规范。
 ---
 
 # SVG 图标管理规范
