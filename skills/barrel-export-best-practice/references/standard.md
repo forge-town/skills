@@ -6,31 +6,22 @@
 
 ```ts
 // ✅ 正确的桶导出文件：src/components/index.ts
-export { Button } from './Button'
-export { Input } from './Input'
-export type { ButtonProps } from './Button'
-export type { InputProps } from './Input'
+export * from './Button'
+export * from './Input'
 ```
 
 ---
 
 ## 合规示例
 
-### 显式命名导出（推荐）
+### 必须使用通配符导出
 ```ts
-// src/lib/index.ts
-export { formatDate } from './formatDate'
-export { parseJSON } from './parseJSON'
-export type { DateConfig } from './formatDate'
+// src/components/index.ts
+export * from './Button'
+export * from './Input'
 ```
 
-### 通配符导出（无冲突时可用）
-```ts
-// src/utils/index.ts
-export * from './string'
-export * from './number'
-// 注意：确保 string.ts 和 number.ts 之间无同名导出
-```
+**禁止**使用显式命名导出：`export { Button } from './Button'` ❌
 
 ---
 
@@ -41,20 +32,27 @@ export * from './number'
 // WRONG: index.ts 中出现业务逻辑
 export const API_BASE = '/api/v1'       // 应放在 constants.ts
 export function helper() { ... }         // 应放在 helper.ts
-export { Button } from './Button'
+export * from './Button'
 ```
 
 ### ❌ 默认导出
 ```ts
 // WRONG: 桶导出文件中使用 default export
-export { Button } from './Button'
+export * from './Button'
 export default Button                    // 禁止
+```
+
+### ❌ 显式命名导出
+```ts
+// WRONG: 必须使用 export *，禁止显式命名导出
+export { Button } from './Button'        // 禁止
+export type { ButtonProps } from './Button'  // 禁止
 ```
 
 ### ❌ 别名路径
 ```ts
 // WRONG: 使用 @ 别名路径
-export { Button } from '@/components/Button'   // 禁止
+export * from '@/components/Button'      // 禁止
 ```
 
 ### ❌ 循环依赖
@@ -73,11 +71,11 @@ src/
     Button/
       Button.tsx          ← 组件实现
       Button.test.tsx     ← 测试
-      index.ts            ← 桶导出：export { Button } from './Button'
+      index.ts            ← 桶导出：export * from './Button'
     Input/
       Input.tsx
-      index.ts
-    index.ts              ← 顶级桶导出：export { Button } from './Button'; export { Input } from './Input'
+      index.ts            ← 桶导出：export * from './Input'
+    index.ts              ← 顶级桶导出：export * from './Button'; export * from './Input'
 ```
 
 ---

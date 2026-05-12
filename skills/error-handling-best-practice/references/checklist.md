@@ -4,40 +4,65 @@
 
 ---
 
-## 检查清单
+## 一、neverthrow 强制使用
 
-- [ ] ✅ **1. 禁止空 catch 块**：catch 块中必须有实质性代码（不得为空、不得只有注释）
-  - ❌ 错误示例（JS/TS）：`catch (e) {}` 或 `catch (e) { // TODO }`
-  - ❌ 错误示例（Python）：`except: pass` 或 `except Exception: pass`
-  - ✅ 正确示例：`catch (e) { logger.error(e); throw e; }`
+- [ ] ✅ **必须使用 neverthrow 进行错误处理**，禁止原生 try-catch
+  - ❌ 错误示例：`try { ... } catch (e) { ... }` → 必须改为 `Result<T, E>`
+  - ❌ 错误示例：`async function foo() { try { ... } catch ... }` → 必须改为返回 `Promise<Result<T, E>>`
+  - ✅ 正确示例：`import { Result, ok, err } from "neverthrow";`
 
-- [ ] ✅ **2. 禁止 catch 仅记录日志**：catch 块不得只有 `console.log`/`console.error`/`logger.xxx` 调用，必须有错误处理或重新抛出
-  - ❌ 错误示例：`catch (e) { console.error(e); }` → 错误被吞没，调用方无法感知
-  - ✅ 正确示例：`catch (e) { console.error(e); throw e; }` 或触发用户通知/回滚逻辑
+- [ ] ✅ **所有可能失败的函数返回 Result 类型**
+  - ❌ 错误示例：`function parseJSON(raw: string): Data` → 可能抛异常
+  - ✅ 正确示例：`function parseJSON(raw: string): Result<Data, ParseError>`
 
-- [ ] ✅ **3. 必须处理或重新抛出**：每个 catch 块至少满足以下之一：
-  - 重新抛出：`throw e` 或 `throw new CustomError(...)`
-  - 有意义的错误恢复逻辑（如重试、回滚、降级）
-  - 向用户报告错误（如 `toast.error`、UI 错误状态更新）
-  - ❌ 错误示例：仅赋值局部变量 `error = e` 后不用 → 等同于忽略错误
+- [ ] ✅ **异步函数返回 ResultAsync**
+  - ❌ 错误示例：`async function fetchUser(): Promise<User>` → 可能 reject
+  - ✅ 正确示例：`function fetchUser(): ResultAsync<User, NetworkError>`
 
-- [ ] ✅ **4. 捕获具体异常类型（Python）**：Python 代码禁止使用裸 `except:`，必须指定异常类型
-  - ❌ 错误示例：`except:` → 捕获所有异常（包括 KeyboardInterrupt）
-  - ✅ 正确示例：`except ValueError as e:` 或 `except (TypeError, KeyError) as e:`
+---
 
-- [ ] ✅ **5. try 块范围最小化**：try 块应只包含可能抛出异常的核心语句，不应将整个函数体都包在 try 中
-  - ❌ 错误示例：try 块内含有多个独立操作，无法判断是哪里抛出的异常
-  - ✅ 正确示例：精确包裹 IO 操作或外部调用，其余逻辑放到 try 外
+## 二、Result 处理规范
 
-- [ ] ✅ **6. finally 块用于清理资源**：需要资源清理（关闭文件、释放锁等）时，必须使用 `finally` 或 `defer`
-  - ❌ 错误示例：在 catch 和正常路径分别写清理代码（容易遗漏）
-  - ✅ 正确示例：`finally { db.close(); }` 保证无论是否报错都执行清理
+- [ ] ✅ **调用方必须处理错误**（不能忽略 Result）
+  - ❌ 错误示例：`fetchUser();` → 忽略可能的错误
+  - ❌ 错误示例：`const result = fetchUser();` → 未检查 result.isOk()
+  - ✅ 正确示例：`const result = fetchUser(); if (result.isErr()) { ... }`
+  - ✅ 正确示例：`result.map(...).mapErr(...)` 链式处理
+
+- [ ] ✅ **使用 match 进行分支处理**（推荐）
+  - ✅ 正确示例：`result.match(console.log, console.error)`
+  - ✅ 正确示例：`const value = result.match(ok => ok, err => defaultValue)`
+
+---
+
+## 三、错误类型规范
+
+- [ ] ✅ **定义具体的错误类**
+  - ❌ 错误示例：`err(new Error("..."))` → 太笼统
+  - ❌ 错误示例：`err("string error")` → 用字符串
+  - ✅ 正确示例：`err(new NetworkError("..."))`、`err(new ParseError("..."))`
+
+- [ ] ✅ **错误类包含足够上下文**
+  - ✅ 正确示例：`new NetworkError({ url, statusCode, message })`
+
+---
+
+## 四、Result 转换与组合
+
+- [ ] ✅ **使用 map/mapErr 转换 Result**
+  - ✅ 正确示例：`result.map(data => data.name).mapErr(e => new AppError(e))`
+
+- [ ] ✅ **使用 andThen 组合多个可能失败的操作**
+  - ✅ 正确示例：`parseJSON(raw).andThen(validateData).andThen(saveToDB)`
+
+- [ ] ✅ **使用 asyncAndThen 组合异步操作**
+  - ✅ 正确示例：`ResultAsync.fromPromise(fetch(), () => new NetworkError()).asyncAndThen(...)`
 
 ---
 
 ## Bad Case 确认
 
-- [ ] ❌ 不存在空 catch 块的情况
-- [ ] ❌ 不存在仅含 console.log 的 catch 块且无重新抛出的情况
-- [ ] ❌ 不存在 Python 裸 `except:` 语句的情况
-- [ ] ❌ 不存在 try 块包裹整个函数体而不是精确包裹异常点的情况
+- [ ] ❌ 不存在原生 try-catch 代码
+- [ ] ❌ 不存在返回裸值（非 Result）但可能失败的函数
+- [ ] ❌ 不存在忽略 Result 错误的情况
+- [ ] ❌ 不存在用字符串或原生 Error 作为错误类型的情况

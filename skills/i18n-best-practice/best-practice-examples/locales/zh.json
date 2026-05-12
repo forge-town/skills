@@ -1,0 +1,26 @@
+{
+  "navigation": {
+    "brand": "代码竞技场",
+    "login": "登录",
+    "register": "注册"
+  },
+  "homePage": {
+    "title": "欢迎来到代码竞技场",
+    "description": "让代码<strong>投票</strong>说话",
+    "voteFor": "支持 {{name}}"
+  },
+  "userMenu": {
+    "logout": "退出登录",
+    "dashboard": "控制台",
+    "profile": "个人资料",
+    "settings": "设置"
+  },
+  "common": {
+    "submit": "提交",
+    "cancel": "取消",
+    "save": "保存",
+    "delete": "删除",
+    "loading": "加载中...",
+    "error": "出错了"
+  }
+}

@@ -12,15 +12,22 @@
   - ❌ 错误示例：`pdf_parser` → 必须改为 `pdf-parser`
   - ❌ 错误示例：`My Skill` → 必须改为 `my-skill`
 
-### 1.2 目录名禁止 `-skill` 后缀
-- [ ] ✅ 目录名末尾不含 `-skill`
-  - ❌ 错误示例：`exam-grading-skill` → 必须改为 `exam-grading`
-  - ❌ 错误示例：`pdf-parser-skill` → 必须改为 `pdf-parser`
+### 1.2 禁止在多词名称后追加赘余 `-skill` 后缀
+- [ ] ✅ 若目录名以 `-skill` 结尾，且去掉 `-skill` 后前缀本身已含连字符（即已是多词），则视为赘余后缀，必须删除
+  - ❌ 错误示例：`exam-grading-skill` → 前缀 `exam-grading` 已含连字符 → 必须改为 `exam-grading`
+  - ❌ 错误示例：`pdf-parser-skill` → 前缀 `pdf-parser` 已含连字符 → 必须改为 `pdf-parser`
+  - ✅ 合法示例：`create-skill` → 前缀 `create` 无连字符，`skill` 就是名词，符合动词+名词命名规范
 
-### 1.3 最佳实践类 Skill 必须有 `-best-practice` 后缀（仅适用于最佳实践检查类）
+### 1.3 动词型 Skill 必须以「动词+名词」形式命名
+- [ ] ✅ 动词型 Skill（名称不以 `-best-practice`、`-integration` 结尾）目录名必须是 `动词-名词` 结构
+  - ❌ 错误示例：`skill-creator`（名词-名词）→ 应改为 `create-skill`
+  - ❌ 错误示例：`classname-refactor`（名词-动词，顺序错误）→ 应改为 `refactor-classname`
+  - ✅ 正确示例：`create-skill`、`check-components`、`implement-trpc-query`、`refactor-classname`（已有存量不强制改动）
+
+### 1.4 最佳实践类 Skill 必须有 `-best-practice` 后缀（仅适用于最佳实践检查类）
 - [ ] ✅ 最佳实践检查类 Skill 目录名以 `-best-practice` 结尾
   - ❌ 错误示例（最佳实践类）：`skill-quality`、`skill-validator` → 必须改为 `skill-best-practice`
-  - ✅ 非最佳实践类 Skill 跳过此项（如 `exam-grading`、`pdf-parser` 无需此后缀）
+  - ✅ 非最佳实践类 Skill 跳过此项（如 `create-skill`、`check-components` 无需此后缀）
 
 ---
 
@@ -64,6 +71,13 @@
   - ❌ 错误示例：无 `references/checklist.md`，无法判断操作是否正确执行完毕
   - ✅ 正确示例：`references/checklist.md` 包含"执行完毕后逐项确认"的 5-8 条可勾选验证项
   - 🔍 与名词型 Skill 的区别：名词型的 checklist 描述**代码规范**；动词型的 checklist 描述**操作完成校验**
+
+### 2.9 `references/checklist.md` 必须使用 `- [ ]` 勾选格式
+- [ ] ✅ 凡存在 `references/checklist.md` 的 Skill，其内容必须以 `- [ ] 已…` 勾选条目为主体（op-completion 格式），每条以 `已` 开头，不得使用 `### 检查项 N` 文档块格式
+  - ❌ 错误示例：使用 `### 检查项 1: 命名规范` + `- **通过标准**:` 的 prose 文档格式
+  - ❌ 错误示例：使用 `N. [ ]`（带序号）而非 `- [ ]` 格式
+  - ❌ 错误示例：条目内容不以 `已` 开头（如 `- [ ] 命名规范已检查` → 应为 `- [ ] 已完成命名规范检查`）
+  - ✅ 正确示例：`- [ ] 已…` 可勾选项，无 `##` 分节标题
 
 ---
 
@@ -109,6 +123,15 @@
 
 - [ ] ✅ `references/checklist.md` 文件存在（强制要求）
   - ❌ 错误示例：缺少 `references/checklist.md` → 必须创建
+- [ ] ✅ `best-practice-examples/` 目录存在且包含至少一个示例文件/文件夹（强制要求）
+  - ❌ 错误示例：缺少 `best-practice-examples/` 或目录为空 → 必须创建包含真实代码示例的文件
+  - ✅ 正确示例：`best-practice-examples/userDao.ts`、`best-practice-examples/UserCard/`（含完整代码）
+- [ ] ✅ `.md` 文档（`references/checklist.md`、`references/standard.md` 等）中**不得出现 Good Case 代码块**；所有 Good Case 代码只放在 `best-practice-examples/` 目录下
+  - ❌ 错误示例：`standard.md` 里写了 `// ✅ 正确写法` 代码块 → 必须移到 `best-practice-examples/` 文件中
+  - ✅ `.md` 中只允许写 Bad Case 代码块（说明错误模式），Good Case 一律以文件形式存放
+- [ ] ✅ `references/` 目录下**不得存在**仅包含 Good Case 代码的 `.md` 文件（如 `patterns.md`、`examples.md` 等）
+  - ❌ 错误示例：`references/patterns.md` 包含 Good Case 代码块 → 必须删除该文件，代码移至 `best-practice-examples/`
+  - ✅ 正确示例：`references/` 只放 checklist、standard（文字描述）、架构图等，不放可运行代码
 - [ ] ✅ checklist 中每一项都能映射到**唯一**的正确代码模式（Unique Mapping Principle）
   - ❌ 错误示例：`- [ ] 命名要规范`（无法判断是/否）→ 必须改为 `- [ ] ✅ 文件名格式为 {feature}Dao.ts（如 catsDao.ts），❌ 错误：CatsDAO.ts、cats-dao.ts`
 - [ ] ✅ checklist 包含 Bad Case 确认节（列出**不得出现**的反模式）
@@ -143,9 +166,12 @@ Skill 检查报告
 - [ ] ❌ 不存在 `README.md` 替代 `SKILL.md` 作为入口文档的情况
 - [ ] ❌ 不存在 `name` 字段与目录名不一致的情况
 - [ ] ❌ 不存在 description 字符数少于 100 的情况
-- [ ] ❌ 不存在带 `-skill` 后缀的目录名的情况
+- [ ] ❌ 不存在带赘余 `-skill` 后缀的目录名（即前缀已含连字符却再附加 `-skill`）的情况
+- [ ] ❌ 不存在动词型 Skill 以名词+名词（如 `skill-creator`）而非动词+名词（如 `create-skill`）命名的情况
 - [ ] ❌ 不存在 `__pycache__`、`.DS_Store` 等临时文件被提交进 Skill 的情况
 - [ ] ❌ 不存在 SKILL.md 正文内嵌大量实现细节（步骤代码块、完整清单）而 `references/` 为空的情况
+- [ ] ❌ 不存在 `.md` 文档中出现 Good Case 代码块的情况（Good Case 只能在 `best-practice-examples/` 文件中）
+- [ ] ❌ 不存在 `references/` 目录包含仅放 Good Case 代码的 `.md` 文件（如 `patterns.md`、`examples.md`）的情况
 - [ ] ❌ 不存在动词型 Skill description 未以 `Use when` 开头的情况
 - [ ] ❌ 不存在名词型（`-best-practice`）Skill description 未以 `Must follow` 开头的情况
 - [ ] ❌ 不存在动词型 Skill 缺少 `references/checklist.md` 的情况
