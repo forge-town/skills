@@ -1,6 +1,6 @@
 ---
 name: form-best-practice
-description: Must follow when 创建或重构前端表单组件，确保表单结构、字段验证逻辑和状态管理遵循项目表单设计规范与组件化标准。触发词：表单规范、创建表单组件、表单最佳实践审查、form-best-practice。
+description: Must follow when 创建或重构前端表单组件，确保表单结构、字段验证逻辑和状态管理遵循项目表单设计规范与组件化标准。
 ---
 
 # 表单最佳实践

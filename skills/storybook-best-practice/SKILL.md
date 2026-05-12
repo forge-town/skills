@@ -1,6 +1,6 @@
 ---
 name: storybook-best-practice
-description: Must follow when 创建或维护 Storybook Stories，确保组件文档命名、参数定义和装饰器配置符合项目 Storybook 编写规范。触发词：创建storybook、story规范、组件故事文档审查。
+description: Must follow when 创建或维护 Storybook Stories，确保组件文档命名、参数定义和装饰器配置符合项目 Storybook 编写规范。
 ---
 
 # Storybook Stories 生成器

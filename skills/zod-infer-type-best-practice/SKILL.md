@@ -1,6 +1,6 @@
 ---
 name: zod-infer-type-best-practice
-description: Must follow when 项目中存在 Zod schema 定义时，禁止另建 type.ts 文件重复声明类型；所有类型须直接用 z.infer 从 schema 派生，杜绝类型与 schema 不同步。触发词：类型文件、type.ts、zod类型、schema类型。
+description: Must follow when 项目中存在 Zod schema 定义时，禁止另建 type.ts 文件重复声明类型；所有类型须直接用 z.infer 从 schema 派生，杜绝类型与 schema 不同步。
 ---
 
 # Zod 派生类型最佳实践

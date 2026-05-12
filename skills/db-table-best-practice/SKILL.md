@@ -1,6 +1,6 @@
 ---
 name: db-table-best-practice
-description: Must follow when 创建或审查 Drizzle ORM 数据库表定义，确保表名、列名、索引和关系配置均遵循项目命名规范与表结构规范。触发词：数据库表名规范、检查表结构定义、数据库命名审查、schema命名。
+description: Must follow when 创建或审查 Drizzle ORM 数据库表定义，确保表名、列名、索引和关系配置均遵循项目命名规范与表结构规范。
 ---
 
 # 数据库与数据表表名规范验证最佳实践

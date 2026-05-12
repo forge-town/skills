@@ -1,6 +1,6 @@
 ---
 name: dao-best-practice
-description: Must follow when 创建或重构 DAO 文件，确保遵循 Drizzle ORM 最佳实践（文件结构、方法命名、类型安全、性能优化）。触发词：dao规范、DAO最佳实践、创建DAO文件、审查DAO代码。
+description: Must follow when 创建或重构 DAO 文件，确保遵循 Drizzle ORM 最佳实践（文件结构、方法命名、类型安全、性能优化）。
 ---
 
 # DAO规范化技能

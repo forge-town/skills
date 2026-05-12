@@ -1,6 +1,6 @@
 ---
 name: repository-best-practice
-description: Must follow when 创建或重构 Repository 层，确保数据访问模式、方法命名、返回类型和接口定义符合项目规范。触发词：repository规范、创建repository层、数据访问层审查。
+description: Must follow when 创建或重构 Repository 层，确保数据访问模式、方法命名、返回类型和接口定义符合项目规范。
 ---
 
 # Repository 最佳实践

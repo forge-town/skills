@@ -1,6 +1,6 @@
 ---
 name: page-best-practice
-description: Must follow when 创建或审查前端页面结构，确保遵循 Anatomy 规范，正确分离 Wrapper、Content 和 Optional Store 模块。触发词：创建页面、页面结构规范、前端页面解剖规范。
+description: Must follow when 创建或审查前端页面结构，确保遵循 Anatomy 规范，正确分离 Wrapper、Content 和 Optional Store 模块。
 ---
 
 # 页面生成器 (Page Generator Skill)

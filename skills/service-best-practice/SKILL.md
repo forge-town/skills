@@ -1,6 +1,6 @@
 ---
 name: service-best-practice
-description: Must follow when 创建或重构 Service 层，基于 tRPC + Service + DAO 架构确保依赖注入、错误处理和业务逻辑分层符合规范。触发词：service规范、创建service层、服务层重构。
+description: Must follow when 创建或重构 Service 层，基于 tRPC + Service + DAO 架构确保依赖注入、错误处理和业务逻辑分层符合规范。
 ---
 
 # Service 最佳实践
