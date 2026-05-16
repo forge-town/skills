@@ -52,6 +52,7 @@ pnpx skills add forge-town/skills
 | [db-table-best-practice](skills/db-table-best-practice) | Must follow when 创建或审查 Drizzle ORM 数据库表定义，确保表名、列名、索引和关系配置均遵循项目命名规范与表结构规范。 |
 | [form-best-practice](skills/form-best-practice) | Must follow when 创建或重构前端表单组件，确保表单结构、字段验证逻辑和状态管理遵循项目表单设计规范与组件化标准。 |
 | [generate-preview](skills/generate-preview) | Use when 需要对 React 组件文件生成结构化 .json 描述和可视化 .md 目录树预览，用于组件拆分前的详细结构分析、复杂度评估与规划。触发词：生成组件预览文档、拆分前分析、组件结构可视化。 |
+| [generate-slides](skills/generate-slides) | Use when 需要生成网页幻灯片（HTML 演示文稿），支持从零创建、PPT 转换或增强现有 deck，输出零依赖单文件 HTML，自带动画与响应式。触发词：生成幻灯片、做 PPT、网页演示文稿、slides。 |
 | [i18n-best-practice](skills/i18n-best-practice) | Must follow when 创建或重构 i18n 国际化代码，确保遵循 react-i18next 最佳实践（初始化配置、翻译文件结构、组件用法、SSR 同步、语言切换与测试 Mock）。 |
 | [introspect-best-practice](skills/introspect-best-practice) | Use when 需要深度反思已定义的 best-practice，挖掘潜在盲区、过度设计、隐藏假设和未覆盖场景；通过自我审视挑战既有规范，发现规范本身的局限性。触发词：反思最佳实践、深挖规范盲区、自检 skill、挑战既有规范、规范盲点分析。 |
 | [implement-feature](skills/implement-feature) | Use when 需要实现一个新 Feature，从 Schema 定义到数据层、服务层、状态层、UI 层再到最终质量检查，串联多个原子动词 Skill 完成宽线性工作流。触发词：实现功能、开发功能、新增 feature。 |
