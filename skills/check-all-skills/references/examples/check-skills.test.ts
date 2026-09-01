@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { mkdtemp, mkdir, rm, writeFile } from "node:fs/promises";
+import { readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { checkSkill, isValidSkillName, parseFrontmatter } from "./check-skills.ts";
@@ -68,4 +69,13 @@ test("frontmatter and README checks use forge names", async () => {
   } finally {
     await rm(root, { recursive: true, force: true });
   }
+});
+
+test("quality documentation uses the production threshold and evidence vocabulary", () => {
+  const quality = readFileSync("skills/check-all-skills/references/quality-standards.md", "utf8");
+  const checklist = readFileSync("skills/skill-best-practice/references/checklist.md", "utf8");
+  assert.match(quality, /少于 150/);
+  assert.match(quality, /evidence-required/);
+  assert.match(checklist, /forge_/);
+  assert.doesNotMatch(checklist, /长度在 100-150/);
 });

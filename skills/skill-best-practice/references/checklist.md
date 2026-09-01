@@ -6,23 +6,19 @@
 
 ## 一、命名规范检查
 
-### 1.1 目录名格式（正则：`^[a-z0-9]+(-[a-z0-9]+)*$`）
-- [ ] ✅ 目录名仅使用小写字母、数字和连字符（`-`），不含大写字母、下划线或空格
-  - ❌ 错误示例：`ExamGrading` → 必须改为 `exam-grading`
-  - ❌ 错误示例：`pdf_parser` → 必须改为 `pdf-parser`
-  - ❌ 错误示例：`My Skill` → 必须改为 `my-skill`
+### 1.1 目录名格式（正则：`^forge_[a-z0-9]+(-[a-z0-9]+)*$`）
+- [ ] ✅ 目录名以 `forge_` 开头，后接小写字母、数字和连字符（`-`），不含其他下划线、空格或大写字母
+  - ❌ 错误示例：`exam-grading`、`forge_ExamGrading` → 必须改为 `forge_exam-grading`
 
 ### 1.2 禁止在多词名称后追加赘余 `-skill` 后缀
 - [ ] ✅ 若目录名以 `-skill` 结尾，且去掉 `-skill` 后前缀本身已含连字符（即已是多词），则视为赘余后缀，必须删除
-  - ❌ 错误示例：`exam-grading-skill` → 前缀 `exam-grading` 已含连字符 → 必须改为 `exam-grading`
-  - ❌ 错误示例：`pdf-parser-skill` → 前缀 `pdf-parser` 已含连字符 → 必须改为 `pdf-parser`
-  - ✅ 合法示例：`create-skill` → 前缀 `create` 无连字符，`skill` 就是名词，符合动词+名词命名规范
+  - ❌ 错误示例：`forge_exam-grading-skill` → 前缀已含连字符 → 必须改为 `forge_exam-grading`
+  - ✅ 合法示例：`forge_create-skill` → namespace 保留，后缀名称符合动词+名词命名规范
 
 ### 1.3 动词型 Skill 必须以「动词+名词」形式命名
 - [ ] ✅ 动词型 Skill（名称不以 `-best-practice`、`-integration` 结尾）目录名必须是 `动词-名词` 结构
-  - ❌ 错误示例：`skill-creator`（名词-名词）→ 应改为 `create-skill`
-  - ❌ 错误示例：`classname-refactor`（名词-动词，顺序错误）→ 应改为 `refactor-classname`
-  - ✅ 正确示例：`create-skill`、`check-components`、`implement-trpc-query`、`refactor-classname`（已有存量不强制改动）
+  - ❌ 错误示例：`forge_skill-creator`（名词-名词）→ 应改为 `forge_create-skill`
+  - ✅ 正确示例：`forge_create-skill`、`forge_check-components`、`forge_implement-trpc-query`
 
 ### 1.4 最佳实践类 Skill 必须有 `-best-practice` 后缀（仅适用于最佳实践检查类）
 - [ ] ✅ 最佳实践检查类 Skill 目录名以 `-best-practice` 结尾
@@ -38,8 +34,8 @@
   - ❌ 错误示例：前言区只有 `description`，无 `name` → 必须添加 `name: skill-name`
 
 ### 2.2 `name` 字段与目录名完全一致
-- [ ] ✅ `name` 字段值 = 目录名（字符完全匹配）
-  - ❌ 错误示例：目录名 `dao-best-practice`，但 `name: dao-best-practice-skill` → 必须改为 `name: dao-best-practice`
+- [ ] ✅ `name` 字段值 = 目录名（字符完全匹配，包含 `forge_` 前缀）
+  - ❌ 错误示例：目录名 `forge_dao-best-practice`，但 `name: dao-best-practice` → 必须统一为 `name: forge_dao-best-practice`
 
 ### 2.3 `description` 字段存在
 - [ ] ✅ 前言区包含 `description` 字段
@@ -49,10 +45,9 @@
 - [ ] ✅ `description` 值不含换行符（单行）
   - ❌ 错误示例：description 值跨多行 → 必须改为单行文本
 
-### 2.5 `description` 长度在 100-150 字符之间
-- [ ] ✅ `description` 字符数在 100-150 之间（字符数 = len(description_value)）
-  - ❌ 错误示例：`description: 检查 DAO 文件` （14 字符，过短）→ 必须扩展到 100+ 字符，描述核心能力和触发场景
-  - ❌ 错误示例：超过 150 字符的 description → 必须精简
+### 2.5 `description` 长度少于 150 字符
+- [ ] ✅ `description` 字符数少于 150（字符数 = len(description_value)）
+  - ❌ 错误示例：超过或等于 150 字符的 description → 必须精简到少于 150 字符
 
 ### 2.6 SKILL.md 主体极简原则
 - [ ] ✅ SKILL.md 正文（前言区以外）只包含基本流程入口（如指向 references/ 文件的链接），不包含内联实现细节
@@ -87,7 +82,7 @@
 - [ ] ✅ Skill 根目录下存在 `SKILL.md` 文件
   - ❌ 错误示例：只有 `README.md`，无 `SKILL.md` → 必须创建 `SKILL.md`
 
-### 3.2 仅包含合法子目录（`scripts/`、`references/`、`assets/`）
+### 3.2 仅包含合法子目录（`scripts/`、`references/`、`assets/`、`best-practice-examples/`）
 - [ ] ✅ 根目录下除 `SKILL.md` 外，只存在 `scripts/`、`references/`、`assets/` 三个目录，无其他文件/目录
   - ❌ 错误示例：存在 `README.md`、`LICENSE`、`test/` → 必须删除不符合规范的文件/目录
   - ❌ 错误示例：存在 `docs/` 目录 → 必须移动到 `references/` 下或删除
@@ -165,7 +160,8 @@ Skill 检查报告
 
 - [ ] ❌ 不存在 `README.md` 替代 `SKILL.md` 作为入口文档的情况
 - [ ] ❌ 不存在 `name` 字段与目录名不一致的情况
-- [ ] ❌ 不存在 description 字符数少于 100 的情况
+- [ ] ❌ 不存在 description 字符数超过或等于 150 的情况
+- [ ] ❌ 不存在未以 `forge_` 开头的技能目录、frontmatter name 或 README 链接
 - [ ] ❌ 不存在带赘余 `-skill` 后缀的目录名（即前缀已含连字符却再附加 `-skill`）的情况
 - [ ] ❌ 不存在动词型 Skill 以名词+名词（如 `skill-creator`）而非动词+名词（如 `create-skill`）命名的情况
 - [ ] ❌ 不存在 `__pycache__`、`.DS_Store` 等临时文件被提交进 Skill 的情况

@@ -7,8 +7,8 @@
 ## 一、命名检查
 
 ### 1.1 目录名格式
-- [ ] ✅ 技能目录名仅包含小写字母、数字和连字符（kebab-case），符合正则 `^[a-z0-9]+(-[a-z0-9]+)*$`
-  - ❌ 错误示例：`MySkill`、`pdf_parser` → 必须改为 `my-skill`、`pdf-parser`
+- [ ] ✅ 技能目录名以 `forge_` 开头，后缀仅包含小写字母、数字和连字符（kebab-case），符合正则 `^forge_[a-z0-9]+(-[a-z0-9]+)*$`
+  - ❌ 错误示例：`my-skill`、`forge_MySkill` → 必须改为 `forge_my-skill`、`forge_my-skill`
 - [ ] ✅ `name` 长度 ≤ 64 个字符
 - [ ] ❌ 不得以连字符开头或结尾（`-skill` → 必须改为 `skill`，`skill-` → 必须改为 `skill`）
 - [ ] ❌ 不得包含连续连字符（`my--skill` → 必须改为 `my-skill`）
@@ -20,8 +20,8 @@
   - ✅ 正确示例：`create-skill`、`check-components`、`implement-trpc-query`
 
 ### 1.2 name 字段与目录名一致性
-- [ ] ✅ SKILL.md 前言 `name` 字段值与所在目录名完全一致（字符级对比）
-  - ❌ 错误示例：目录名为 `log-monitor`，前言 `name: log-monitor-skill` → 必须统一为 `log-monitor`
+- [ ] ✅ SKILL.md 前言 `name` 字段值与所在目录名完全一致（字符级对比，包含 `forge_`）
+  - ❌ 错误示例：目录名为 `forge_log-monitor`，前言 `name: log-monitor` → 必须统一为 `forge_log-monitor`
 - [ ] ✅ 最佳实践类技能目录名以 `-best-practice` 结尾
   - ❌ 错误示例：`skill-quality`、`skill-validator` → 必须改为 `skill-best-practice`
 
@@ -41,8 +41,8 @@
 ### 2.3 description 字段
 - [ ] ✅ 前言包含 `description` 字段，且为单行文本（不含换行符）
   - ❌ 错误示例：`description: 批改考试\n支持多题型` → 必须合并为单行
-- [ ] ✅ `description` 长度在 100–150 个字符之间（过短不足以触发，过长影响扫描评分）
-  - ❌ 错误示例：`description: 创建技能` → 太短，缺少触发条件描述
+- [ ] ✅ `description` 长度少于 150 个字符（过长会影响扫描和触发判断）
+  - ❌ 错误示例：超过或等于 150 个字符 → 必须精简
 - [ ] ❌ `description` 不得包含 `<` 或 `>` 字符（会破坏 XML/HTML 渲染）
 - [ ] ❌ `description` 不得包含未完成的 TODO 占位文本（`{todo}`、`[待填写]` 等）
 - [ ] ✅ `description` 同时说明技能做什么 **和** 何时触发（不得只写功能而省略触发条件）

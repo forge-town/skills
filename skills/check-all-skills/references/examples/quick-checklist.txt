@@ -1,6 +1,6 @@
 命名规范检查
-☐ 目录名格式（小写字母+连字符）
-☐ 目录名不以 -skill 结尾
+☐ 目录名格式（forge_ 前缀 + 小写字母/连字符）
+☐ 目录名后缀不以赘余 -skill 结尾
 ☐ 最佳实践后缀（仅限检查类 Skill）
 
 SKILL.md 前言区检查
@@ -8,7 +8,7 @@ SKILL.md 前言区检查
 ☐ name 字段与目录名一致
 ☐ description 字段存在
 ☐ description 为单行格式
-☐ description 长度 100-150 字符
+☐ description 长度少于 150 字符
 
 目录结构检查
 ☐ SKILL.md 文件存在

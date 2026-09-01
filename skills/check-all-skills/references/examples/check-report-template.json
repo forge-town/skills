@@ -1,6 +1,6 @@
 {
-  "skill_name": "my-skill",
-  "skill_path": "/path/to/skill",
+  "skill_name": "forge_my-skill",
+  "skill_path": "/path/to/skills/forge_my-skill",
   "status": "pass|warning|error",
   "summary": "通过检查，但有 1 个警告",
   "stats": {
@@ -11,16 +11,16 @@
   },
   "checks": [
     {
-      "name": "naming_convention",
+      "name": "namespace_and_naming",
       "status": "pass",
-      "message": "目录名 'my-skill' 符合命名规范",
+      "message": "目录名 'forge_my-skill' 符合 namespace 和命名规范",
       "fix_suggestion": ""
     },
     {
       "name": "front_matter_description",
-      "status": "warning",
-      "message": "description 长度为 80 字符，建议 100-150 字符",
-      "fix_suggestion": "补充 description 内容，使其更详细"
+      "status": "error",
+      "message": "description 长度为 180 字符，必须少于 150 字符",
+      "fix_suggestion": "精简 description 内容，使其少于 150 字符"
     }
   ]
 }

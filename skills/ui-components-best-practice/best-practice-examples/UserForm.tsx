@@ -13,6 +13,7 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { Form } from "@/components/ui/form";
 
 /**
  * 用户信息表单 - 最佳实践示例
@@ -39,7 +40,7 @@ export function UserForm() {
         <CardTitle>用户信息</CardTitle>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <Form onSubmit={handleSubmit} className="space-y-4">
           {/* 姓名输入 - 使用 Input 而非原生 input */}
           <div className="space-y-2">
             <Label htmlFor="name">姓名</Label>
@@ -121,7 +122,7 @@ export function UserForm() {
           <Button type="submit" className="w-full">
             提交
           </Button>
-        </form>
+        </Form>
       </CardContent>
     </Card>
   );
