@@ -13,12 +13,12 @@
   - ✅ 正确：`const input = CreateUserSchema.parse(req.body)`
   - ❌ 错误：`const { name } = req.body`（未验证）
 - [ ] 2.2 路径参数（`:id`）已做类型转换和范围验证
-  - ✅ 正确：`z.string().uuid()`
+  - ✅ 正确：`z.uuid()`（Zod 4 顶层格式 API）
   - ❌ 错误：直接使用 `req.params.id` 无验证
 
 ## 错误处理
 - [ ] 3.1 所有异步处理器已包裹 try-catch，无未捕获 Promise 拒绝
-  - ✅ 正确：`try { ... } catch (error) { next(error) }`
+  - ✅ 正确：边界层将失败映射为明确的 `Result` / HTTP 响应，不吞掉异常
   - ❌ 错误：`async (req, res) => { const data = await fetchData() }` 无 try-catch
 - [ ] 3.2 错误响应返回标准结构 `{ error: string, code?: string }`
   - ✅ 正确：`res.status(400).json({ error: 'Validation failed', code: 'INVALID_INPUT' })`

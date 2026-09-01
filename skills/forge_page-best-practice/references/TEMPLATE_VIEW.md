@@ -56,27 +56,27 @@
 ## 核心组件导入
 
 ```tsx
-import { cn } from "@code-arena/ui";
+import { cn } from "@repo/ui";
 // {{StoreImport}}
-// import { useStore } from "zustand";
+import { useStore } from "zustand";
 // import { use{{PageName}}Store } from "./_store";
 
 // shadcn/ui 核心组件 (按使用频率排序)
-import { Button } from "@code-arena/ui";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@code-arena/ui";
-import { Input } from "@code-arena/ui";
-import { Label } from "@code-arena/ui";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@code-arena/ui";
-import { Badge } from "@code-arena/ui";
-import { Separator } from "@code-arena/ui";
+import { Button } from "@repo/ui";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@repo/ui";
+import { Input } from "@repo/ui";
+import { Label } from "@repo/ui";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@repo/ui";
+import { Badge } from "@repo/ui";
+import { Separator } from "@repo/ui";
 
 // 扩展组件 (按需导入)
-import { Skeleton } from "@code-arena/ui";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@code-arena/ui";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@code-arena/ui";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@code-arena/ui";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@code-arena/ui";
-import { Alert, AlertDescription, AlertTitle } from "@code-arena/ui";
+import { Skeleton } from "@repo/ui";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@repo/ui";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@repo/ui";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@repo/ui";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@repo/ui";
+import { Alert, AlertDescription, AlertTitle } from "@repo/ui";
 ```
 
 ## 代码模板
@@ -132,7 +132,10 @@ export const {{PageName}}Content = () => {
 
 ```tsx
 export const {{PageName}}Content = () => {
-  const { loading, searchQuery, selectedSort } = use{{PageName}}Store();
+  const store = use{{PageName}}Store();
+  const { loading, searchQuery, selectedSort } = useStore(store, (state) => ({
+    loading: state.loading,
+    searchQuery: state.searchQuery,
     selectedSort: state.selectedSort,
   }));
 
@@ -164,7 +167,12 @@ export const {{PageName}}Content = () => {
             </div>
             <div className="w-full md:w-48 space-y-2">
               <Label htmlFor="sort">排序方式</Label>
-              <Select value={selectedSort} onValueChange={(value) => store.getState().setSelectedSort(value as any)}>
+              <Select
+                value={selectedSort}
+                onValueChange={(value: "name" | "date" | "status") =>
+                  store.getState().setSelectedSort(value)
+                }
+              >
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>

@@ -4,10 +4,11 @@
 
 ```tsx
 import type { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 import { XxxCard } from "./XxxCard";
 
 const meta: Meta<typeof XxxCard> = {
-  title: "Components/XxxCard",
+  title: "Components/XxxCard", // 页面内组件使用 Pages/<PageName>/Components/<XxxCard>
   component: XxxCard,
 };
 
@@ -20,7 +21,7 @@ export const Base: Story = {
     title: "典型标题",
     description: "这是一段典型描述文本，展示组件的基本外观",
     status: "active",
-    onClick: () => console.log("clicked"),
+    onClick: fn(),
   },
 };
 

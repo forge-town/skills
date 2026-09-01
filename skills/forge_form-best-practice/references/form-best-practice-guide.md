@@ -25,7 +25,7 @@
 - 禁止将表单字段直接绑定到 zustand store（双向绑定）
 - 仅在提交时，将表单数据**副本**传给业务逻辑层
 
-详细示例：[examples/GoodFormExample.tsx](examples/GoodFormExample.tsx)
+详细示例：[best-practice-examples/CreateUserForm.tsx](../best-practice-examples/CreateUserForm.tsx)
 
 ---
 
@@ -35,7 +35,7 @@
 2. **编辑过程**：所有用户输入仅在 react-hook-form 内部流转，不影响原始数据
 3. **提交时刻**：调用 `onSubmit` 获取最终值，将表单值的副本传递给业务逻辑层
 
-示例：[examples/SubmitHandlerExample.tsx](examples/SubmitHandlerExample.tsx)
+示例：[best-practice-examples/CreateUserForm.tsx](../best-practice-examples/CreateUserForm.tsx)
 
 ---
 
@@ -45,13 +45,13 @@
 
 每个字段必须通过 `render={({ field }) => ...}` 模式接入，**禁止手动处理 `value` 和 `onChange`**。
 
-详细示例：[examples/GoodFormExample.tsx](examples/GoodFormExample.tsx)
+详细示例：[best-practice-examples/CreateUserForm.tsx](../best-practice-examples/CreateUserForm.tsx)
 
 ---
 
 ## 五、为何禁止手动 useState 管理表单字段
 
-反模式示例：[examples/BadFormExample.tsx](examples/BadFormExample.tsx)
+反模式示例：使用独立的坏例子文件，避免把反模式混入 Good Case。
 
 **问题分析**：
 - 状态分散，难以统一管理验证、提交、重置
@@ -65,7 +65,7 @@
 当表单需要跨子组件共享 react-hook-form 上下文时，使用 FormProvider：
 - 子组件通过 `useFormContext()` 访问，**禁止通过 props 逐层传递 `control` 或 `register`**
 
-示例：[examples/FormProviderExample.tsx](examples/FormProviderExample.tsx)
+示例：[best-practice-examples/CreateUserForm.tsx](../best-practice-examples/CreateUserForm.tsx)
 
 ---
 
@@ -73,5 +73,4 @@
 
 表单必须对应一个 Zod Schema，通过 `zodResolver` 集成：
 
-示例：[examples/FormSchema.ts](examples/FormSchema.ts)
-
+示例：[best-practice-examples/CreateUserForm.tsx](../best-practice-examples/CreateUserForm.tsx)

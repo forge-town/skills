@@ -1,13 +1,13 @@
-import { cn } from "@code-arena/ui";
-import { Button } from "@code-arena/ui";
+import { cn } from "@repo/ui";
+import { Button } from "@repo/ui";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@code-arena/ui";
-import { Separator } from "@code-arena/ui";
+} from "@repo/ui";
+import { Separator } from "@repo/ui";
 
 export const SimpleNoStorePageContent = () => {
   return (

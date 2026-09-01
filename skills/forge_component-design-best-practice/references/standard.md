@@ -135,7 +135,7 @@ function Input({ className, error, ...props }: InputProps) {
 ```tsx
 // 1. 导入（按类型分组）
 import * as React from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@repo/ui";
 import { cva, type VariantProps } from "class-variance-authority";
 
 // 2. 类型定义

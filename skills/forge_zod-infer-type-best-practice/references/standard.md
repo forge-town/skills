@@ -15,9 +15,9 @@ Zod schema 既承担运行时校验，又通过 `z.infer` 提供编译期类型�
 ```ts
 // schemas/user.schema.ts
 export const UserSchema = z.object({
-  id: z.string().uuid(),
+  id: z.uuid(),
   name: z.string().min(1),
-  email: z.string().email(),
+  email: z.email(),
 })
 
 // types/user.types.ts  ← 此文件不应存在
@@ -51,6 +51,6 @@ export type CreateUserInput = {
 ## 三、文件组织规范
 
 - 类型必须从 schema **同一文件**中导出，或从 schema 文件 `re-export`
-- **绝对禁止**创建任何 `types.ts`、`type.ts`、`*.types.ts` 文件
-- **绝对禁止**创建 `types/` 目录
-- 项目中不应存在任何与类型相关的独立文件，一切类型均从对应 schema 中派生
+- 不得为已有 Schema 的同一业务对象重复创建类型文件；但 DAO/Repository 的持久化 contract、输入和事务类型可以按模块放在 `*.types.ts` 或 `contracts.ts`
+- 不要把“所有类型都必须放进 Schema”作为机械规则；只有能由 Schema 表达的运行时数据才使用 `z.infer`
+- 项目应避免与 Schema 字段重复的孤立类型文件，跨层 contract 必须有明确职责和注释

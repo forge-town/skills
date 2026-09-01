@@ -1,40 +1,43 @@
-import { usersDao } from "@/models/daos/usersDao";
-import { profilesDao } from "@/models/daos/profilesDao";
+import { ResultAsync, errAsync, okAsync } from "neverthrow";
+import type { User } from "@repo/schemas";
+import { usersDao } from "@repo/models";
 
-export type UserProfile = {
-  id: string;
-  name: string;
-  email: string;
+/** Service 对外返回的用户视图。 */
+export type UserProfile = Pick<User, "id" | "name" | "email" | "createdAt"> & {
   avatarUrl: string | null;
-  createdAt: Date;
 };
 
-export const createUserService = (deps: {
-  usersDao: typeof usersDao;
-  profilesDao: typeof profilesDao;
-}) => ({
-  async getProfile(userId: string): Promise<UserProfile | null> {
-    const user = await deps.usersDao.findById(userId);
-    if (!user) return null;
+/** 创建依赖注入的用户 Service；不直接访问数据库。 */
+const profilesDao = { findByUserId: async (_userId: string) => null as { avatarUrl: string | null } | null };
 
-    const profile = await deps.profilesDao.findByUserId(userId);
+/** User Service singleton；持久化依赖由 helper/适配器提供。 */
+export const UserService = {
+  getProfile(userId: string): ResultAsync<UserProfile | null, Error> {
+    return ResultAsync.fromPromise(usersDao.getById(userId), (cause) =>
+      cause instanceof Error ? cause : new Error(String(cause)),
+    ).andThen((user) => {
+      if (!user) return okAsync(null);
 
-    return {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      avatarUrl: profile?.avatarUrl ?? null,
-      createdAt: user.createdAt,
-    };
+      return ResultAsync.fromPromise(profilesDao.findByUserId(userId), (cause) =>
+        cause instanceof Error ? cause : new Error(String(cause)),
+      ).map((profile) => ({
+        avatarUrl: profile?.avatarUrl ?? null,
+        createdAt: user.createdAt,
+        email: user.email,
+        id: user.id,
+        name: user.name,
+      }));
+    });
   },
 
-  async updateName(userId: string, name: string): Promise<UserProfile | null> {
+  updateName(userId: string, name: string): ResultAsync<UserProfile | null, Error> {
     const trimmed = name.trim();
-    if (!trimmed) throw new Error("Name cannot be empty");
+    if (!trimmed) return errAsync(new Error("Name cannot be empty"));
 
-    await deps.usersDao.updateById(userId, { name: trimmed });
-    return this.getProfile(userId);
+    return ResultAsync.fromPromise(usersDao.updateById(userId, { name: trimmed }), (cause) =>
+      cause instanceof Error ? cause : new Error(String(cause)),
+    ).andThen(() => this.getProfile(userId));
   },
-});
+};
 
-export const UserService = createUserService({ usersDao, profilesDao });
+export type UserService = typeof UserService;

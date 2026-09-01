@@ -21,12 +21,12 @@ Re-export（`export ... from` / `import X; export { X }`）的设计目的是 **
 在允许 re-export 的 barrel 文件中，两种写法有一个关键技术区别：
 
 ```js
-// 直接写法 — 不在当前模块创建本地绑定，BattleListSchema 不可在当前文件使用
-export { BattleListSchema } from "@code-arena/schemas";
+// 直接写法 — 不在当前模块创建本地绑定，AnatomySchema 不可在当前文件使用
+export { AnatomySchema } from "@repo/schemas";
 
-// 两步写法 — 在当前模块创建本地绑定，BattleListSchema 可在当前文件使用
-import { BattleListSchema } from "@code-arena/schemas";
-export { BattleListSchema };
+// 两步写法 — 在当前模块创建本地绑定，AnatomySchema 可在当前文件使用
+import { AnatomySchema } from "@repo/schemas";
+export { AnatomySchema };
 ```
 
 **结论：** barrel 文件中优先用直接写法（更简洁，无副作用）；非 barrel 文件中两种都不应出现。
@@ -38,26 +38,26 @@ export { BattleListSchema };
 ### ✅ 消费方直接 import
 
 ```ts
-// battleListService.ts — 直接从来源取，无中间层
-import { BattleListSchema, CreateBattleListInput } from "@code-arena/schemas";
+// anatomyService.ts — 直接从来源取，无中间层
+import { AnatomySchema, CreateAnatomyInput } from "@repo/schemas";
 
-export const createBattleListService = (db: DbConnection) => ({
-  create: (input: CreateBattleListInput) => { /* ... */ },
-  parse:  (raw: unknown) => BattleListSchema.parse(raw),
+export const createAnatomyService = (db: DbConnection) => ({
+  create: (input: CreateAnatomyInput) => { /* ... */ },
+  parse:  (raw: unknown) => AnatomySchema.parse(raw),
 });
 ```
 
 ### ✅ 删除纯转发的中间文件
 
 ```ts
-// 删除前（错误）：多个 service 通过 ./schemas 取 BattleList
-// battleListService.ts: import { BattleList } from "./schemas";
-// freeBattleService.ts: import { BattleList } from "./schemas";
-// schemas.ts:           export { BattleList } from "@code-arena/schemas"; // 纯转发
+// 删除前（错误）：多个 service 通过 ./schemas 取 Anatomy
+// anatomyService.ts: import { Anatomy } from "./schemas";
+// crateService.ts: import { Anatomy } from "./schemas";
+// schemas.ts:           export { Anatomy } from "@repo/schemas"; // 纯转发
 
 // 删除后（正确）：直接从来源 import
-// battleListService.ts: import { BattleList } from "@code-arena/schemas";
-// freeBattleService.ts: import { BattleList } from "@code-arena/schemas";
+// anatomyService.ts: import { Anatomy } from "@repo/schemas";
+// crateService.ts: import { Anatomy } from "@repo/schemas";
 // schemas.ts:           （已删除）
 ```
 
@@ -65,7 +65,7 @@ export const createBattleListService = (db: DbConnection) => ({
 
 ```ts
 // mySchema.ts — 每个 schema 均为本文件原创定义
-import { z } from "zod";
+import { z } from "zod/v4";
 
 export const PaginationSchema = z.object({ page: z.number(), size: z.number() });
 export type Pagination = z.infer<typeof PaginationSchema>;
@@ -76,10 +76,10 @@ export type Pagination = z.infer<typeof PaginationSchema>;
 ```ts
 // services/index.ts — 导入工厂函数并调用，导出的是新创建的实例，不是对原始引用的转发
 import { db } from "@/db";
-import { createBattleListService } from "@code-arena/services";
+import { createAnatomyService } from "@repo/services";
 
-export const BattleListService = createBattleListService(db);
-//                ↑ 新值（工厂调用结果）                   ↑ 导入的是工厂函数，不是 BattleListService
+export const AnatomyService = createAnatomyService(db);
+//                ↑ 新值（工厂调用结果）                   ↑ 导入的是工厂函数，不是 AnatomyService
 ```
 
 判断标准：**导出的标识符是否与导入的标识符相同？** 相同 → re-export（违规）；不同且为本文件产生的新值 → 合规。

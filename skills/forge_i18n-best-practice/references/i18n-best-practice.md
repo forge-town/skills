@@ -1,6 +1,6 @@
 # i18n 国际化最佳实践指南
 
-基于 code-arena 项目实践总结，适用于 React + TanStack Start / Next.js 项目。
+基于 Daedalus 项目实践总结，适用于 React + TanStack Router / Vite 项目。
 
 ---
 

@@ -11,7 +11,7 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils";
+import { cn } from "@repo/ui";
 
 // ========================================
 // Button 组件（原子组件）

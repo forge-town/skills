@@ -34,7 +34,7 @@ checker/
 │       └── json.ts        # JSON 报告
 ├── tests/
 │   ├── fixtures/          # 好/坏示例
-│   └── rules.test.ts
+│   └── rules.spec.ts
 ├── package.json
 └── README.md              # 使用说明
 ```

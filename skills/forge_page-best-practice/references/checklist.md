@@ -8,8 +8,8 @@
 
 - [ ] ✅ 每个页面是独立目录，目录名使用 PascalCase（如 `CatsPage`）
   - ❌ 错误示例：`cats-page/`、`catsPage/`、`catspage/` → 必须改为 `CatsPage/`
-- [ ] ✅ 目录内包含三个必需文件：`index.ts`（桶导出）、`{PageName}.tsx`（Wrapper）、`{PageName}Content.tsx`（View）
-  - ❌ 错误示例：只有一个 `CatsPage.tsx` 文件 → 必须拆分为 Wrapper + Content 两层
+- [ ] ✅ 目录内包含 `index.ts`（桶导出）、`{PageName}.tsx`（Wrapper）和 `_components/{PageName}Content/`（Content 单元）
+  - ❌ 错误示例：只有一个 `CatsPage.tsx` 文件，或把 Content 放在页面根目录 → 必须按页面单元结构拆分
 - [ ] ✅ 如需 Store，目录内包含 `_store/` 子目录；如不需要 Store，**不创建** `_store/` 目录
   - ❌ 错误示例：无 Store 需求的页面包含空 `_store/` 目录 → 必须删除
 - [ ] ✅ `index.ts` 仅导出 Wrapper 组件，不导出 Content 组件
@@ -34,7 +34,7 @@
 
 - [ ] ✅ Content 文件命名格式为 `{PageName}Content.tsx`（PageName 完整保留，加 `Content` 后缀）
   - ❌ 错误示例：`CatsView.tsx`、`CatsPageView.tsx` → 必须改为 `CatsPageContent.tsx`
-- [ ] ✅ 需要 Store 时：通过 `use{StoreName}()` hook 读取数据，不通过 props 接受 Store 数据
+- [ ] ✅ 需要 Store 时：通过 `use{StoreName}(selector)` 读取数据，不通过 props 接受 Store 数据
   - ❌ 错误示例：`function CatsPageContent({ cats }: { cats: Cat[] })` → 必须改为内部 `const { cats } = useCatsPageStore()`
 - [ ] ✅ 使用 Zustand selector（选取具体字段），不一次性订阅整个 store 对象
   - ❌ 错误示例：`const store = useCatsPageStore()` 订阅整个 store → 必须改为 `const cats = useCatsPageStore(s => s.cats)`
@@ -45,10 +45,10 @@
 
 - [ ] ✅ `_store/index.ts` 使用 `export *` 语法统一对外暴露
   - ❌ 错误示例：`_store/index.ts` 中逐个具名导出 → 必须改为 `export * from "./catsPageStore"` 等
-- [ ] ✅ Slice 文件命名格式为 `{camelCaseName}Slice.ts`，Store 文件命名格式为 `{camelCaseName}Store.ts`
+- [ ] ✅ Slice 文件命名格式为 `{camelCaseName}Slice.ts`，Store 文件命名格式为 `{camelCaseName}Store.ts`，行为测试使用 `.spec.ts`
   - ❌ 错误示例：`storeSlice.ts`、`catsStore/index.ts` → 必须改为 `catsPageSlice.ts`、`catsPageStore.ts`
-- [ ] ✅ Slice 函数（`createXxxSlice`）内只做状态修改，禁止含异步请求或副作用
-  - ❌ 错误示例：Slice 内有 `fetch("/api/cats")` → 必须移出到组件的 `useEffect` 或数据获取层
+- [ ] ✅ Slice 不接入 React 渲染体系（组件、JSX、hooks），但可按当前页面架构编排注入的异步依赖和路由动作
+  - ❌ 错误示例：Slice 内调用 `useState`、`useEffect` 或渲染 JSX
 
 ---
 
@@ -67,3 +67,4 @@
 - [ ] ❌ 不存在 Content 组件通过 props 接受 Store 数据的情况（必须用 hook 直接读取）
 - [ ] ❌ 不存在 Wrapper 包含 UI 元素（`className`、`style`、HTML 标签）的情况
 - [ ] ❌ 不存在 `index.ts` 同时导出 Wrapper 和 Content 的情况
+- [ ] ❌ 不存在页面单元使用 `.test.` 替代 `.spec.` 的情况

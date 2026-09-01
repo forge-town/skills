@@ -1,55 +1,29 @@
-import { z } from "zod";
-import { db } from "@/db";
-import { battlesDAO } from "@/db/models/daos/battles";
-import { freeBattlesDAO } from "@/db/models/daos/free_battles";
+import { z } from "zod/v4";
+import { createFreeBattleOperation } from "./_operations/createFreeBattle.operation";
 
-// ============================================================
-// Input Schema
-// ============================================================
-
+/** 跨表写入的输入契约；仅用于 Repository 的单个业务动作。 */
 export const CreateFreeBattleInputSchema = z.object({
+  /** 通用 Battle 标题。 */
   title: z.string().min(1),
-  creatorId: z.string(),
-  rules: z.string(),
-  duration: z.number().int().positive(),
+  /** 创建者 ID。 */
+  creatorId: z.uuid(),
+  /** Free Battle 规则文本。 */
+  rules: z.string().min(1),
+  /** 持续时长（分钟）。 */
+  duration: z.int().positive(),
 });
 
-type CreateFreeBattleInput = z.infer<typeof CreateFreeBattleInputSchema>;
+export type CreateFreeBattleInput = z.infer<typeof CreateFreeBattleInputSchema>;
 
-// ============================================================
-// Repository
-// ============================================================
-
+/**
+ * Repository singleton。
+ *
+ * `createFreeBattleOperation` 内部负责唯一的 `db.transaction`，
+ * 外层只聚合 Operation，不直接导入表、DAO 或 drizzle-orm。
+ */
 export const FreeBattleRepository = {
-  /**
-   * 创建一场 Free Battle（跨表事务写入）
-   * 写入 battles 表和 free_battles 表，返回 battle id
-   */
-  async create(input: CreateFreeBattleInput): Promise<{ id: number }> {
-    return await db.transaction(async (tx) => {
-      // Step 1: 写入通用 battle 表
-      const battleId = await battlesDAO.insert(
-        {
-          title: input.title,
-          creator_id: input.creatorId,
-          type: "free",
-          created_at: new Date(),
-        },
-        tx,
-      );
-
-      // Step 2: 写入 free_battles 专属表
-      await freeBattlesDAO.insert(
-        {
-          battle_id: battleId,
-          rules: input.rules,
-          duration: input.duration,
-        },
-        tx,
-      );
-
-      // 只返回关键标识，完整视图由 Service 层组装
-      return { id: battleId };
-    });
-  },
+  create: (input: CreateFreeBattleInput): Promise<{ id: string }> =>
+    createFreeBattleOperation(input),
 };
+
+export type FreeBattleRepository = typeof FreeBattleRepository;

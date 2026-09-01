@@ -33,14 +33,15 @@
 
 ## 二、文件结构规范
 
-### 2.1 绝对禁止创建任何 types 相关文件
-- [ ] ✅ 项目中不得存在任何命名为 `types.ts`、`type.ts`、`*.types.ts`、`*.type.ts` 的文件
-  - ❌ Bad：`src/types/user.types.ts` → 必须删除，类型移至对应 schema 文件中用 `z.infer` 派生
-  - ❌ Bad：`src/user.type.ts` → 同上
+### 2.1 禁止重复的 Schema 类型文件
+- [ ] ✅ 不存在与 Schema 字段完全重复的孤立 `types.ts`/`*.types.ts` 文件
+  - ❌ Bad：`User.schema.ts` 和 `user.types.ts` 同时手写同一组字段
+  - ✅ 合法：Repository 的 `cratesRepository.types.ts` 只定义跨表输入 contract
 
-### 2.2 绝对禁止 `types/` 目录
-- [ ] ✅ 项目中不得存在任何名为 `types/` 的目录
-  - ❌ Bad：`src/types/` 目录存在 → 必须删除，内部所有类型迁移至对应 schema 文件
+### 2.2 跨层 contract 保持职责清晰
+- [ ] ✅ DAO/Repository/Service 的专用 contract 可以独立存在，但不复制可由 Schema 直接推导的业务实体
+  - ❌ Bad：`User.schema.ts` 与 `user.types.ts` 重复声明 User 字段
+  - ✅ Good：`contracts.ts` 定义事务动作的输入和 outcome
 
 ---
 
@@ -55,7 +56,6 @@
 
 ## Bad Case 确认
 
-- [ ] ❌ 不存在任何 `types.ts`、`type.ts`、`*.types.ts` 文件
-- [ ] ❌ 不存在任何 `types/` 目录
+- [ ] ❌ 不存在与 Schema 字段重复的 `types.ts`、`type.ts` 或 `*.types.ts` 文件
 - [ ] ❌ 不存在手写 interface/type 与已有 Zod schema 字段完全重复的文件
 - [ ] ❌ 不存在因手写类型与 schema 不同步导致字段数量/名称不一致的情况

@@ -11,7 +11,7 @@ lastUpdated: 2026-09-01
 ## 使用说明
 
 1. 阅读 [表单最佳实践指南](references/forge_form-best-practice-guide.md)，了解"两棵树"模型与状态隔离原则
-2. 参考 [示例代码](references/examples/GoodFormExample.tsx) 了解标准写法
+2. 参考 [示例代码](best-practice-examples/CreateUserForm.tsx) 了解标准写法
 3. 使用 [检查清单](references/checklist.md) 验证生成或重构的表单组件
 
 ## 关键规范

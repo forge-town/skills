@@ -60,6 +60,15 @@
 
 ---
 
-## 四、数据库命名检查（适用时）
+## 四、注释与类型推断
+
+- [ ] ✅ `pgTable()` 导出常量有 JSDoc，说明该表保存的业务实体。
+- [ ] ✅ 每个字段属性都有 JSDoc，说明字段语义、可空性或默认值；不要依赖列名猜含义。
+- [ ] ✅ 查询与插入类型由 Drizzle 推断：`typeof usersTable.$inferSelect` 与 `typeof usersTable.$inferInsert`。
+- [ ] ❌ 不得为表行手写重复的 `interface`，也不得用 `any` 替代 `$inferSelect` / `$inferInsert`。
+
+---
+
+## 五、数据库命名检查（适用时）
 - [ ] ✅ 数据库名全小写，下划线分隔，2-4 语义段（如 `mewpaw_prod`、`user_service`）
 - [ ] ❌ 不存在驼峰、大写、短横杠形式（`UserCenter` → 必须改为 `user_center`）

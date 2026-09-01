@@ -8,7 +8,7 @@ lastUpdated: 2026-09-01
 
 ## 使用说明
 
-1. 阅读 [DAO最佳实践指南](references/forge_dao-best-practice.md) 了解规范
+1. 阅读 [DAO最佳实践指南](references/dao-best-practice.md) 了解规范
 2. 参考 [代码模板](references/template-dao.ts)
 3. 使用 [检查清单](references/checklist.md) 验证
 
@@ -16,7 +16,7 @@ lastUpdated: 2026-09-01
 
 每次完成 DAO 写方法创建或修改后，强制评估：**写操作是否涉及多张表？**
 
-- **否（单表）** → 流程结束，确保方法签名含可选 `tx` 参数即可
+- **否（单表）** → 流程结束；需要事务参与时新增显式 `WithTx` Operation，并使用 `DatabaseTransaction` 类型
 - **是（跨表）** → **必须触发 `forge_repository-best-practice` 技能**，为该写操作创建 Repository
 
 此评估不可跳过

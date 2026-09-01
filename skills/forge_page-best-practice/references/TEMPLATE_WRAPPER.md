@@ -14,7 +14,7 @@
 ### 场景 A：不需要 Store (无状态/简单页面)
 
 ```tsx
-import { {{PageName}}Content } from "./{{PageName}}Content";
+import { {{PageName}}Content } from "./_components/{{PageName}}Content";
 
 export const {{PageName}} = () => {
   return (
@@ -31,7 +31,7 @@ export const {{PageName}} = () => {
 
 ```tsx
 import { {{PageName}}StoreProvider } from "./_store";
-import { {{PageName}}Content } from "./{{PageName}}Content";
+import { {{PageName}}Content } from "./_components/{{PageName}}Content";
 
 export const {{PageName}} = () => {
   return (
@@ -54,7 +54,7 @@ export const {{PageName}} = () => {
 ```tsx
 import { LayoutComponent } from "@/components/LayoutComponent"; // 替换为实际布局组件
 import { {{PageName}}StoreProvider } from "./_store";
-import { {{PageName}}Content } from "./{{PageName}}Content";
+import { {{PageName}}Content } from "./_components/{{PageName}}Content";
 
 export const {{PageName}} = () => {
   return (

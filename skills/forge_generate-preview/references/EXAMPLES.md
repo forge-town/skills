@@ -172,7 +172,7 @@ src/components/dice8/
 ├── dice8-hooks.ts      # ❌ 不要包含钩子！
 ├── constants.ts        # ❌ 不要包含常量！
 ├── types.ts            # ❌ 不要包含类型！
-└── dice8.test.tsx      # ❌ 不要包含测试！
+└── dice8.spec.tsx      # ❌ 不要包含测试！
 ```
 
 **为什么**: 此技能仅拆分 UI 组件，不包括其他文件类型。

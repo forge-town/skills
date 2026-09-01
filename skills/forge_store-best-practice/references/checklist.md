@@ -2,6 +2,8 @@
 
 执行规则：**逐项勾选，若有任何一项为 ❌，必须修正后重新检查，不得跳过输出。**
 
+Daedalus 的目录、依赖和验证命令以 [共享基线](../../forge_skill-best-practice/references/daedalus-toolchain.md) 为准。
+
 ---
 
 ## 一、文件结构与命名检查
@@ -12,7 +14,7 @@
   - ❌ 错误示例：`slice.ts`、`CatsSlice.ts` → 必须改为 `catsPageSlice.ts`
 - [ ] ✅ Store 文件命名格式为 `{camelCaseName}Store.ts`
   - ❌ 错误示例：`store.ts`、`CatsStore.ts` → 必须改为 `catsPageStore.ts`
-- [ ] ✅ `_store/index.ts` 使用 `export *` 语法（不逐个具名导出）
+- [ ] ✅ `_store/index.ts` 使用相对路径 `export *` 语法（不逐个具名导出）
   - ❌ 错误示例：`export { useCatsPageStore, CatsPageStoreProvider }` → 必须改为 `export * from "./catsPageStore"`
 
 ---
@@ -203,7 +205,7 @@ handler 的签名必须**可直接赋给**它所处理的 UI 事件 prop。**禁
 
 ## 五、导入规范检查
 
-- [ ] ✅ 组件只通过桶导出入口 `_store` 导入（`import { useCatsPageStore } from "./_store"`）
+- [ ] ✅ 组件只通过桶导出入口 `_store` 导入（`import { useCatsPageStore } from "./_store"`），实现文件不反向导入桶
   - ❌ 错误示例：`import { useCatsPageStore } from "./_store/catsPageStore"` 直连源文件 → 必须改为通过桶导出入口
 
 ---
@@ -214,6 +216,11 @@ handler 的签名必须**可直接赋给**它所处理的 UI 事件 prop。**禁
   - ❌ 错误示例：组件在 Store 未 Provider 包裹的情况下调用 `useCatsPageStore()` → 必须在 Wrapper 层添加 Provider
 - [ ] ✅ Provider 在 Wrapper 组件（`{PageName}.tsx`）中使用，不在 Content 组件中
   - ❌ 错误示例：`<CatsPageStoreProvider>` 出现在 `CatsPageContent.tsx` → 必须移到 `CatsPage.tsx`
+
+## 八、验证命令
+
+- [ ] ✅ Store 行为测试使用 `.spec.ts`，并已运行对应 workspace 的 Vitest
+- [ ] ✅ 已运行 `bun run format:check`、`bun run lint`、`bun run check-types` 和 `bun run quality`
 
 ---
 

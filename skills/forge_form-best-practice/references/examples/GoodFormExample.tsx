@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 // 1. 定义 Zod Schema
 const FormSchema = z.object({
   name: z.string().min(1, "Name is required"),
-  email: z.string().email("Invalid email"),
+  email: z.email("Invalid email"),
 });
 
 type FormData = z.infer<typeof FormSchema>;

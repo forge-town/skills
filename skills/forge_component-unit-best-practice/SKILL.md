@@ -1,6 +1,6 @@
 ---
 name: forge_component-unit-best-practice
-description: Must follow when 创建或审查 React 组件文件夹单元，强制每个组件以独立文件夹形式存在，包含组件本身、单元测试（*.test.tsx）和 Storybook 故事文件（*.stories.tsx）。
+description: Must follow when 创建或审查 React 组件文件夹单元，强制每个组件以独立文件夹形式存在，包含组件本身、行为测试（*.spec.tsx）和 Storybook 故事文件（*.stories.tsx）。
 lastUpdated: 2026-09-01
 ---
 

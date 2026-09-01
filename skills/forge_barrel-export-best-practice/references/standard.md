@@ -70,7 +70,7 @@ src/
   components/
     Button/
       Button.tsx          ← 组件实现
-      Button.test.tsx     ← 测试
+      Button.spec.tsx     ← Vitest 测试
       index.ts            ← 桶导出：export * from './Button'
     Input/
       Input.tsx

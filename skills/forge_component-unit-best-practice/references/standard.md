@@ -8,7 +8,7 @@
 ComponentName/
 ├── index.ts                    # 桶导出（barrel）
 ├── ComponentName.tsx           # 组件本身
-├── ComponentName.test.tsx      # 单元测试（Vitest / Jest）
+├── ComponentName.spec.tsx      # 行为测试（Vitest）
 └── ComponentName.stories.tsx   # Storybook 故事文件
 ```
 
@@ -16,8 +16,7 @@ ComponentName/
 
 ### `index.ts` — 桶导出
 ```ts
-export { ComponentName } from './ComponentName'
-export type { ComponentNameProps } from './ComponentName'
+export * from "./ComponentName";
 ```
 
 ### `ComponentName.tsx` — 组件
@@ -25,21 +24,21 @@ export type { ComponentNameProps } from './ComponentName'
 - Props 类型必须导出（`export type ComponentNameProps`）
 - 禁止在组件文件中引入测试或 story 相关代码
 
-### `ComponentName.test.tsx` — 单元测试
-- 使用 Vitest + Testing Library
+### `ComponentName.spec.tsx` — 行为测试
+- 使用 Vitest + Testing Library；行为测试文件统一使用 `.spec.tsx`
 - 覆盖：渲染、Props 传入、用户交互、边界条件
 - 测试文件必须与组件文件同目录
 
 ```tsx
-import { render, screen } from '@testing-library/react'
-import { ComponentName } from './ComponentName'
+import { render, screen } from "@testing-library/react";
+import { ComponentName } from "./ComponentName";
 
-describe('ComponentName', () => {
-  it('renders correctly', () => {
-    render(<ComponentName />)
+describe("ComponentName", () => {
+  it("renders correctly", () => {
+    render(<ComponentName />);
     // ...
-  })
-})
+  });
+});
 ```
 
 ### `ComponentName.stories.tsx` — Storybook
@@ -49,16 +48,16 @@ describe('ComponentName', () => {
 
 ```tsx
 import type { Meta, StoryObj } from '@storybook/react'
-import { ComponentName } from './ComponentName'
+import { ComponentName } from "./ComponentName";
 
 const meta: Meta<typeof ComponentName> = {
   component: ComponentName,
-}
-export default meta
+};
+export default meta;
 
-type Story = StoryObj<typeof ComponentName>
+type Story = StoryObj<typeof ComponentName>;
 
-export const Default: Story = { args: {} }
+export const Default: Story = { args: {} };
 ```
 
 ## 禁止模式

@@ -7,7 +7,7 @@
 - [ ] 每个组件文件夹已检查以下四项：
   - [ ] `index.ts` 桶导出文件存在
   - [ ] `ComponentName.tsx` 组件文件存在
-  - [ ] `ComponentName.test.tsx` 单元测试文件存在
+  - [ ] `ComponentName.spec.tsx` 单元测试文件存在（Vitest）
   - [ ] `ComponentName.stories.tsx` Storybook 故事文件存在
 - [ ] 违规项已按文件夹路径和缺失文件类型标注
 - [ ] 输出报告包含：通过数 / 警告数 / 错误数 / 总计

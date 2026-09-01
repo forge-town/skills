@@ -145,3 +145,51 @@ test("schema skill follows the Daedalus Zod conventions", () => {
   assert.match(example, /z\.infer<typeof UserProfileSchema>/);
   assert.doesNotMatch(example, /from "zod";/);
 });
+
+test("best-practice references follow the shared Daedalus baseline", () => {
+  const baseline = readFileSync(
+    "skills/forge_skill-best-practice/references/daedalus-toolchain.md",
+    "utf8",
+  );
+  const serviceGuide = readFileSync(
+    "skills/forge_service-best-practice/references/service-best-practice-guide.md",
+    "utf8",
+  );
+  const repositoryGuide = readFileSync(
+    "skills/forge_repository-best-practice/references/repository-best-practice-guide.md",
+    "utf8",
+  );
+  const daoGuide = readFileSync(
+    "skills/forge_dao-best-practice/references/dao-best-practice.md",
+    "utf8",
+  );
+  const pageAnatomy = readFileSync(
+    "skills/forge_page-best-practice/references/ANATOMY.md",
+    "utf8",
+  );
+  const componentStandard = readFileSync(
+    "skills/forge_component-unit-best-practice/references/standard.md",
+    "utf8",
+  );
+
+  assert.match(baseline, /bun@1\.3\.11/);
+  assert.match(baseline, /Oxfmt/);
+  assert.match(baseline, /Oxlint/);
+  assert.match(baseline, /Vitest/);
+  assert.match(baseline, /ResultAsync/);
+  assert.match(serviceGuide, /PascalCase singleton/);
+  assert.match(serviceGuide, /不再使用 `create<Feature>Service`/);
+  assert.match(serviceGuide, /ResultAsync/);
+  assert.doesNotMatch(serviceGuide, /@code-arena\//);
+  assert.match(repositoryGuide, /PascalCase singleton/);
+  assert.match(repositoryGuide, /不再使用 `create<Feature>Repository/);
+  assert.match(repositoryGuide, /db\.transaction/);
+  assert.match(repositoryGuide, /聚合查询/);
+  assert.match(daoGuide, /singleton/);
+  assert.match(daoGuide, /WithTx/);
+  assert.match(daoGuide, /不导出 `create<Feature>Dao`/);
+  assert.match(pageAnatomy, /_components\//);
+  assert.match(pageAnatomy, /\.spec\./);
+  assert.doesNotMatch(pageAnatomy, /\.test\.tsx/);
+  assert.match(componentStandard, /\.spec\.tsx/);
+});

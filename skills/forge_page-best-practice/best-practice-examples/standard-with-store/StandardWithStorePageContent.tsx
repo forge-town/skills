@@ -1,28 +1,28 @@
-import { cn } from "@code-arena/ui";
+import { cn } from "@repo/ui";
 import { useStore } from "zustand";
 import { useStandardWithStoreStore } from "./_store";
 
-import { Button } from "@code-arena/ui";
+import { Button } from "@repo/ui";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@code-arena/ui";
-import { Input } from "@code-arena/ui";
-import { Label } from "@code-arena/ui";
+} from "@repo/ui";
+import { Input } from "@repo/ui";
+import { Label } from "@repo/ui";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@code-arena/ui";
-import { Badge } from "@code-arena/ui";
-import { Separator } from "@code-arena/ui";
+} from "@repo/ui";
+import { Badge } from "@repo/ui";
+import { Separator } from "@repo/ui";
 
-import { Skeleton } from "@code-arena/ui";
+import { Skeleton } from "@repo/ui";
 import {
   Table,
   TableBody,
@@ -30,7 +30,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@code-arena/ui";
+} from "@repo/ui";
 
 export const StandardWithStorePageContent = () => {
   const store = useStandardWithStoreStore();

@@ -66,7 +66,7 @@ test('重试能用', async () => {
 **强制步骤。不得跳过。**
 
 ```bash
-bun test path/to/test.test.ts
+bun test path/to/test.spec.ts
 ```
 
 确认：
@@ -123,7 +123,7 @@ async function retryOperation<T>(
 **强制步骤。**
 
 ```bash
-bun test path/to/test.test.ts
+bun test path/to/test.spec.ts
 ```
 
 确认：

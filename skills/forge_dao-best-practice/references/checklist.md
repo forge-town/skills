@@ -7,17 +7,19 @@
 ## 一、文件结构与导出
 
 ### 1.1 文件位置与命名
-- [ ] ✅ DAO 文件位于 `models/daos/` 目录下
-  - ❌ 错误示例：`db/cats.ts` → 必须移动到 `models/daos/`
-- [ ] ✅ 文件名格式为 `{feature}Dao.ts`（camelCase）
-  - ❌ 错误示例：`cats-dao.ts`、`CatsDAO.ts`、`cats.ts` → 必须改为 `catsDao.ts`
-- [ ] ✅ 顶层导出格式严格为 `export const {feature}Dao = { ... }`（对象形式）
-  - ❌ 错误示例：`export function getCat(...)` → 必须改为对象内的方法
+- [ ] ✅ DAO 位于 `packages/models/src/daos/<feature>Dao/`，聚合文件命名为 `<feature>.dao.ts`
+  - ❌ 错误示例：`models/daos/catsDao.ts` 单文件承载全部查询 → 必须按实体目录组织
+- [ ] ✅ 顶层导出格式为 `export const <feature>Dao = { ... }`，并导出 `type <Feature>Dao = typeof <feature>Dao`
+  - ❌ 错误示例：在聚合文件中直接实现查询或导出 class
+- [ ] ✅ DAO 聚合是 singleton，不导出 `create<Feature>Dao` 构造工厂
+  - ❌ 错误示例：`export const createUsersDao = (db) => ({ ... })`
+- [ ] ✅ 每个公开方法位于 `_operations/<operation>/`，实现与 `.operation.spec.ts` 共置
+  - ❌ 错误示例：所有 `create`、`update`、`delete` 逻辑堆在 `<feature>.dao.ts`
 
 ### 1.2 类型定义（文件顶部）
-- [ ] ✅ 使用 `type XxxRow = typeof xxxTable.$inferSelect` 定义行类型
+- [ ] ✅ 使用 `typeof xxxTable.$inferSelect` 定义行类型
   - ❌ 错误示例：手写 `interface CatRow { id: string; name: string }` → 必须用 `$inferSelect` 自动派生
-- [ ] ✅ 使用 `type NewXxxRow = typeof xxxTable.$inferInsert` 定义插入类型
+- [ ] ✅ 使用 `typeof xxxTable.$inferInsert` 定义插入类型
   - ❌ 错误示例：`Partial<CatRow>` 作为插入类型 → 必须用 `$inferInsert`
 - [ ] ✅ 不使用 `any` 类型，不使用 Zod Schema 作为参数类型（DAO 层不引入业务校验）
   - ❌ 错误示例：`data: CatSchema`（Zod 推导类型）→ 必须改为 `data: NewCatRow`
@@ -26,8 +28,8 @@
 
 ## 二、导入规范
 
-- [ ] ✅ 从 `@/db` 导入 `db` 和表对象（路径别名，不用相对路径）
-  - ❌ 错误示例：`import { db } from "../../index"` → 必须改为 `import { db } from "@/db"`
+- [ ] ✅ 从 `@repo/db` 和 `@repo/db-schema` 导入数据库与表对象，避免跨包深层相对路径
+  - ❌ 错误示例：在 DAO 中从页面或 Service 路径反向导入数据库
 - [ ] ✅ 仅从 `drizzle-orm` 导入实际用到的函数（`eq`, `and`, `asc` 等），无多余导入
   - ❌ 错误示例：导入 `eq, and, or, desc, asc, sql, count` 但只用了 `eq` → 删除未使用的
 
@@ -35,7 +37,7 @@
 
 ## 三、方法命名与签名
 
-- [ ] ✅ 查询单条：方法名为 `findBy{Field}` 或 `find{Resource}By{Field}`，返回 `Promise<XxxRow | null>`
+- [ ] ✅ 查询单条：方法名使用 `getBy...` 或 `findBy...`，返回 `Promise<XxxRow | null>`
   - 不存在返回 `null`，不抛出错误，使用 `.limit(1)` + `result[0] ?? null`
   - ℹ `find` 前缀语义：返回可能为 null，调用方必须处理空值；与 Drizzle 自身 API（`findMany`/`findFirst`）保持一致
   - ❌ 错误示例：`getUser()` → 必须改为 `findByUserId()`
@@ -55,27 +57,13 @@
 
 ---
 
-## 四、Transaction 类型与 WithTx 变体
+## 四、事务边界
 
-- [ ] ✅ 写方法（`create` / `update` / `delete`）**必须同时提供** `xxxWithTx` 变体
-  - 即使当前无跨表场景也必须提供，保证上层可在需要时注入事务而无需改 DAO
-  - ❌ 错误示例：只有 `update()`，无 `updateWithTx()` → 上层事务无法注入
-  - ⚠️ **例外情形**：由外部库（如 better-auth）完全托管的表（如 `users`），若满足以下**全部条件**，可豁免 `WithTx` 变体：
-    1. 该表的写入操作**仅由外部库内部完成**，项目代码不直接写入
-    2. 整个项目中**不存在**任何需要将该表写入纳入自定义事务的场景
-    3. 团队已明确记录豁免决策（在 DAO 文件顶部注释说明）
-  - 若 DAG 的 Service 层存在任何自定义写入（如 `updateProfile`），则**不满足例外条件**，必须提供 `WithTx` 变体
-- [ ] ✅ `WithTx` 变体的 executor 参数类型使用 `DbExecutor` 联合类型，同时覆盖 db 实例与事务对象：
-  ```
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  export type DbExecutor = NodePgDatabase<any> | PgTransaction<any, any, any>;
-  ```
-  需从 `drizzle-orm/node-postgres` 导入 `NodePgDatabase`，从 `drizzle-orm/pg-core` 导入 `PgTransaction`
-  - ⚠️ **命名强制规范**：类型名称必须统一为 `DbExecutor`，**不得**添加特征前缀（如 `UsersDbExecutor`、`CatsDbExecutor`）。每个 DAO 文件各自声明同名类型，内容完全一致，保证项目内类型名称统一
-  - ❌ 错误示例：`tx: any` → 类型不安全，IDE 无法补全
-  - ❌ 错误示例：`tx: NodePgDatabase<typeof schema>` → 只覆盖 db 实例，不能接收 `PgTransaction`，事务场景会有 TS 报错
-  - ❌ 错误示例：`type Transaction = Parameters<Parameters<typeof db.transaction>[0]>[0]` → 只覆盖事务对象，无法在非事务场景复用（可读性差）
-  - ❌ 错误示例：`export type UsersDbExecutor = ...` → 带前缀命名破坏全局统一性，禁止使用
+- [ ] ✅ 仅在 Operation 需要参与跨表写入时接收可绑定的 Database/transaction 执行器；单表 DAO 不强制虚构 `WithTx` API
+  - Repository 调用时必须把同一事务上下文传入所有相关 Operation
+- [ ] ✅ DAO 不调用 `db.transaction()`；事务由 Repository 的 Operation 统一发起
+  - ❌ 错误示例：DAO 内自行开启事务，或在多个 DAO 调用之间丢失同一 `tx`
+- [ ] ✅ 普通 Operation 使用共享 `db`；事务 Operation 使用 workspace 导出的 `DatabaseTransaction`，不使用 `any` 或自定义重复类型
 
 ---
 
@@ -84,7 +72,7 @@
 - [ ] ❌ 不存在在 DAO 内使用 `try/catch` 的情况
   - 数据库错误（唯一约束冲突、连接失败等）应直接向上抛出，由 Service / Repository 处理
 - [ ] ❌ 不存在在 DAO 内调用 `db.transaction()` 的情况
-  - 事务由 Repository 或 Service 发起，DAO 只提供 `WithTx` 变体
+  - 事务由 Repository 的 Operation 发起；需要参与事务的 DAO 能力使用显式 `WithTx` Operation，而不是可选 `tx` 参数
 - [ ] ❌ 不存在 DAO 内部直接调用另一个 DAO 的情况
   - 跨表操作属于 Repository 层
 - [ ] ❌ 不存在 DAO 方法做业务校验（Zod 等）后返回的情况
@@ -99,5 +87,5 @@
 ## 六、⚠️ Repository 评估（强制后置步骤）
 
 - [ ] ✅ 已评估：当前写方法是否涉及多张表同时写入？
-  - **否（单表）** → 流程结束，确认写方法已提供 `WithTx` 变体即可
+  - **否（单表）** → 留在 DAO，按单表 Operation 验证
   - **是（跨表）** → 必须触发 `forge_repository-best-practice` 技能，创建 Repository 封装事务

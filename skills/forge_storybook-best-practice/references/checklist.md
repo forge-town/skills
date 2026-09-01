@@ -17,8 +17,8 @@
 
 - [ ] ✅ 使用 CSF3 格式，从 `@storybook/react` 导入 `Meta` 和 `StoryObj`
   - ❌ 错误示例：使用 CSF2 (`export default { title: '...' }; export const Base = Template.bind({})`) → 必须改为 CSF3 格式
-- [ ] ✅ `meta` 对象的 `title` 使用 `"Components/{ComponentName}"` 格式
-  - ❌ 错误示例：`title: "CatCard"`（无 Components 前缀）或 `title: "UI/CatCard"` → 必须改为 `"Components/CatCard"`
+- [ ] ✅ `meta` 对象的 `title` 使用稳定层级：共享组件为 `"Components/{ComponentName}"`，页面内组件为 `"Pages/{PageName}/Components/{ComponentName}"`
+  - ❌ 错误示例：`title: "CatCard"`（无顶层分组）或把页面内组件放进无上下文的 `Components/`
 - [ ] ✅ `meta` 对象的 `component` 指向组件本身（`component: CatCard`）
   - ❌ 错误示例：`meta` 中缺少 `component` 字段 → 必须添加 `component: CatCard`
 - [ ] ✅ 所有回调类 props（`onXxx`）在 `meta.args` 中使用 `fn()` 注册，`fn` 从 `@storybook/test` 导入
