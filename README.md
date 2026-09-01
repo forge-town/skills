@@ -69,7 +69,7 @@ pnpm run check:skills
 | [forge_page-best-practice](skills/forge_page-best-practice) | Must follow when 创建或审查前端页面结构，确保遵循 Anatomy 规范，正确分离 Wrapper、Content 和 Optional Store 模块。 |
 | [forge_remove-comments](skills/forge_remove-comments) | Use when 需要批量删除代码文件中的注释，支持 Python、JS、TS、TSX、Java、C/C++、Rust、Go、HTML 等主流编程语言。触发词：删除注释、清除代码注释、移除注释行、批量去注释。 |
 | [forge_repository-best-practice](skills/forge_repository-best-practice) | Must follow when 创建或重构 Repository 层，确保数据访问模式、方法命名、返回类型和接口定义符合项目规范。 |
-| [forge_schema-best-practice](skills/forge_schema-best-practice) | Must follow when 创建或重构数据库 Schema 定义，确保 Drizzle ORM schema 中的命名、关系和索引配置均符合规范。 |
+| [forge_schema-best-practice](skills/forge_schema-best-practice) | Must follow when 创建或重构 Zod Schema，确保目录、命名、类型推导和边界校验符合 Daedalus 规范。 |
 | [forge_service-best-practice](skills/forge_service-best-practice) | Must follow when 创建或重构 Service 层，基于 tRPC + Service + DAO 架构确保依赖注入、错误处理和业务逻辑分层符合规范。 |
 | [forge_skill-best-practice](skills/forge_skill-best-practice) | Must follow when 创建或修改 Skill 后执行质量验证，涵盖命名、目录结构、元数据完整性、临时文件清理和依赖格式共 16 项检查。 |
 | [forge_create-skill](skills/forge_create-skill) | Use when 需要创建一个新 Skill 或更新现有 Skill，将领域知识、工作流程或工具集成打包为可复用技能包，须中文编写。触发词：创建新技能、新建技能、更新技能、修改skill、更新现有技能、扩展AI能力。 |

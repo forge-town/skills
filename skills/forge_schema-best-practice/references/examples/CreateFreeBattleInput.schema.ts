@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 
-// 输入 Schema —— 供 Repository 层接收写操作入参
+// 输入 Schema —— 由 tRPC procedure 作为 API 边界契约
 export const CreateFreeBattleInputSchema = z.object({
   title: z.string().min(1),
   creatorId: z.string(),

@@ -79,3 +79,23 @@ test("quality documentation uses the production threshold and evidence vocabular
   assert.match(checklist, /forge_/);
   assert.doesNotMatch(checklist, /长度在 100-150/);
 });
+
+test("schema skill follows the Daedalus Zod conventions", () => {
+  const skill = readFileSync("skills/forge_schema-best-practice/SKILL.md", "utf8");
+  const guide = readFileSync(
+    "skills/forge_schema-best-practice/references/schema-best-practice-guide.md",
+    "utf8",
+  );
+  const example = readFileSync(
+    "skills/forge_schema-best-practice/best-practice-examples/UserProfile.schema.ts",
+    "utf8",
+  );
+
+  assert.match(skill, /Zod Schema/);
+  assert.match(guide, /<Name>\.schema\.ts/);
+  assert.match(guide, /zod\/v4/);
+  assert.match(guide, /bun run quality/);
+  assert.match(example, /from "zod\/v4"/);
+  assert.match(example, /z\.infer<typeof UserProfileSchema>/);
+  assert.doesNotMatch(example, /from "zod";/);
+});

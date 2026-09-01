@@ -1,21 +1,20 @@
-import { CreateFreeBattleInputSchema } from "./CreateFreeBattleInputSchema";
-import { BattleWithStatsSchema } from "./BattleWithStatsSchema";
-import { FreeBattleRepository } from "@/db/models/repositories/freeBattleRepository";
-import { battlesDAO } from "@/db/models/daos/battles";
-import { votesDAO } from "@/db/models/daos/votes";
+import { BattleWithStatsSchema } from "./BattleWithStats.schema";
+import { CreateFreeBattleInputSchema, type CreateFreeBattleInput } from "./CreateFreeBattleInput.schema";
 
-// Service 示例：以 InputSchema 校验入参，Repository 写入，多个 DAO 组装 Business View Schema
-async function createFreeBattle(rawInput: unknown) {
-  // 1. 校验输入
-  const input = CreateFreeBattleInputSchema.parse(rawInput);
+type Dependencies = {
+  freeBattleRepository: { create: (input: CreateFreeBattleInput) => Promise<{ id: number }> };
+  battlesDao: { getById: (id: number) => Promise<Record<string, unknown>> };
+  votesDao: { countByBattleId: (id: number) => Promise<number> };
+};
 
-  // 2. 调用 Repository 完成事务性写入
-  const { id } = await FreeBattleRepository.create(input);
+// tRPC procedure 在 API 边界使用 .input(CreateFreeBattleInputSchema)。
+export const parseCreateFreeBattleInput = (rawInput: unknown) =>
+  CreateFreeBattleInputSchema.parse(rawInput);
 
-  // 3. 调用多个 DAO 组装完整视图
-  const battle = await battlesDAO.getById(id);
-  const voteCount = await votesDAO.countByBattleId(id);
+export const createFreeBattle = async (input: CreateFreeBattleInput, dependencies: Dependencies) => {
+  const { id } = await dependencies.freeBattleRepository.create(input);
+  const battle = await dependencies.battlesDao.getById(id);
+  const voteCount = await dependencies.votesDao.countByBattleId(id);
 
-  // 4. 用 Business View Schema 校验并返回
-  return BattleWithStatsSchema.parse({ ...battle, vote_count: voteCount });
-}
+  return BattleWithStatsSchema.parse({ ...battle, voteCount });
+};
