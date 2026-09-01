@@ -252,23 +252,30 @@ function main(): void {
   console.log("=== Skill 合规性批量检查 ===\n");
   let pass = 0;
   let error = 0;
+  let evidenceRequired = 0;
   for (const skillDir of skillDirs) {
     const result = checkSkill(skillDir, readmeContent);
     if (result.passed) {
-      console.log(`✅ ${result.skill}`);
+      console.log(`✅ ${result.skill} [pass]`);
       pass += 1;
     } else {
       console.log(`❌ ${result.skill}`);
       for (const issue of result.issues) {
-        console.log(`   [${issue.ruleId}] ${issue.message} — ${issue.suggestion}`);
+        if (issue.status === "evidence-required") evidenceRequired += 1;
+        const actual = issue.actual ? ` | 实际证据: ${issue.actual}` : "";
+        console.log(
+          `   [${issue.ruleId}] 状态: ${issue.status} | ${issue.message}${actual} | 修复建议: ${issue.suggestion}`,
+        );
       }
       error += 1;
     }
   }
   console.log("\n=== 检查报告 ===");
-  console.log(`总计: ${skillDirs.length} | 通过: ${pass} | 错误: ${error}`);
-  console.log(error === 0 ? "✅ 所有技能符合规范！" : "❌ 仍有技能不符合规范。");
-  process.exitCode = error === 0 ? 0 : 1;
+  console.log(
+    `总计: ${skillDirs.length} | 通过: ${pass} | 错误: ${error} | evidence-required: ${evidenceRequired}`,
+  );
+  console.log(error === 0 && evidenceRequired === 0 ? "✅ 所有技能符合规范！" : "❌ 仍有技能不符合规范。");
+  process.exitCode = error === 0 && evidenceRequired === 0 ? 0 : 1;
 }
 
 if (process.argv[1]?.endsWith("check-skills.ts")) {
