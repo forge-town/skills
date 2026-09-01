@@ -1,10 +1,16 @@
 import { z } from "zod/v4";
 
+/** 用户资料的跨边界数据契约。 */
 export const UserProfileSchema = z.object({
-  id: z.string().uuid(),
+  /** 用户唯一标识。 */
+  id: z.uuid(),
+  /** 用户展示名称。 */
   name: z.string(),
-  email: z.string().email(),
-  avatarUrl: z.string().url().nullable(),
+  /** 用户邮箱地址。 */
+  email: z.email(),
+  /** 用户头像地址；未设置时为空。 */
+  avatarUrl: z.url().nullable(),
+  /** 用户创建时间。 */
   createdAt: z.date(),
 });
 

@@ -94,8 +94,13 @@ test("schema skill follows the Daedalus Zod conventions", () => {
   assert.match(skill, /Zod Schema/);
   assert.match(guide, /<Name>\.schema\.ts/);
   assert.match(guide, /zod\/v4/);
+  assert.match(guide, /每个 field 都必须有/);
+  assert.match(guide, /z\.uuid\(\)/);
+  assert.match(guide, /deprecated/);
   assert.match(guide, /bun run quality/);
   assert.match(example, /from "zod\/v4"/);
+  assert.match(example, /z\.uuid\(\)/);
+  assert.match(example, /\/\*\* 用户唯一标识。 \*\//);
   assert.match(example, /z\.infer<typeof UserProfileSchema>/);
   assert.doesNotMatch(example, /from "zod";/);
 });

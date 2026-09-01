@@ -1,5 +1,8 @@
 import { BattleWithStatsSchema } from "./BattleWithStats.schema";
-import { CreateFreeBattleInputSchema, type CreateFreeBattleInput } from "./CreateFreeBattleInput.schema";
+import {
+  CreateFreeBattleInputSchema,
+  type CreateFreeBattleInput,
+} from "./CreateFreeBattleInput.schema";
 
 type Dependencies = {
   freeBattleRepository: { create: (input: CreateFreeBattleInput) => Promise<{ id: number }> };
@@ -11,7 +14,10 @@ type Dependencies = {
 export const parseCreateFreeBattleInput = (rawInput: unknown) =>
   CreateFreeBattleInputSchema.parse(rawInput);
 
-export const createFreeBattle = async (input: CreateFreeBattleInput, dependencies: Dependencies) => {
+export const createFreeBattle = async (
+  input: CreateFreeBattleInput,
+  dependencies: Dependencies,
+) => {
   const { id } = await dependencies.freeBattleRepository.create(input);
   const battle = await dependencies.battlesDao.getById(id);
   const voteCount = await dependencies.votesDao.countByBattleId(id);

@@ -1,6 +1,6 @@
 # Schema 最佳实践指南
 
-本指南以 Daedalus `packages/schemas` 的实际结构和 `@repo/schemas` workspace 配置为准。它约束 Zod Schema；Drizzle 表结构请遵循 `forge_db-table-best-practice`。
+本指南以 Daedalus `packages/schemas` 的实际结构和 `@repo/schemas` workspace 配置为准，并参考 [Zod 4 定义 Schema 文档](https://zod.dev/api) 与 [Zod 4 迁移说明](https://zod.dev/v4/changelog)。它约束 Zod Schema；Drizzle 表结构请遵循 `forge_db-table-best-practice`。
 
 ## 一、目录与文件结构
 
@@ -25,16 +25,25 @@ packages/schemas/
 
 统一从 `zod/v4` 导入 `z`；跨包或同包引用时，先放外部导入，再空一行放本地导入。完整可运行示例见 `best-practice-examples/UserProfile.schema.ts`。
 
+Schema 常量和每个 field 都必须有紧邻的 JSDoc 注释。注释说明业务含义、单位、来源或可空语义，不重复代码名称。例如用户资料 Schema 要说明“跨边界数据契约”，`avatarUrl` 要说明“未设置时为空”。
+
 禁止为了绕过推导而重复声明相同概念的 `interface`、手写 DTO 或 `any`。如果只需要某个 Schema 的一部分，使用 `.pick()`、`.omit()`、`.partial()` 或 `.extend()` 派生，而不是复制字段。
 
 ## 三、Schema 定义方式
 
 - 默认使用 `z.object()`；在 API、配置或消息边界需要拒绝未知字段时使用 `z.strictObject()`。
-- 使用 `z.enum(CONSTANT_VALUES)` 或 `z.enum([...])` 表达有限值；共享常量使用 `as const`。
+- 使用 `z.enum(CONSTANT_VALUES)` 或 `z.enum([...])` 表达有限值；共享枚举值使用 `as const`。
+- 整数优先使用 `z.int()`、`z.int32()` 等 Zod 4 顶层数字格式，不再写 `z.number().int()`。
 - 通过 `.extend()`、`.merge()`、`.pick()`、`.omit()` 组合基础 Schema，保持字段约束单一来源。
 - 对数组、字符串和数值添加最小长度、格式、范围等约束；需要跨字段规则时使用 `.superRefine()`，错误路径必须指向具体字段。
 - 默认值、可选值、nullable 和联合类型要表达真实业务语义，不用宽泛的 `z.any()` 或无约束字符串替代。
 - 面向外部输入或第三方响应使用 `.parse()` / `.safeParse()`；无法安全抛错的边界优先返回解析结果并转换为项目错误类型。
+
+### Zod 4 字符串格式
+
+字符串格式校验使用 `z` 顶层 API：`z.uuid()`、`z.email()`、`z.url()`、`z.httpUrl()`、`z.hostname()`、`z.e164()`、`z.emoji()`、`z.base64()`、`z.base64url()`、`z.hex()`、`z.jwt()`、`z.nanoid()`、`z.cuid()`、`z.cuid2()`、`z.ulid()`、`z.ipv4()`、`z.ipv6()`、`z.cidrv4()`、`z.cidrv6()`、`z.iso.date()`、`z.iso.time()`、`z.iso.datetime()` 和 `z.iso.duration()`。
+
+`z.string().email()`、`z.string().uuid()`、`z.string().url()` 等 method form 在 Zod 4 仍可运行但已 deprecated；新代码禁止使用。`z.string().ip()` 和 `z.string().cidr()` 已移除，分别改用 `z.ipv4()` / `z.ipv6()` 或 `z.cidrv4()` / `z.cidrv6()` 的 union。普通字符串约束如 `.min()`、`.max()`、`.regex()`、`.trim()`、`.toLowerCase()` 仍然是合法的链式 API。
 
 ## 四、分层职责
 
@@ -63,6 +72,10 @@ Schema 包自身的 `quality` 会依次执行类型检查、Oxlint 和 Vitest。
 ## 六、禁止项（Bad Case）
 
 - 从 `"zod"` v3 导入而不是 `"zod/v4"`。
+- Schema 常量或 field 缺少说明业务语义的 JSDoc 注释。
+- 使用 `z.string().email()`、`z.string().uuid()`、`z.string().url()`、`z.string().datetime()` 等已 deprecated 的格式 method。
+- 使用已移除的 `z.string().ip()` 或 `z.string().cidr()`。
+- 使用 `z.number().int()` 代替 Zod 4 的 `z.int()`（除非需要继续链式添加特定数字约束并有明确理由）。
 - 使用 `schemas.ts`、`types.ts` 集中堆放多个领域 Schema，或让文件名偏离 `<Name>.schema.ts`。
 - 在 DAO/Repository 中定义或组装业务视图 Schema。
 - 为已有 Schema 手写重复的 interface、DTO 或类型字面量。

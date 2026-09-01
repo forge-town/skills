@@ -13,9 +13,12 @@
 ## 二、Zod 写法
 
 - [ ] ✅ 从 `zod/v4` 导入 `z`，不得从 `zod` v3 导入
+- [ ] ✅ Schema 常量有紧邻的 JSDoc，且每个 field 都有说明业务含义、单位、来源或可空语义的 JSDoc
 - [ ] ✅ 类型通过 `z.infer<typeof XxxSchema>` 派生，不手写重复 interface、DTO 或 `any`
 - [ ] ✅ 复用已有约束时使用 `.pick()`、`.omit()`、`.partial()`、`.extend()` 或 `.merge()`，不复制字段
 - [ ] ✅ 有限值使用 `z.enum()`；共享枚举值使用 `as const`
+- [ ] ✅ 整数使用 Zod 4 顶层 `z.int()` / `z.int32()` 等格式，避免 `z.number().int()`
+- [ ] ✅ UUID、邮箱、URL、IP、Base64 和 ISO 日期时间等格式使用顶层 API（如 `z.uuid()`、`z.email()`、`z.url()`、`z.iso.datetime()`）
 - [ ] ✅ 仅在需要拒绝未知字段的 API、配置或消息边界使用 `z.strictObject()`
 - [ ] ✅ 字符串、数组和数字具有与业务相符的格式、长度或范围约束；跨字段规则使用 `.superRefine()` 并定位错误路径
 - [ ] ✅ `optional`、`nullable`、默认值和联合类型表达真实数据语义，不使用无约束 `z.any()`
@@ -39,6 +42,8 @@
 ## Bad Case 确认
 
 - [ ] ❌ 不存在 `import { z } from "zod"`、手写重复 DTO、`any` 或未约束 `z.any()`
+- [ ] ❌ 不存在缺少 Schema/field JSDoc、`z.string().uuid()` / `.email()` / `.url()` / `.datetime()` 等 deprecated method
+- [ ] ❌ 不存在已移除的 `z.string().ip()` / `z.string().cidr()` 或可替换的 `z.number().int()`
 - [ ] ❌ 不存在 `schemas.ts` / `types.ts` 集中定义多个领域 Schema
 - [ ] ❌ 不存在 DAO/Repository 导入或组装业务视图 Schema
 - [ ] ❌ 不存在 API 边界绕过 Schema 解析直接传递 `unknown`
