@@ -1,0 +1,36 @@
+{
+  "name": "skill",
+  "type": "dir",
+  "children": [
+    {
+      "name": "SKILL.md",
+      "type": "file",
+      "required": true,
+      "description": "主文档：frontmatter name/description/lastUpdated（YYYY-MM-DD）+ 极简使用说明（正文 ≤20 行）。"
+    },
+    {
+      "name": "references",
+      "type": "dir",
+      "required": true,
+      "description": "规范细节、检查清单等参考文件。动词型必须包含 checklist.md；best-practice 型必须包含 checklist.md 和 standard.md。"
+    },
+    {
+      "name": "best-practice-examples",
+      "type": "dir",
+      "required": "only for *-best-practice skills",
+      "description": "符合规范的代码示例目录，至少包含一个示例文件。"
+    },
+    {
+      "name": "scripts",
+      "type": "dir",
+      "optional": true,
+      "description": "可执行脚本，通常为 TypeScript (.ts)，通过 pnpx tsx 运行。"
+    },
+    {
+      "name": "assets",
+      "type": "dir",
+      "optional": true,
+      "description": "图片、图表等静态资源。"
+    }
+  ]
+}

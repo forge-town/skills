@@ -1,0 +1,32 @@
+{
+  "skill_name": "forge_my-skill",
+  "skill_path": "/path/to/skills/forge_my-skill",
+  "status": "pass|warning|error",
+  "summary": "通过检查，但有 1 个警告",
+  "stats": {
+    "total": 20,
+    "pass": 19,
+    "warning": 1,
+    "error": 0
+  },
+  "checks": [
+    {
+      "name": "namespace_and_naming",
+      "status": "pass",
+      "message": "目录名 'forge_my-skill' 符合 namespace 和命名规范",
+      "fix_suggestion": ""
+    },
+    {
+      "name": "front_matter_description",
+      "status": "error",
+      "message": "description 长度为 180 字符，必须少于 150 字符",
+      "fix_suggestion": "精简 description 内容，使其少于 150 字符"
+    },
+    {
+      "name": "front_matter_last_updated",
+      "status": "error",
+      "message": "lastUpdated 缺失或不是有效的 YYYY-MM-DD 编辑日期",
+      "fix_suggestion": "在 SKILL.md 前言区填写本次编辑日期，例如 lastUpdated: 2026-09-01"
+    }
+  ]
+}
