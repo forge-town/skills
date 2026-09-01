@@ -1,6 +1,7 @@
 ---
 name: forge_integrate-better-auth
 description: Use when 需要把 Better Auth 集成到项目，涵盖安装配置、数据库集成、Provider 设置和认证流程验证等完整步骤。触发词：集成 better-auth、接入 better-auth、better-auth 集成。
+lastUpdated: 2026-09-01
 ---
 
 # Better Auth Integration Skill

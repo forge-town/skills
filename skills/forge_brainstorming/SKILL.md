@@ -1,6 +1,7 @@
 ---
 name: forge_brainstorming
 description: Use when 在任何创造性工作之前先精炼需求与方案，包括创建功能、构建组件、添加新功能或修改行为；通过自然对话探索用户意图、约束与成功标准，并产出可审阅设计文档。触发词：brainstorm、头脑风暴、脑暴。
+lastUpdated: 2026-09-01
 ---
 
 # 头脑风暴：从想法到设计

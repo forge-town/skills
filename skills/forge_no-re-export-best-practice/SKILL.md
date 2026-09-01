@@ -1,6 +1,7 @@
 ---
 name: forge_no-re-export-best-practice
 description: Must follow when 审查或编写非 index 文件中的 import/export，禁止在非桶导出文件中对外部模块做 re-export（间接转发），每个消费文件应直接从来源 import。
+lastUpdated: 2026-09-01
 ---
 
 # 禁止非 index 文件中的 Re-Export 最佳实践

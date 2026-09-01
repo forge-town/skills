@@ -1,6 +1,7 @@
 ---
 name: forge_svg-icon-best-practice
 description: Must follow when 管理或新增 React TypeScript 项目中的 SVG 图标组件，确保命名、封装方式和导出规范遵循项目标准规范。
+lastUpdated: 2026-09-01
 ---
 
 # SVG 图标管理规范

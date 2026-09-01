@@ -1,6 +1,7 @@
 ---
 name: forge_implement-automation-checklist
 description: Use when 需要实际编写检查脚本代码，基于 forge_assess-automation-checklist 的设计方案实现自动化检查器；输出可运行的脚本文件和集成指南。触发词：编写检查脚本、实现自动检查、code checker、写检查器代码。
+lastUpdated: 2026-09-01
 ---
 
 # Implement Automation Checklist

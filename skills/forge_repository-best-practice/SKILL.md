@@ -1,6 +1,7 @@
 ---
 name: forge_repository-best-practice
 description: Must follow when 创建或重构 Repository 层，确保数据访问模式、方法命名、返回类型和接口定义符合项目规范。
+lastUpdated: 2026-09-01
 ---
 
 # Repository 最佳实践

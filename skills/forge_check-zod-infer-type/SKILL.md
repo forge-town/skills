@@ -1,6 +1,7 @@
 ---
 name: forge_check-zod-infer-type
 description: Use when 需要检查项目中是否存在违规的 types.ts/type.ts 文件，或检查是否有手写类型与 Zod schema 重复定义，确保所有类型都从 Zod schema 派生。触发词：检查类型文件、检查types目录、zod类型检查、type.ts检查。
+lastUpdated: 2026-09-01
 ---
 
 # 检查 Zod 派生类型规范

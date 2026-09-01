@@ -1,6 +1,7 @@
 ---
 name: forge_schema-best-practice
 description: Must follow when 创建或重构 Zod Schema，确保目录、命名、类型推导和边界校验符合 Daedalus 规范。
+lastUpdated: 2026-09-01
 ---
 
 # Schema 最佳实践

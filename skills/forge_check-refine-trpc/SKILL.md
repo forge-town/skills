@@ -1,6 +1,7 @@
 ---
 name: forge_check-refine-trpc
 description: Use when 需要审查或重构 tRPC 路由代码，确保路由结构、类型定义、输入验证和错误处理均符合项目最佳实践；适用于代码审查和路由重构阶段。触发词：检查trpc代码、重构路由写法、优化tRPC格式。
+lastUpdated: 2026-09-01
 ---
 
 # 禁止组件层直接使用 tRPC

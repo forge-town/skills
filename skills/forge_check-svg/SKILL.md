@@ -1,6 +1,7 @@
 ---
 name: forge_check-svg
 description: Use when 需要扫描或检查项目中 SVG 图标的使用情况，发现并报告不符合规范的写法，包括命名、路径和组件化问题；适用于代码审查阶段。触发词：检查svg规范、图标规范检查、SVG使用审查、SVG图标优化。
+lastUpdated: 2026-09-01
 ---
 
 # SVG 组件检查

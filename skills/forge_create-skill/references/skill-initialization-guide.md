@@ -34,7 +34,7 @@
 
 在适当的位置创建技能目录（例如 `skills/forge_public/` 或 `skills/forge_private/`），包含以下组件（按需选择）：
 
-- `SKILL.md`（**必需**）：YAML 前言（`name`+`description`）+ Markdown 主体。`name` 必须与 `forge_` 目录名一致，主体仅触发后加载。
+- `SKILL.md`（**必需**）：YAML 前言（`name` + `description` + `lastUpdated`）+ Markdown 主体。`name` 必须与 `forge_` 目录名一致；`lastUpdated` 使用本次编辑日期（`YYYY-MM-DD`）；主体仅触发后加载。
 - `scripts/`（可选）：确定性可重复执行的脚本，可在不加载到上下文的情况下运行
 - `references/`（可选）：按需加载的文档、模板。信息只在一处维护——避免与 SKILL.md 内容重叠
 
@@ -48,6 +48,7 @@
 ---
 name: forge_your-skill-name
 description: [TODO: 完成并提供关于此技能做什么以及何时使用的信息性解释。包括何时使用此技能 - 具体场景、文件类型或触发任务。]
+lastUpdated: YYYY-MM-DD
 ---
 
 # Your Skill Title

@@ -1,13 +1,14 @@
 ---
 name: forge_check-all-skills
 description: Use when 需要批量验证 Skill 是否符合最佳实践规范，自动检查命名、前言区、结构与依赖等维度，生成详细报告并输出修复建议；支持单个或批量检查。触发词：检查skill规范、批量验证技能质量、扫描全部技能、全量skill质量校验。
+lastUpdated: 2026-09-01
 ---
 
 # Skill 合规性检查工具
 
 ## 使用说明
 
-1. 阅读 [references/checklist.md](references/checklist.md) 获取完整检查清单
+1. 阅读 [references/checklist.md](references/checklist.md) 检查 `name`、`description`、`lastUpdated` 与目录结构
 2. 如需了解各检查项背景，阅读 [references/quality-standards.md](references/quality-standards.md)
 3. 按清单逐项验证目标 Skill，生成结构化报告
 

@@ -1,6 +1,7 @@
 ---
 name: forge_subagent-driven-development
 description: Use when 需要把已批准的实现计划拆成独立任务并分派给子代理执行，通过规格一致性审查与代码质量审查双阶段把关，确保并行实现结果与设计、计划和验收标准保持一致。触发词：子代理开发、分派任务、并行实现、subagent。
+lastUpdated: 2026-09-01
 ---
 
 # 子代理驱动开发

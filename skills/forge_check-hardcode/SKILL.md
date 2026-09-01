@@ -1,6 +1,7 @@
 ---
 name: forge_check-hardcode
 description: Use when 需要检查代码中是否存在硬编码内容，包括魔法数字、路径、URL、密钥、环境变量、响应消息等；确保所有可配置值都使用常量或配置文件管理。触发词：硬编码、hard code、magic number。
+lastUpdated: 2026-09-01
 ---
 
 # 硬编码检查

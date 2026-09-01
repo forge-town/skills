@@ -1,6 +1,7 @@
 ---
 name: forge_check-barrel-export
 description: Use when 需要生成、优化、修复或检查项目中所有 index 文件（桶导出），确保 index.ts/index.js 均遵循标准桶导出规范。触发词：生成barrel导出、优化index文件、检查桶导出规范。
+lastUpdated: 2026-09-01
 ---
 
 # 桶导出操作工具

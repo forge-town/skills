@@ -1,6 +1,7 @@
 ---
 name: forge_assess-automation-checklist
 description: Use when 需要评估现有 checklist 的脚本化可能性，分析哪些检查项可通过代码自动化，哪些必须依赖 LLM 判断，输出明确的脚本化设计方案和实现指南。触发词：规划检查脚本、评估脚本化、设计自动化检查、checklist转脚本。
+lastUpdated: 2026-09-01
 ---
 
 # Assess Automation Checklist

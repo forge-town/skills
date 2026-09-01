@@ -1,6 +1,7 @@
 ---
 name: forge_check-components
 description: Use when 需要扫描并验证 React 组件文件夹是否符合 forge_component-unit-best-practice 规范，包括文件夹结构、单元测试和 Storybook 故事文件的完整性检查。触发词：检查组件规范、组件文件夹审查、check components、组件结构扫描。
+lastUpdated: 2026-09-01
 ---
 
 # 组件规范检查工具

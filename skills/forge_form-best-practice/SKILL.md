@@ -1,6 +1,7 @@
 ---
 name: forge_form-best-practice
 description: Must follow when 创建或重构前端表单组件，确保表单结构、字段验证逻辑和状态管理遵循项目表单设计规范与组件化标准。
+lastUpdated: 2026-09-01
 ---
 
 # 表单最佳实践

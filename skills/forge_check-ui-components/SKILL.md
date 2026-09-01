@@ -1,6 +1,7 @@
 ---
 name: forge_check-ui-components
 description: Use when 需要检查代码中是否违规使用原生 HTML 元素（如 button、input、select 等），确保符合组件库规范，优先使用组件库组件而非原生元素。触发词：检查 UI 组件、检查原生元素、ui 组件规范检查。
+lastUpdated: 2026-09-01
 ---
 
 # 检查 UI 组件规范

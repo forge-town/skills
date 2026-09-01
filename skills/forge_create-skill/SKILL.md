@@ -1,6 +1,7 @@
 ---
 name: forge_create-skill
 description: Use when 需要创建一个新 Skill 或更新现有 Skill，将领域知识、工作流程或工具集成打包为可复用技能包，须中文编写。触发词：创建新技能、新建技能、修改skill、更新技能。
+lastUpdated: 2026-09-01
 ---
 
 # 技能创建器

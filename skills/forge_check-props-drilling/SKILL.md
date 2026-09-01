@@ -1,6 +1,7 @@
 ---
 name: forge_check-props-drilling
 description: Use when 需要检查代码中是否存在 Props Drilling（透传 Props）问题，识别那些本应从 Zustand Store 直接获取却通过多层组件传递的数据。触发词：检查 props 透传、props drilling、消除透传、检查组件依赖。
+lastUpdated: 2026-09-01
 ---
 
 # 检查 Props Drilling

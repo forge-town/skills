@@ -1,6 +1,7 @@
 ---
 name: forge_store-best-practice
 description: Must follow when 使用 Zustand 创建或重构状态管理 Store，确保遵循 slice 模式、Provider 设置和类型安全规范。
+lastUpdated: 2026-09-01
 ---
 
 # Store 最佳实践

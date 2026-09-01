@@ -1,6 +1,7 @@
 ---
 name: forge_clean-hardcode
 description: Use when 需要清理代码库中的垃圾代码，包括未使用导入、注释代码段、console.log、死代码、空函数、重复代码等。触发词：清理代码、clean code、删除dead code、清除垃圾。
+lastUpdated: 2026-09-01
 ---
 
 # 代码清理

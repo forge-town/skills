@@ -1,6 +1,7 @@
 ---
 name: forge_error-handling-best-practice
 description: Must follow when 编写错误处理代码，必须使用 neverthrow 库进行函数式错误处理，禁止使用原生 try-catch。确保错误显式传递、类型安全、调用方强制处理错误。
+lastUpdated: 2026-09-01
 ---
 
 # 错误处理规范 (Error Handling Best Practice)

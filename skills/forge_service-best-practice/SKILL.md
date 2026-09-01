@@ -1,6 +1,7 @@
 ---
 name: forge_service-best-practice
 description: Must follow when 创建或重构 Service 层，基于 tRPC + Service + DAO 架构确保依赖注入、错误处理和业务逻辑分层符合规范。
+lastUpdated: 2026-09-01
 ---
 
 # Service 最佳实践

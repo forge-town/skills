@@ -1,6 +1,7 @@
 ---
 name: forge_page-best-practice
 description: Must follow when 创建或审查前端页面结构，确保遵循 Anatomy 规范，正确分离 Wrapper、Content 和 Optional Store 模块。
+lastUpdated: 2026-09-01
 ---
 
 # 页面生成器 (Page Generator Skill)

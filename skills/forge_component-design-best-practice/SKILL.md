@@ -1,6 +1,7 @@
 ---
 name: forge_component-design-best-practice
 description: Must follow when 设计或审查 React 组件，确保组件符合 shadcn/ui 设计哲学：单一职责、可组合、可访问、可复制粘贴。定义何时应该拆分组件、组件边界、命名规范。
+lastUpdated: 2026-09-01
 ---
 
 # 组件设计最佳实践

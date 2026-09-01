@@ -9,6 +9,7 @@ SKILL.md 前言区检查
 ☐ description 字段存在
 ☐ description 为单行格式
 ☐ description 长度少于 150 字符
+☐ lastUpdated 字段存在且为有效的 YYYY-MM-DD 编辑日期
 
 目录结构检查
 ☐ SKILL.md 文件存在

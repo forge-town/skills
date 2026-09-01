@@ -1,6 +1,7 @@
 ---
 name: forge_generate-preview
 description: Use when 需要对 React 组件文件生成结构化 .json 描述和可视化 .md 目录树预览，用于组件拆分前的详细结构分析、复杂度评估与规划。触发词：生成组件预览文档、拆分前分析、组件结构可视化。
+lastUpdated: 2026-09-01
 ---
 
 # generatePreview

@@ -1,6 +1,7 @@
 ---
 name: forge_implement-split
 description: Use when 需要将大型组件或模块按最佳实践拆分为多个独立文件，系统性地执行代码拆分与重构，确保拆分后各模块结构符合规范。触发词：拆分组件、实现文件拆分、代码模块拆分重构、component-split。
+lastUpdated: 2026-09-01
 ---
 
 # implementSplit

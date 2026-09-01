@@ -1,6 +1,7 @@
 ---
 name: forge_check-checklist
 description: Use when 需要验证 checklist.md 文件是否符合 forge_checklist-best-practice 规范，包括可判定性、示例完整性、分类结构和 Bad Case 节审查。触发词：检查checklist规范、checklist审查、验证清单质量。
+lastUpdated: 2026-09-01
 ---
 
 # Checklist 规范检查工具

@@ -3,7 +3,7 @@
 执行完毕后逐项确认：
 
 - [ ] 已完成目标 Skill 的命名规范检查（`forge_` namespace、kebab-case 后缀、无赘余 `-skill` 后缀）
-- [ ] 已确认 SKILL.md 前言区 `name` 与目录名一致、`description` 为单行且少于 150 字符
+- [ ] 已确认 SKILL.md 前言区 `name` 与目录名一致、`description` 为单行且少于 150 字符、`lastUpdated` 为有效的 `YYYY-MM-DD` 编辑日期
 - [ ] 已确认 `description` 前缀协议（动词型 `Use when`、best-practice 型 `Must follow when`）
 - [ ] 已确认目录结构合规（无 README.md、LICENSE 等禁用文件，无空子目录）
 - [ ] 已确认无临时文件（`.DS_Store`、`__pycache__`、`*.log` 等）

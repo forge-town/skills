@@ -1,6 +1,7 @@
 ---
 name: forge_skill-best-practice
 description: Must follow when 创建或修改 Skill 后执行质量验证，涵盖命名、目录结构、元数据完整性、临时文件清理和依赖格式共 16 项检查。
+lastUpdated: 2026-09-01
 ---
 
 # Skill 最佳实践检查

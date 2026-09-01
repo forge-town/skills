@@ -1,6 +1,7 @@
 ---
 name: forge_checklist-best-practice
 description: Must follow when 为 Skill 或项目模块编写检查清单（checklist.md），确保每一项可判断、有示例、结构清晰、支持自动化验证。
+lastUpdated: 2026-09-01
 ---
 
 # 检查清单（Checklist）最佳实践

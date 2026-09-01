@@ -1,6 +1,7 @@
 ---
 name: forge_introspect-best-practice
 description: Must follow when 深度反思已定义的 best-practice，识别盲区、过度设计、隐藏假设和未覆盖场景，并提出可验证的规范改进建议。触发词：反思最佳实践、深挖规范盲区、自检 skill。
+lastUpdated: 2026-09-01
 ---
 
 # Introspect Best Practice

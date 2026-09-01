@@ -1,6 +1,7 @@
 ---
 name: forge_refine-trpc-best-practice
 description: Must follow when 在 React 组件中进行数据获取，确保通过 Refine hooks（useList/useOne 等）经由 DataProvider 访问数据，禁止直接调用 trpc 客户端。
+lastUpdated: 2026-09-01
 ---
 
 # Refine + tRPC 数据访问规范

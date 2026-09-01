@@ -6,7 +6,7 @@
       "name": "SKILL.md",
       "type": "file",
       "required": true,
-      "description": "主文档：frontmatter name/description + 极简使用说明（正文 ≤20 行）。"
+      "description": "主文档：frontmatter name/description/lastUpdated（YYYY-MM-DD）+ 极简使用说明（正文 ≤20 行）。"
     },
     {
       "name": "references",
@@ -34,4 +34,3 @@
     }
   ]
 }
-

@@ -32,7 +32,7 @@
 ### 2.1 YAML 格式
 - [ ] ✅ 文件以 `---` 开头，前言区是有效 YAML，以 `---` 结束
   - ❌ 错误示例：前言缺少结束 `---`，或 YAML 缩进不正确 → 必须修复为合法 YAML
-- [ ] ❌ 前言不得包含 `name`/`description` 以外的字段（不允许 `version`、`author`、`tags` 等）
+- [ ] ❌ 前言不得包含规范之外的字段；允许 `name`、`description`、`lastUpdated`，以及声明依赖时的 `dependency`（不允许 `version`、`author`、`tags` 等）
 
 ### 2.2 name 字段
 - [ ] ✅ 前言包含 `name` 字段且值为非空字符串
@@ -48,6 +48,10 @@
 - [ ] ✅ `description` 同时说明技能做什么 **和** 何时触发（不得只写功能而省略触发条件）
   - ❌ 错误示例：`description: 用于创建技能` → 缺少触发短语
   - ✅ 正确示例：`description: 创建新技能或更新现有技能的指南。当用户说"创建一个技能"、"帮我写 SKILL.md"时触发`
+
+### 2.4 lastUpdated 字段
+- [ ] ✅ 前言包含 `lastUpdated` 字段，值为技能本次编辑日期，使用有效的 ISO 日期 `YYYY-MM-DD`
+  - ❌ 错误示例：缺少 `lastUpdated`、`lastUpdated: 2026/09/01` 或 `lastUpdated: 2026-02-30`
 
 ---
 

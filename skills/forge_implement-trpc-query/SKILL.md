@@ -1,6 +1,7 @@
 ---
 name: forge_implement-trpc-query
 description: Use when 需要实现 tRPC 按需查询（on-demand query）模式，确保查询逻辑和数据获取方式符合项目 tRPC 规范和最佳实践。触发词：tRPC按需查询、实现tRPC查询、on-demand查询模式。
+lastUpdated: 2026-09-01
 ---
 
 # tRPC 按需查询接口设计规范

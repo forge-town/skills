@@ -1,6 +1,7 @@
 ---
 name: forge_fix-all-best-practices
 description: Use when 需要一键扫描并自动修复项目中所有最佳实践违规问题，自动发现并依次执行所有 best-practice 技能的检查与修复操作。触发词：修复所有违规、自动修复最佳实践、一键规范化项目代码。
+lastUpdated: 2026-09-01
 ---
 
 # 全量最佳实践自动修复

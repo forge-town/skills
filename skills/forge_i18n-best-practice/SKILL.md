@@ -1,6 +1,7 @@
 ---
 name: forge_i18n-best-practice
 description: Must follow when 创建或重构 i18n 国际化代码，确保遵循 react-i18next 最佳实践（初始化配置、翻译文件结构、组件用法、SSR 同步、语言切换与测试 Mock）。
+lastUpdated: 2026-09-01
 ---
 
 # i18n 国际化最佳实践

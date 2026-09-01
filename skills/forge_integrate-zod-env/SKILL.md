@@ -1,6 +1,7 @@
 ---
 name: forge_integrate-zod-env
 description: Use when 需要配置类型安全的环境变量管理模块，基于 .env.example 使用 Zod 生成 env schema 和标准化管理工具。触发词：zod 环境变量、env 类型安全、env schema。
+lastUpdated: 2026-09-01
 ---
 
 # Zod 环境变量集成

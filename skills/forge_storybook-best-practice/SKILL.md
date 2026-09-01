@@ -1,6 +1,7 @@
 ---
 name: forge_storybook-best-practice
 description: Must follow when 创建或维护 Storybook Stories，确保组件文档命名、参数定义和装饰器配置符合项目 Storybook 编写规范。
+lastUpdated: 2026-09-01
 ---
 
 # Storybook Stories 生成器

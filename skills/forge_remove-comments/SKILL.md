@@ -1,6 +1,7 @@
 ---
 name: forge_remove-comments
 description: Use when 需要批量删除代码文件中的注释，支持 Python、JS、TS、TSX、Java、C/C++、Rust、Go、HTML 等主流编程语言。触发词：删除注释、清除代码注释、移除注释行、批量去注释。
+lastUpdated: 2026-09-01
 ---
 
 # 代码注释删除器

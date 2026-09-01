@@ -3,7 +3,7 @@
   "structure": {
     "{skill-name}/": {
       "_note": "目录格式为 forge_<kebab-case>，后缀名称不得以赘余 -skill 结尾；best-practice 类必须以 -best-practice 结尾",
-      "SKILL.md": "必需 — 唯一根目录文件，含 forge_ 前缀的 name + description 前言区，正文 ≤20 行",
+      "SKILL.md": "必需 — 唯一根目录文件，前言区含 forge_ 前缀的 name、description 与 lastUpdated（YYYY-MM-DD），正文 ≤20 行",
       "references/": {
         "_required": false,
         "_note": "存放实现细节：清单、流程、示例、模板等",

@@ -1,6 +1,7 @@
 ---
 name: forge_check-error-handling
 description: Use when 需要检查代码中是否违规使用原生 try-catch，确保项目使用 neverthrow 进行函数式错误处理；扫描并报告所有原生异常处理代码。触发词：检查错误处理、neverthrow检查、错误处理规范检查、Result类型检查。
+lastUpdated: 2026-09-01
 ---
 
 # Check Error Handling 代码审查指南

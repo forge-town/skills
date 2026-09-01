@@ -1,6 +1,7 @@
 ---
 name: forge_one-component-per-file-best-practice
 description: Must follow when 检查或重构 React/Vue 组件文件，强制每个文件只包含一个组件，不允许多组件共存于同一文件；支持 TSX/JSX/Vue。
+lastUpdated: 2026-09-01
 ---
 
 # 一文件一组件规范

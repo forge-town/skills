@@ -1,6 +1,7 @@
 ---
 name: forge_test-driven-development
 description: Use when 需要以测试先行方式实现功能、修复 bug 或重构行为，严格执行 Red-Green-Refactor 循环，先写失败测试再写最小生产代码并完成重构验证。触发词：TDD、测试先行、红绿重构、先写测试。
+lastUpdated: 2026-09-01
 ---
 
 # 测试驱动开发

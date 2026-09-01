@@ -30,6 +30,7 @@ export interface CheckResult {
 export interface SkillFrontmatter {
   name: string;
   description: string;
+  lastUpdated: string | null;
   raw: string;
 }
 
@@ -53,11 +54,27 @@ export function parseFrontmatter(content: string): SkillFrontmatter | null {
   const nameMatch = raw.match(/^name:\s*(.+)$/m);
   const descriptionMatch = raw.match(/^description:\s*(.+)$/m);
   if (!nameMatch || !descriptionMatch) return null;
+  const lastUpdatedMatch = raw.match(/^lastUpdated:\s*(.+)$/m);
   return {
     name: nameMatch[1].trim(),
     description: descriptionMatch[1].trim(),
+    lastUpdated: lastUpdatedMatch?.[1]?.trim() ?? null,
     raw,
   };
+}
+
+export function isValidIsoDate(value: string): boolean {
+  const match = value.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!match) return false;
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  return (
+    date.getUTCFullYear() === year &&
+    date.getUTCMonth() === month - 1 &&
+    date.getUTCDate() === day
+  );
 }
 
 export function isValidSkillName(name: string): boolean {
@@ -141,7 +158,7 @@ export function checkSkill(skillDir: string, readmeContent: string): CheckResult
     report(
       "frontmatter.parse",
       "SKILL.md 前言区格式错误",
-      "添加包含 name 和 description 的 YAML 前言区",
+      "添加包含 name、description 和 lastUpdated 的 YAML 前言区",
     );
   } else {
     if (frontmatter.name !== skill) {
@@ -150,6 +167,21 @@ export function checkSkill(skillDir: string, readmeContent: string): CheckResult
         `name 不匹配: ${frontmatter.name}`,
         "使 frontmatter name 与目录名完全一致",
         frontmatter.name,
+      );
+    }
+
+    if (!frontmatter.lastUpdated) {
+      report(
+        "frontmatter.last-updated.required",
+        "缺少 lastUpdated 编辑日期",
+        "在前言区添加 ISO 格式的 lastUpdated: YYYY-MM-DD",
+      );
+    } else if (!isValidIsoDate(frontmatter.lastUpdated)) {
+      report(
+        "frontmatter.last-updated.format",
+        `lastUpdated 格式无效: ${frontmatter.lastUpdated}`,
+        "使用有效的 ISO 日期，例如 2026-09-01",
+        frontmatter.lastUpdated,
       );
     }
 

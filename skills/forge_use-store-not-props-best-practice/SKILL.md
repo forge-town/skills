@@ -1,6 +1,7 @@
 ---
 name: forge_use-store-not-props-best-practice
 description: Must follow when 设计组件数据流——优先通过 Store 访问全局状态，不得通过 Props 层层传递；适用于代码审查和新功能设计阶段。
+lastUpdated: 2026-09-01
 ---
 
 # 使用 Store 而非 Props 最佳实践

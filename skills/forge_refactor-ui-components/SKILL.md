@@ -1,6 +1,7 @@
 ---
 name: forge_refactor-ui-components
 description: Use when 需要将代码中的原生 HTML 元素（如 button、input、select 等）自动重构为项目组件库组件，确保符合组件库规范并保持功能不变。触发词：重构 UI 组件、替换原生元素、迁移到组件库。
+lastUpdated: 2026-09-01
 ---
 
 # 重构 UI 组件

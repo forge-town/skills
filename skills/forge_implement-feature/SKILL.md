@@ -1,6 +1,7 @@
 ---
 name: forge_implement-feature
 description: Use when 需要实现一个新 Feature，从 Schema 定义到数据层、服务层、状态层、UI 层再到最终质量检查，串联多个原子动词 Skill 完成宽线性工作流。触发词：实现功能、开发功能、新增 feature。
+lastUpdated: 2026-09-01
 ---
 
 # Feature 实现 Harness

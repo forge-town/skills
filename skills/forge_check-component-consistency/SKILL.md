@@ -1,6 +1,7 @@
 ---
 name: forge_check-component-consistency
 description: Use when 需要检测多个同类型组件（如 Button、Page）的代码实现一致性，交叉对比 Props、事件、样式、hooks 等实现层面差异，确保代码模式统一。触发词：检查组件一致性、对比组件实现、组件模式审计。
+lastUpdated: 2026-09-01
 ---
 
 # Check Component Consistency
