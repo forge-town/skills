@@ -1,0 +1,21 @@
+{
+  "description": "Skill 标准目录结构；实际可执行脚本按需提供",
+  "structure": {
+    "{skill-name}/": {
+      "_note": "forge-- 动作命名，允许简短的 forge--brainstorm",
+      "SKILL.md": "必需；name/description/lastUpdated；正文不超过 20 个非空行",
+      "references/": {
+        "_required": true,
+        "checklist.md": "必需；完成核对",
+        "其他文档或示例": "按需；允许有目录导航的代码参考文件"
+      },
+      "scripts/": "可选；真实可执行工具和测试，不创建空目录",
+      "assets/": "可选；模板与静态资源",
+      "best-practice-examples/": "以 -best-practice 结尾的技能必需；至少一个完整例子"
+    }
+  },
+  "forbidden": [
+    "替代 SKILL.md 的 README.md",
+    "临时文件、缓存和空目录"
+  ]
+}

@@ -1,19 +1,21 @@
 # Forge Skill Namespace 设计规格
 
+2026-11-15 更新：按用户确认采用 `forge--` 双中划线前缀，适用于本轮筛选后保留的 5 个技能。
+
 ## 目标
 
-为仓库内全部技能统一增加 `forge_` namespace 前缀，使技能在安装和展示时能明确归属于 Forge Town。
+为仓库内全部技能统一增加 `forge--` namespace 前缀，使技能在安装和展示时能明确归属于 Forge Town。
 
 示例：
 
 ```text
-dao-best-practice
-→ forge_dao-best-practice
+create-skill
+→ forge--create-skill
 ```
 
 ## 范围
 
-本次迁移覆盖当前 `skills/` 下的全部 56 个技能：
+本次迁移覆盖当前 `skills/` 下的全部 5 个技能：
 
 - 技能目录名
 - `SKILL.md` frontmatter 的 `name`
@@ -29,10 +31,10 @@ dao-best-practice
 技能名称必须符合：
 
 ```text
-forge_[a-z0-9]+(-[a-z0-9]+)*
+forge--<verb>[-<noun>]
 ```
 
-其中 `forge_` 是固定 namespace，后半段保持现有 kebab-case 名称不变。技能类型判断先移除 `forge_` 前缀，再依据原有 `-best-practice` 和其他后缀规则分类。
+其中 `forge--` 是固定 namespace，后半段使用清楚的动作名称，通常为动词 + 对象名词；brainstorm 直接使用动词，不添加冗余后缀。技能类型判断先移除 `forge--` 前缀，再依据原有 `-best-practice` 和其他后缀规则分类。
 
 ## 迁移方式
 
@@ -42,14 +44,14 @@ forge_[a-z0-9]+(-[a-z0-9]+)*
 
 ## 验证策略
 
-1. 扫描确认所有 56 个目录均以 `forge_` 开头，且无旧名称目录残留。
+1. 扫描确认所有 5 个目录均以 `forge--` 开头，且无旧名称目录残留。
 2. 检查所有 `SKILL.md` 的 `name` 与目录名完全一致。
-3. 检查 README 的 56 个技能链接和所有跨技能 Markdown 引用均可解析。
+3. 检查 README 的 5 个技能链接和所有跨技能 Markdown 引用均可解析。
 4. 运行 `pnpm run check:skills`，确认 namespace 规则生效且不再因前缀误判类型。
 5. 执行 `git diff --check`，检查无空白错误或意外文件变更。
 
 ## 风险与处理
 
-- 外部用户若依赖旧技能名，将需要改用新的 `forge_` 名称；本次不提供旧名别名。
+- 外部用户若依赖旧技能名，将需要改用新的 `forge--` 名称；本次不提供旧名别名。
 - 相对路径较多，批量替换可能造成断链；通过 Markdown 路径扫描和检查器运行共同兜底。
-- 下划线会使旧 kebab-case 正则失效；检查器必须显式支持固定 `forge_` 前缀，不能放宽为任意下划线。
+- 双中划线是固定前缀分隔符；检查器只接受 `forge--` 前缀，后缀仍遵循 kebab-case，拒绝下划线、单中划线前缀及其他连续中划线。

@@ -10,7 +10,7 @@ Forge Town 的 Skill 文档此前主要描述通用做法，部分内容与 Daed
 
 - 以 Daedalus 当前 package manifest、lint/format/Turbo 配置和源码为准，修订现有代码写法最佳实践。
 - 让各 Skill 的规则、正例、checklist 和验证命令与正式项目实际可执行的命令一致。
-- 保留 `forge_` namespace 与 `description < 150` 的已完成约束。
+- 保留 `forge--` namespace 与 `description < 150` 的已完成约束。
 - 不把 Daedalus 的业务路径、密钥或数据库配置复制进 Skill；只提炼可迁移的工程规则。
 
 ## 事实基线

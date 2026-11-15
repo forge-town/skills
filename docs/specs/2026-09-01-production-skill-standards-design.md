@@ -8,14 +8,14 @@
 
 1. `ui-components-best-practice` 仍允许业务组件直接使用大量语义化原生标签，示例还直接使用原生 `<form>`。
 2. `skill-best-practice` 文档与 `check-all-skills` 脚本没有完整覆盖清单中声明的结构、前缀、临时文件、依赖元数据、正例目录和 Bad Case 检查；脚本也不能输出独立、可追溯的检查结果。
-3. 已确认的 `forge_` namespace 迁移尚未执行，目录名、frontmatter、README、交叉引用和脚本入口仍使用旧名称。
+3. 已确认的 `forge--` namespace 迁移尚未执行，目录名、frontmatter、README、交叉引用和脚本入口仍使用旧名称。
 
 ## 目标
 
 - 将 UI 组件规范同步到正式环境的原生 DOM 边界：非基础组件只允许 `div`，基础组件承担原生元素封装责任。
 - 让 `skill-best-practice`、`check-all-skills` 和 `create-skill` 对同一套 16 项质量要求使用一致表述与可验证规则，保留 description 严格少于 150 字符的已确认要求。
 - 把检查结果按技能、检查项和证据逐项输出；缺少证据只能失败或标记未完成，不得静默通过。
-- 完成所有技能的 `forge_` namespace 迁移，并保持 README、交叉引用和 package 脚本可用。
+- 完成所有技能的 `forge--` namespace 迁移，并保持 README、交叉引用和 package 脚本可用。
 
 ## 方案与边界
 
@@ -44,8 +44,8 @@
 
 ### Namespace 迁移
 
-- 将每个 `skills/<name>` 目录重命名为 `skills/forge_<name>`。
-- 将对应 SKILL.md 的 `name`、README 链接/显示名、交叉引用、脚本路径和示例路径全部同步为 `forge_<name>`。
+- 将每个 `skills/<name>` 目录重命名为 `skills/forge--<name>`。
+- 将对应 SKILL.md 的 `name`、README 链接/显示名、交叉引用、脚本路径和示例路径全部同步为 `forge--<name>`。
 - 目录名检查器允许并强制该 namespace 格式；不保留旧名兼容别名，避免安装时出现两个可选入口。
 - `package.json` 保留 `check:skills` 入口，并使其检查迁移后的路径。
 
@@ -68,5 +68,5 @@
 
 - UI 组件规范与正式“基础 DOM 使用约束”一致，示例不再展示业务组件直接使用被禁止的原生标签。
 - 检查器能够确定性发现所有声明的元数据/结构问题，并对语义项显式要求证据。
-- 所有技能均以 `forge_` 前缀安装、引用和展示，README 与 package 脚本可用。
+- 所有技能均以 `forge--` 前缀安装、引用和展示，README 与 package 脚本可用。
 - 检查命令和格式校验通过；没有凭空声称正式规则已被数据库写入。
