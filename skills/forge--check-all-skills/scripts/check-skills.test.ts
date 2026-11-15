@@ -43,6 +43,24 @@ test("accepts the forge namespace and rejects the unnamespaced directory", () =>
   assert.equal(isValidSkillName("forge--show-demo--extra"), false);
 });
 
+test("supports only the Linear second namespace and still requires an action", async () => {
+  for (const name of ["forge--linear--query-issues", "forge--linear--submit-acceptance", "forge--linear--review-acceptance"]) {
+    assert.equal(isValidSkillName(name), true);
+  }
+  for (const name of ["forge--writing--write-report", "forge--report--write-daily", "forge--linear--issues", "forge--linear--query", "forge--linear--query--issues", "forge--linear--linear--query-issues"]) {
+    assert.equal(isValidSkillName(name), false, name);
+  }
+  const name = "forge--linear--query-issues";
+  const root = await makeSkill(name, {
+    "SKILL.md": `---\nname: ${name}\ndescription: Use when 查询目标项目的真实任务清单。\nlastUpdated: 2026-11-15\n---\n按目标范围查询。\n`,
+    "references/checklist.md": "- [ ] 已核对查询范围\n",
+  });
+  try {
+    const result = checkSkill(join(root, name), readmeFor(join(root, name)));
+    assert.equal(result.passed, true);
+  } finally { await rm(root, { recursive: true, force: true }); }
+});
+
 test("description length is strictly less than 150", async () => {
   const frontmatter = parseFrontmatter(
     "---\nname: forge--show-demo\ndescription: " + "a".repeat(149) + "\n---\n",
