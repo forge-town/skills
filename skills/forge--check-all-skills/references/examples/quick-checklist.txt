@@ -1,0 +1,6 @@
+静态检查：动作命名 / name / Use when description / 有效 lastUpdated / 正文长度
+资源检查：真实链接 / 允许目录 / 非空资源 / 无缓存 / Python 与 system 列表
+目录记录：README 名称、链接和 description 与入口一致，无已删除条目
+人工核对：名称、正文、流程、示例和输出表达同一动作
+实际运行：记录输入与输出；缺凭据、项目环境或未执行项标记 evidence-required
+静态命令退出 0 不等于业务功能全部验证通过

@@ -14,56 +14,23 @@
 skills/
   {skill-name}/           # kebab-case 目录名
     SKILL.md              # 必需：技能定义
-    scripts/              # 必需：可执行脚本
+    references/           # 必需：说明、流程与完成清单
+    scripts/              # 有实际可执行工具时提供，不创建占位脚本
       {script-name}.ts    # TypeScript 脚本（首选）
 ```
 
 ### 命名约定
 
-- **技能目录**：`kebab-case`（例如 `vercel-deploy`、`log-monitor`）
+- **技能目录**：`forge--<verb>-<noun>`，使用双中划线命名空间和动词 + 名词后缀（例如 `forge--show-skill-best-practice`、`forge--check-all-skills`）；说明规范也必须以动作动词开头；动作本身已清楚时可直接使用简短名称，如 `forge--brainstorm`，不添加冗余后缀
+- **二级范畴**：仅 Linear 技能采用 `forge--linear--<verb>-<noun>`（如 `forge--linear--query-issues`）；其他技能继续使用平铺名称，不增加 writing、report、document 等范畴。
 - **SKILL.md**：始终大写，始终为此确切文件名
 - **脚本**：`kebab-case.ts`（例如 `deploy.ts`、`fetch-logs.ts`）
 
 ### SKILL.md 格式
 
-```markdown
----
-name: {skill-name}
-description: {一句描述何时使用此技能的话。包括触发短语如“部署我的应用”、“检查日志”等。}
----
+入口使用 name、description、lastUpdated 前言；description 以 Use when 开头，单行且少于 150 字符。正文不超过 20 个非空行，只保留用途、流程入口和真实资源链接。完整要求以 [Skill 最佳实践](skills/forge--show-skill-best-practice/references/standard.md) 为准。
 
-# {技能标题}
-
-{简要描述技能的功能。}
-
-## 工作原理
-
-{编号列表解释技能的工作流程}
-
-## 使用方法
-
-```bash
-pnpx tsx /mnt/skills/user/{skill-name}/scripts/{script}.ts [args]
-```
-
-**参数：**
-- `arg1` - 描述（默认为 X）
-
-**示例：**
-{显示 2-3 个常见使用模式}
-
-## 输出
-
-{显示用户将看到的示例输出}
-
-## 呈现结果
-
-{呈现给用户时结果格式化的模板}
-
-## 故障排除
-
-{常见问题和解决方案，尤其是网络/权限错误}
-```
+纯指令技能不需要空脚本；真实可执行工具放 scripts/，代码参考例子可放 references/ 或 best-practice-examples/。项目检查使用 package.json 中的 check:skills 和 test:skills。
 
 ### 脚本要求
 

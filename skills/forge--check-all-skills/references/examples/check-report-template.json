@@ -1,0 +1,10 @@
+{
+  "skill_name": "forge--show-example",
+  "static_status": "pass",
+  "manual_status": "evidence-required",
+  "summary": "静态检查通过；尚未核对实际业务输出。",
+  "checks": [
+    { "ruleId": "namespace.directory", "status": "pass", "message": "名称符合 forge-- 动作命名" },
+    { "ruleId": "content.manual", "status": "evidence-required", "message": "待阅读正文、示例并核对实际产物" }
+  ]
+}

@@ -4,10 +4,12 @@
   "private": true,
   "description": "Forge Town Agent Skills 集合",
   "scripts": {
-    "check:skills": "tsx skills/forge_check-all-skills/references/examples/check-skills.ts ./skills ./README.md",
-    "test:skills": "tsx --test skills/forge_check-all-skills/references/examples/check-skills.test.ts"
+    "check:skills": "tsx skills/forge--check-all-skills/scripts/check-skills.ts ./skills ./README.md",
+    "test:skills": "tsx --test skills/forge--check-all-skills/scripts/*.test.ts"
   },
   "devDependencies": {
-    "tsx": "^4.20.5"
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.3",
+    "yaml": "^2.8.1"
   }
 }
