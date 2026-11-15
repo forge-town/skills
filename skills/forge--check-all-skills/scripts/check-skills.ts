@@ -38,7 +38,7 @@ export interface SkillFrontmatter {
 
 const DESCRIPTION_LIMIT = 150;
 const BODY_LINE_LIMIT = 20;
-const FORGE_SKILL_NAME = /^forge--([a-z]+)(?:-[a-z0-9]+(?:-[a-z0-9]+)*)?$/;
+const FORGE_SKILL_NAME = /^forge--(?:linear--)?([a-z]+)(?:-[a-z0-9]+(?:-[a-z0-9]+)*)?$/;
 const ACTION_VERBS = new Set([
   "assess", "brainstorm", "build", "check", "clean", "configure", "convert",
   "create", "debug", "delete", "deploy", "design", "draw", "export", "fetch",
@@ -92,12 +92,13 @@ export function isValidIsoDate(value: string): boolean {
 
 export function isValidSkillName(name: string): boolean {
   const match = name.match(FORGE_SKILL_NAME);
-  return match !== null && ACTION_VERBS.has(match[1]) &&
-    (name === "forge--brainstorm" || name !== `forge--${match[1]}`);
+  const action = name.replace(/^forge--(?:linear--)?/, "");
+  return name.length <= 64 && match !== null && ACTION_VERBS.has(match[1]) &&
+    (name === "forge--brainstorm" || action !== match[1]);
 }
 
 function baseSkillName(name: string): string {
-  return name.replace(/^forge--/, "");
+  return name.replace(/^forge--(?:linear--)?/, "");
 }
 
 function getSkillType(name: string): "verb" | "best-practice" | "integration" {
@@ -180,7 +181,7 @@ export function checkSkill(skillDir: string, readmeContent: string): CheckResult
   if (!isValidSkillName(skill)) {
     report(
       "namespace.directory",
-      "目录名必须使用 forge-- 前缀及清楚的动作名称；通常为动词 + 名词，brainstorm 可直接使用",
+      "目录名使用 forge-- 动作命名；仅 Linear 使用 forge--linear-- 二级范畴；brainstorm 可直接使用",
       "将目录重命名为 forge--<verb>-<noun>；新增动作动词时同步 ACTION_VERBS",
       skill,
     );

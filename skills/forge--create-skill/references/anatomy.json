@@ -2,7 +2,7 @@
   "description": "Skill 标准目录结构；实际可执行脚本按需提供",
   "structure": {
     "{skill-name}/": {
-      "_note": "forge-- 动作命名，允许简短的 forge--brainstorm",
+      "_note": "forge-- 动作命名；仅 Linear 使用 forge--linear-- 二级范畴；允许简短的 forge--brainstorm",
       "SKILL.md": "必需；name/description/lastUpdated；正文不超过 20 个非空行",
       "references/": {
         "_required": true,

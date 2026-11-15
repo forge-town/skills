@@ -22,6 +22,7 @@ skills/
 ### 命名约定
 
 - **技能目录**：`forge--<verb>-<noun>`，使用双中划线命名空间和动词 + 名词后缀（例如 `forge--show-skill-best-practice`、`forge--check-all-skills`）；说明规范也必须以动作动词开头；动作本身已清楚时可直接使用简短名称，如 `forge--brainstorm`，不添加冗余后缀
+- **二级范畴**：仅 Linear 技能采用 `forge--linear--<verb>-<noun>`（如 `forge--linear--query-issues`）；其他技能继续使用平铺名称，不增加 writing、report、document 等范畴。
 - **SKILL.md**：始终大写，始终为此确切文件名
 - **脚本**：`kebab-case.ts`（例如 `deploy.ts`、`fetch-logs.ts`）
 

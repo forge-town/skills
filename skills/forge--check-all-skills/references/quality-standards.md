@@ -4,7 +4,7 @@
 
 ## 静态检查
 
-- forge-- 动作命名、name 与目录名一致、有效日期和简短单行 description。
+- forge-- 动作命名（仅 Linear 允许 forge--linear-- 二级范畴）、name 与目录名一致、有效日期和简短单行 description。
 - SKILL.md 正文不超过 20 个非空行；所有技能有 references/checklist.md。
 - 根目录仅含入口和允许的资源目录，无空目录、临时文件或缓存。
 - Python/system 依赖允许块列表与内联列表；system 不混入 pip 安装命令。
