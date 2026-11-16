@@ -44,7 +44,7 @@ test("accepts the forge namespace and rejects the unnamespaced directory", () =>
 });
 
 test("supports only the Linear second namespace and still requires an action", async () => {
-  for (const name of ["forge--linear--query-issues", "forge--linear--submit-acceptance", "forge--linear--review-acceptance"]) {
+  for (const name of ["forge--linear--query-issues", "forge--linear--submit-acceptance", "forge--linear--review-acceptance", "forge--linear--backfill-issues"]) {
     assert.equal(isValidSkillName(name), true);
   }
   for (const name of ["forge--writing--write-report", "forge--report--write-daily", "forge--linear--issues", "forge--linear--query", "forge--linear--query--issues", "forge--linear--linear--query-issues"]) {

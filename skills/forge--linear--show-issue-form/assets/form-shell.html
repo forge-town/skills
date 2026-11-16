@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Issue 需求表单 · Code Forge</title><style>/* FORM_STYLES */</style></head>
+<body data-view="form">
+<header>
+ <div><h1><span class="wordmark">CODE FORGE</span><span id="form-title">开发 Issue 表单</span></h1><div class="issue-types" role="group" aria-label="开发 Issue 类型"><button type="button" data-issue-type="Feature" aria-pressed="true">Feature · 功能需求</button><button type="button" data-issue-type="Bugfix" aria-pressed="false">Bugfix · 缺陷修复</button></div></div>
+ <div class="tools"><button id="blank" type="button">新建空白</button><button id="example" type="button">查看示例</button><button id="json-import" type="button">导入 JSON</button><button id="json-export" type="button">保存 JSON</button><button id="md-export" type="button">下载 .md</button><button id="copy" class="primary" type="button">复制 Markdown</button></div>
+</header>
+<div class="mobile-switch" role="tablist" aria-label="工作区"><button role="tab" aria-selected="true" data-mobile="form" type="button" aria-controls="editor">填写表单</button><button role="tab" aria-selected="false" data-mobile="preview" type="button" aria-controls="preview-pane">查看映射结果</button></div>
+<main class="workspace">
+ <nav aria-label="表单章节"><p id="nav-title">表单目录</p><div id="nav-items"></div></nav>
+ <div class="editor" id="editor"><div class="intro"><h2 id="intro-title">定义要新增的能力。</h2><p id="intro-description"></p><p class="draft-state" id="save-status" role="status"></p><button id="restore" class="text-button" type="button" hidden>恢复之前保存的草稿</button></div><form id="form" novalidate aria-label="Issue 需求内容"></form></div>
+ <aside class="preview-pane" id="preview-pane" aria-label="Issue 映射预览"><div class="preview-header"><div class="preview-tabs" role="tablist" aria-label="输出格式"><button id="document-tab" data-tab="document" role="tab" aria-selected="true" aria-controls="document" type="button">正文预览</button><button id="markdown-tab" data-tab="markdown" role="tab" aria-selected="false" aria-controls="markdown" tabindex="-1" type="button">Markdown</button></div></div><div class="preview-scroll" id="preview-scroll"><details id="linear-properties"><summary>Linear 标题与 Properties</summary><div id="linear-properties-content"></div></details><article id="document" class="preview-document" role="tabpanel" aria-labelledby="document-tab"></article><pre id="markdown" class="markdown" role="tabpanel" aria-labelledby="markdown-tab" tabindex="0" hidden></pre></div></aside>
+</main>
+<div class="review-panel" aria-label="结构检查"><div class="review-row"><span id="check-status" role="status"></span><button class="text-button" type="button" id="locate">定位第一项</button></div><details><summary id="missing-title"></summary><ol id="problems"></ol></details></div>
+<input id="import-file" class="file-input" type="file" accept=".json,application/json" aria-label="导入 JSON 草稿"><div id="toast" class="toast" role="status" hidden></div>
+<dialog id="example-dialog" class="examples-dialog" aria-labelledby="examples-title">
+ <div class="examples-head"><h2 id="examples-title">查看示例</h2><button id="example-close" type="button" aria-label="关闭示例">关闭</button></div>
+ <div class="examples-tabs" role="group" aria-label="Feature 示例"><button type="button" data-example="Todo" aria-pressed="true">Todo List · Feature</button><button type="button" data-example="Survivors" aria-pressed="false">类幸存者游戏 · Feature</button></div>
+ <p id="example-description"></p>
+ <div class="examples-actions"><a id="play-example" target="_blank" rel="noopener">打开可操作原型 ↗</a><button id="use-example" type="button">使用此示例填写</button></div>
+ <div id="example-confirm" hidden><p>这会替换 Feature 表单。当前 Feature 草稿会备份，可在表单顶部恢复。</p><button id="confirm-example" type="button">确认填入</button> <button id="cancel-example" type="button">取消</button></div>
+ <div id="example-content"><details class="native-properties"><summary>Linear 标题与 Properties</summary><div id="example-linear-properties"></div></details><article id="example-document" class="preview-document"></article></div>
+</dialog>
+<script type="application/json" id="issue-contract">/* ISSUE_CONTRACT */</script>
+<script type="application/json" id="issue-example">/* ISSUE_EXAMPLE */</script>
+<script type="application/json" id="issue-draft">{}</script>
+<script>/* FORM_SCRIPT */</script>
+</body></html>

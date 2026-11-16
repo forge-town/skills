@@ -4,7 +4,7 @@
 
 - 使用 `forge--` 双中划线前缀，动作动词在前、对象在后，后缀用 kebab-case；名称最长 64 个字符。`forge--brainstorm` 本身已清楚，不追加冗余后缀。
 - 只有 Linear 使用二级范畴：`forge--linear--<verb>-<noun>`，如 `forge--linear--query-issues`。其他技能保持 `forge--<verb>-<noun>` 平铺，不添加其他范畴。
-- `show` 负责展示与解释，`check` 负责验证，`create` 负责创建或更新，`review` 负责评估规则本身。名称、description、正文和交付物必须表达同一动作。
+- `show` 负责展示与解释，`check` 负责验证，`create` 负责创建或更新，`review` 负责评估明确指定的对象，如规则、Issue 内容或验收证据。名称、description、正文和交付物必须表达同一动作。
 - `skill` 是 `create-skill` 的对象名词，可以保留；不要额外追加表示“这是个技能”的冗余 `-skill`。
 - 本仓库所有 description 统一以 `Use when` 开头，单行且少于 150 字符。不得用 `-best-practice` 后缀豁免动作命名。
 

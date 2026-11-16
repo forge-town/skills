@@ -40,7 +40,7 @@ const DESCRIPTION_LIMIT = 150;
 const BODY_LINE_LIMIT = 20;
 const FORGE_SKILL_NAME = /^forge--(?:linear--)?([a-z]+)(?:-[a-z0-9]+(?:-[a-z0-9]+)*)?$/;
 const ACTION_VERBS = new Set([
-  "assess", "brainstorm", "build", "check", "clean", "configure", "convert",
+  "assess", "backfill", "brainstorm", "build", "check", "clean", "configure", "convert",
   "create", "debug", "delete", "deploy", "design", "draw", "export", "fetch",
   "generate", "implement", "import", "inspect", "install", "integrate",
   "list", "manage", "migrate", "organize", "plan", "query", "read", "refactor",

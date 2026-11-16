@@ -1,0 +1,170 @@
+{
+  "issueType": "Bugfix",
+  "title": "清空标题关键词后任务列表未恢复全部任务",
+  "module": "任务列表",
+  "bugSummary": "输入关键词完成筛选后，清空搜索框，列表仍只显示之前匹配的任务。",
+  "impact": "演示中的项目成员无法在当前列表重新看到任务 B，需要重新进入列表。实际项目影响范围尚未调查。",
+  "affectedScope": "仅演示的三条固定任务与清空搜索场景；不外推到实际用户。",
+  "environment": "整理的 Web 演示场景；实际浏览器、部署环境和系统版本待核定。",
+  "buildVersion": "",
+  "page": "任务列表",
+  "preconditions": "固定任务 A「更新登录页」、B「修复导出」、C「登录异常排查」已载入。",
+  "reproInput": "整理样例：搜索框先输入“登录”，再清空。",
+  "reproSteps": "进入载入三条任务的列表\n输入“登录”，看到 A、C\n清空搜索框\n观察列表内容",
+  "frequency": "暂未复现",
+  "reproEvidence": "此例是说明填写结构的虚构问题，不是实际系统现场记录；暂无日志或录屏。",
+  "actualResult": "演示的问题描述：清空后仍只显示 A、C，不显示 B。该现象未在真实产品复测。",
+  "expectedResult": "搜索框为空时，显示任务 A、B、C。",
+  "expectedBasis": "同套 Feature 演示的 BR-01 约定：关键词为空时显示全部任务。这是演示约定，不是未经核实的实际产品要求。",
+  "investigationStart": "按固定数据和步骤尝试复现，核对清空搜索框后实际列表是否仍保持筛选状态。",
+  "confirmedFacts": "只有本演示的问题描述，未做代码定位或真实系统验证。",
+  "rootCause": "",
+  "fixScope": "恢复清空关键词后展示全部任务的既有约定；具体实现待定位后确定。",
+  "workaround": "",
+  "risks": "关键词筛选、无匹配提示及清空行为可能受关联影响，需要按相同固定样例回归。",
+  "nongoals": "新增全文搜索\n调整标题匹配算法",
+  "tasks": [
+    {
+      "id": "T-01",
+      "name": "复现并修复清空后列表未恢复",
+      "action": "用固定数据核对现象，定位并修复清空行为，保留现有标题筛选。",
+      "conditions": [
+        {
+          "input": "三条固定任务；先输入“登录”后清空。",
+          "output": "清空后显示 A、B、C。"
+        }
+      ]
+    }
+  ],
+  "demoNotice": "以下地址、账号、夹具与控件是演示定义，不是已部署的真实环境；不可用它们声称实际验收可执行或已通过。",
+  "summaryWhat": "修复清空标题关键词后列表没有恢复全部任务的问题。",
+  "summaryStart": "按三条固定任务和复现步骤检查清空后的列表。",
+  "summaryDone": "清空后显示 A、B、C，关键词筛选和无匹配后的清空仍符合已有约定。",
+  "model": "任务与标题关键词。",
+  "rules": "恢复已有的标题筛选与清空行为，不改匹配算法。",
+  "businessRules": [
+    {
+      "id": "BR-01",
+      "name": "空关键词恢复全部任务",
+      "given": "任务列表已载入，搜索框可以为空或已有关键词。",
+      "when": "用户清空标题关键词。",
+      "then": "搜索框变为空，显示全部任务，移除无匹配提示。",
+      "ambiguity": ""
+    },
+    {
+      "id": "BR-02",
+      "name": "非空关键词按标题筛选",
+      "given": "任务列表已载入。",
+      "when": "用户输入非空标题关键词。",
+      "then": "仅显示标题匹配任务；无匹配时显示“未找到匹配任务”，保留输入。",
+      "ambiguity": ""
+    }
+  ],
+  "acceptance": [
+    {
+      "id": "AC-01",
+      "caseType": "正面案例",
+      "name": "清空关键词恢复全部任务",
+      "given": "准备演示夹具 demo-task-fixtures-v1，确保账号已登录到 DEMO-ORG-001，列表无其他记录且初始搜索框为空。",
+      "executionStatus": "未执行",
+      "actualOutput": "",
+      "evidence": "",
+      "method": "浏览器操作",
+      "entryPoint": "https://demo.example.test/tasks",
+      "actor": "演示账号 demo.manager@example.test；组织 DEMO-ORG-001；已登录，拥有任务列表读取权限（演示定义，非已创建账号）。",
+      "cleanup": "点击搜索框右侧“清空”按钮，确认输入框为空且三条原始记录恢复。",
+      "blockers": "",
+      "steps": [
+        {
+          "action": "打开链接",
+          "target": "https://demo.example.test/tasks",
+          "value": "",
+          "expected": "页面显示“任务列表”；“标题关键词”输入框为空，表中有 A“更新登录页”、B“修复导出”、C“登录异常排查”三条记录。"
+        },
+        {
+          "action": "输入",
+          "target": "标签为“标题关键词”的输入框",
+          "value": "登录",
+          "expected": "输入框显示“登录”；列表仅显示 A“更新登录页”和 C“登录异常排查”，不显示 B“修复导出”。"
+        },
+        {
+          "action": "点击",
+          "target": "搜索框右侧文字为“清空”的按钮",
+          "value": "",
+          "expected": "输入框变为空；列表恢复 A、B、C 三条记录，不显示“未找到匹配任务”。"
+        }
+      ],
+      "ruleRef": "BR-01",
+      "when": "演示夹具 demo-task-fixtures-v1：DEMO-TASK-A，标题“更新登录页”；DEMO-TASK-B，标题“修复导出”；DEMO-TASK-C，标题“登录异常排查”。由演示数据准备流程预置这三条记录。",
+      "then": "清空后搜索框为空，列表显示 A、B、C。"
+    },
+    {
+      "id": "AC-02",
+      "caseType": "正面案例",
+      "name": "非空关键词仍正确筛选",
+      "given": "准备演示夹具 demo-task-fixtures-v1，确保账号已登录到 DEMO-ORG-001，列表无其他记录且初始搜索框为空。",
+      "executionStatus": "未执行",
+      "actualOutput": "",
+      "evidence": "",
+      "method": "浏览器操作",
+      "entryPoint": "https://demo.example.test/tasks",
+      "actor": "演示账号 demo.manager@example.test；组织 DEMO-ORG-001；已登录，拥有任务列表读取权限（演示定义，非已创建账号）。",
+      "cleanup": "点击搜索框右侧“清空”按钮，确认输入框为空且三条原始记录恢复。",
+      "blockers": "",
+      "steps": [
+        {
+          "action": "打开链接",
+          "target": "https://demo.example.test/tasks",
+          "value": "",
+          "expected": "页面显示“任务列表”；“标题关键词”输入框为空，表中有 A“更新登录页”、B“修复导出”、C“登录异常排查”三条记录。"
+        },
+        {
+          "action": "输入",
+          "target": "标签为“标题关键词”的输入框",
+          "value": "登录",
+          "expected": "输入框显示“登录”；列表仅显示 A“更新登录页”和 C“登录异常排查”，不显示 B“修复导出”。"
+        }
+      ],
+      "ruleRef": "BR-02",
+      "when": "演示夹具 demo-task-fixtures-v1：DEMO-TASK-A，标题“更新登录页”；DEMO-TASK-B，标题“修复导出”；DEMO-TASK-C，标题“登录异常排查”。由演示数据准备流程预置这三条记录。",
+      "then": "输入“登录”后仅显示 A、C，不显示 B。"
+    },
+    {
+      "id": "AC-03",
+      "caseType": "反面案例",
+      "name": "无匹配后清空恢复全部",
+      "given": "准备演示夹具 demo-task-fixtures-v1，确保账号已登录到 DEMO-ORG-001，列表无其他记录且初始搜索框为空。",
+      "executionStatus": "未执行",
+      "actualOutput": "",
+      "evidence": "",
+      "method": "浏览器操作",
+      "entryPoint": "https://demo.example.test/tasks",
+      "actor": "演示账号 demo.manager@example.test；组织 DEMO-ORG-001；已登录，拥有任务列表读取权限（演示定义，非已创建账号）。",
+      "cleanup": "点击搜索框右侧“清空”按钮，确认输入框为空且三条原始记录恢复。",
+      "blockers": "",
+      "steps": [
+        {
+          "action": "打开链接",
+          "target": "https://demo.example.test/tasks",
+          "value": "",
+          "expected": "页面显示“任务列表”；“标题关键词”输入框为空，表中有 A“更新登录页”、B“修复导出”、C“登录异常排查”三条记录。"
+        },
+        {
+          "action": "输入",
+          "target": "标签为“标题关键词”的输入框",
+          "value": "结算",
+          "expected": "输入框保留“结算”；列表没有任务行，显示“未找到匹配任务”。"
+        },
+        {
+          "action": "点击",
+          "target": "搜索框右侧文字为“清空”的按钮",
+          "value": "",
+          "expected": "输入框变为空；列表恢复 A、B、C 三条记录，不显示“未找到匹配任务”。"
+        }
+      ],
+      "ruleRef": "BR-01",
+      "when": "演示夹具 demo-task-fixtures-v1：DEMO-TASK-A，标题“更新登录页”；DEMO-TASK-B，标题“修复导出”；DEMO-TASK-C，标题“登录异常排查”。由演示数据准备流程预置这三条记录。",
+      "then": "清空后搜索框为空，列表显示 A、B、C。"
+    }
+  ]
+}

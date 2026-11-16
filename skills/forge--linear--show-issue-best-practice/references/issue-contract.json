@@ -1,0 +1,782 @@
+{
+  "version": 18,
+  "title": "Issue 写作要求",
+  "sections": [
+    {
+      "id": "basic",
+      "title": "基本信息",
+      "hint": "标题填入 Linear 标题栏；项目、负责人、状态、优先级和估点填入右侧 Properties，不进入正文。模块需核对团队已有标签或自定义属性；编号与原链接只用于定位，不新建同名属性。",
+      "fields": [
+        {
+          "key": "title",
+          "label": "标题",
+          "hint": "场景＋要修复或支持的行为。",
+          "required": true,
+          "kind": "text"
+        },
+        {
+          "key": "project",
+          "label": "项目",
+          "hint": "实际所属项目，不根据截图猜测。",
+          "required": false,
+          "kind": "text"
+        },
+        {
+          "key": "module",
+          "label": "模块",
+          "hint": "受影响的一级业务功能。",
+          "required": false,
+          "kind": "text"
+        },
+        {
+          "key": "assignee",
+          "label": "负责人",
+          "hint": "尚未分配时留空。",
+          "required": false,
+          "kind": "text"
+        },
+        {
+          "key": "status",
+          "label": "状态",
+          "hint": "填写真实状态，定义验收不代表已完成。",
+          "required": false,
+          "kind": "text"
+        },
+        {
+          "key": "priority",
+          "label": "优先级",
+          "hint": "尚未确定时留空。",
+          "required": false,
+          "kind": "text"
+        },
+        {
+          "key": "estimate",
+          "label": "估点",
+          "hint": "仅填写团队已评估结果。",
+          "required": false,
+          "kind": "text"
+        },
+        {
+          "key": "identifier",
+          "label": "Issue 编号",
+          "hint": "只填写真实编号。",
+          "required": false,
+          "kind": "text"
+        },
+        {
+          "key": "personTerms",
+          "label": "人物称呼与姓名",
+          "hint": "每行一个真实人物角色、姓名或简称。正文统一斜体：Markdown 使用标准星号标记，HTML 使用原生斜体；不要手写格式标签。用户故事角色自动纳入。",
+          "required": false,
+          "kind": "area"
+        },
+        {
+          "key": "sourceUrl",
+          "label": "原 Issue 链接",
+          "hint": "HTTP(S) 链接；没有则留空。",
+          "required": false,
+          "kind": "url"
+        }
+      ]
+    },
+    {
+      "id": "summary",
+      "title": "摘要",
+      "hint": "让接手的人知道要做什么、从哪里开始、交付什么。",
+      "fields": [
+        {
+          "key": "summaryWhat",
+          "label": "做什么",
+          "hint": "一句话描述问题或新增能力。",
+          "required": true,
+          "kind": "area"
+        },
+        {
+          "key": "summaryStart",
+          "label": "从哪开始",
+          "hint": "接手后的第一个可执行动作。",
+          "required": true,
+          "kind": "area"
+        },
+        {
+          "key": "summaryDone",
+          "label": "怎样算完成",
+          "hint": "用户可观察的最终结果，细节放到案例。",
+          "required": true,
+          "kind": "area"
+        }
+      ]
+    },
+    {
+      "id": "background",
+      "title": "背景介绍",
+      "hint": "交代谁在什么场景下遇到什么问题、为什么需要改动，以及已核实的现状；不要在这里堆实现步骤。",
+      "fields": [
+        {
+          "key": "background",
+          "label": "背景介绍",
+          "hint": "写清业务背景、当前问题或缺口、用户影响与已有系统现状；事实、原话和推断分开。",
+          "required": true,
+          "kind": "area"
+        }
+      ]
+    },
+    {
+      "id": "story",
+      "title": "用户故事",
+      "hint": "用用户的目标解释这次改动。",
+      "fields": [
+        {
+          "key": "role",
+          "label": "作为",
+          "hint": "实际操作与获得结果的角色。",
+          "required": false,
+          "kind": "area"
+        },
+        {
+          "key": "want",
+          "label": "我希望",
+          "hint": "用户想完成什么，不代写技术方案。",
+          "required": false,
+          "kind": "area"
+        },
+        {
+          "key": "benefit",
+          "label": "从而",
+          "hint": "用户会得到什么、能据此做什么。",
+          "required": true,
+          "kind": "area"
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "title": "功能概览",
+      "hint": "概括输入、处理和不同结果；具体条件写在规则中。",
+      "fields": [
+        {
+          "key": "featureInput",
+          "label": "输入",
+          "hint": "输入类型与必要上下文。",
+          "required": false,
+          "kind": "area"
+        },
+        {
+          "key": "featureProcess",
+          "label": "处理",
+          "hint": "主要步骤及判断分支。",
+          "required": false,
+          "kind": "area"
+        },
+        {
+          "key": "featureOutput",
+          "label": "正常结果",
+          "hint": "必要信息充分时，用户会得到什么。",
+          "required": false,
+          "kind": "area"
+        },
+        {
+          "key": "featureAmbiguity",
+          "label": "歧义结果",
+          "hint": "信息缺失或冲突时如何补充并继续。",
+          "required": false,
+          "kind": "area"
+        }
+      ]
+    },
+    {
+      "id": "tasks",
+      "title": "任务",
+      "hint": "每个任务写清前提条件、操作和预期结果，不再另设业务规则。",
+      "collection": "tasks",
+      "fields": []
+    },
+    {
+      "id": "nongoals",
+      "title": "非目标",
+      "hint": "明确本次范围边界。",
+      "fields": [
+        {
+          "key": "nongoals",
+          "label": "不包含的工作",
+          "hint": "每行一项，避免无意扩展范围。",
+          "required": false,
+          "kind": "area"
+        }
+      ]
+    },
+    {
+      "id": "acceptance",
+      "title": "验收案例",
+      "hint": "案例写清前提条件、操作和预期结果，并关联对应任务。",
+      "collection": "acceptance",
+      "fields": []
+    }
+  ],
+  "collections": {
+    "tasks": {
+      "label": "任务",
+      "prefix": "T-",
+      "fields": [
+        {
+          "key": "name",
+          "label": "任务名称",
+          "hint": "命名本次要支持的业务行为。",
+          "required": true,
+          "kind": "text"
+        },
+        {
+          "key": "given",
+          "label": "前提条件",
+          "hint": "这类业务场景成立所需的前提，每行一项。",
+          "required": true,
+          "kind": "area"
+        },
+        {
+          "key": "when",
+          "label": "操作",
+          "hint": "用户执行什么操作或输入什么类型的信息。",
+          "required": true,
+          "kind": "area"
+        },
+        {
+          "key": "then",
+          "label": "预期结果",
+          "hint": "操作后应出现的结果，包含必要的成功、缺失和冲突分支。",
+          "required": true,
+          "kind": "area"
+        }
+      ]
+    },
+    "acceptance": {
+      "label": "验收案例",
+      "prefix": "AC-",
+      "fields": [
+        {
+          "key": "caseType",
+          "label": "案例类型",
+          "hint": "先覆盖成功结果，再覆盖异常与边界。",
+          "required": true,
+          "kind": "select",
+          "options": [
+            "",
+            "正面案例",
+            "反面案例"
+          ]
+        },
+        {
+          "key": "name",
+          "label": "案例名称",
+          "hint": "具体情境＋应得结果。",
+          "required": true,
+          "kind": "text"
+        },
+        {
+          "key": "taskRef",
+          "label": "对应任务",
+          "hint": "选择本案例验证的当前任务。",
+          "required": true,
+          "kind": "task"
+        },
+        {
+          "key": "given",
+          "label": "前提条件",
+          "hint": "只列执行前必须成立的当前状态；每行一项，不写先后操作经过。",
+          "required": true,
+          "kind": "area"
+        },
+        {
+          "key": "when",
+          "label": "操作",
+          "hint": "写用户这一轮的完整原话、固定数据和具体操作；多轮逐步展开，字面值不能省略。",
+          "required": true,
+          "kind": "area"
+        },
+        {
+          "key": "then",
+          "label": "预期结果",
+          "hint": "写这个案例应收到的具体回复、编号、数据或状态，不能只写正确、正常、成功；不是实际执行结果。",
+          "required": true,
+          "kind": "area"
+        },
+        {
+          "key": "executionStatus",
+          "label": "实际执行状态",
+          "hint": "未记录或未执行都不表示已通过。",
+          "required": false,
+          "kind": "select",
+          "options": [
+            "",
+            "未执行",
+            "通过",
+            "未通过",
+            "阻塞"
+          ],
+          "issueTypes": [
+            "Bugfix"
+          ]
+        },
+        {
+          "key": "actualOutput",
+          "label": "实际执行结果（执行后填写）",
+          "hint": "如实记录执行后得到的结果；状态为通过或未通过时必填。",
+          "required": false,
+          "kind": "area",
+          "issueTypes": [
+            "Bugfix"
+          ]
+        },
+        {
+          "key": "evidence",
+          "label": "执行证据（执行后填写）",
+          "hint": "真实记录、截图或日志的位置；通过或未通过时必填，不编造链接。",
+          "required": false,
+          "kind": "area",
+          "issueTypes": [
+            "Bugfix"
+          ]
+        }
+      ]
+    }
+  },
+  "reviewCriteria": [
+    {
+      "id": "scope",
+      "label": "范围与事实",
+      "instruction": "背景介绍说明需求来源、当前问题或缺口及现状；目标预期描述用户可观察的结果，并与标题、用户故事、任务和非目标一致。事实与推断分开，未知项目、编号、负责人和估点不编造。"
+    },
+    {
+      "id": "tasks",
+      "label": "任务可执行",
+      "instruction": "每个任务以通用前提、用户操作和预期结果描述一类行为；具体固定数据写在验收案例，不重复另一套规则。"
+    },
+    {
+      "id": "abstraction",
+      "label": "规则抽象",
+      "instruction": "任务 使用一类场景的 前提条件／操作／预期结果，具体样本和固定话术放入验收案例；条件与处理分支明确。"
+    },
+    {
+      "id": "coverage",
+      "label": "案例覆盖",
+      "instruction": "案例关联有效任务；每个任务至少一个正面案例；整体覆盖必要的异常与边界。"
+    },
+    {
+      "id": "concrete",
+      "label": "结果具体",
+      "instruction": "具体案例使用 前提条件／操作／预期结果：确切前提、字面输入及操作、完整可观察预期，不能只写正常或成功。"
+    },
+    {
+      "id": "continuation",
+      "label": "多轮接续",
+      "instruction": "后续操作和预期结果成对，澄清后沿用有效上下文；具体事实与参数有材料支持。"
+    },
+    {
+      "id": "evidence",
+      "label": "预期与实测",
+      "instruction": "案例定义不表示测试已通过；实现记录、实测证据与工作状态真实，不能凭完整表单认定 Done。"
+    },
+    {
+      "id": "executable",
+      "label": "能否照做",
+      "instruction": "案例写清必要前提、具体输入与操作、可观察的预期结果；不增加执行元信息、重复步骤表或完成条件章。"
+    }
+  ],
+  "extraSections": [
+    {
+      "id": "problem",
+      "title": "问题现象与影响",
+      "hint": "说明已有行为哪里出了问题，以及影响哪些用户或业务。",
+      "fields": [
+        {
+          "key": "bugSummary",
+          "label": "问题现象",
+          "hint": "场景＋实际发生的错误，一句话描述。",
+          "required": true,
+          "kind": "area"
+        },
+        {
+          "key": "impact",
+          "label": "用户与业务影响",
+          "hint": "描述具体受阻的操作、影响范围和已确认后果；未知范围标为待确认。",
+          "required": true,
+          "kind": "area"
+        },
+        {
+          "key": "affectedScope",
+          "label": "受影响范围",
+          "hint": "已确认的用户、版本、数据或功能范围；不要推测影响全部用户。",
+          "required": false,
+          "kind": "area"
+        }
+      ]
+    },
+    {
+      "id": "reproduction",
+      "title": "环境与复现",
+      "hint": "保留足以让开发重现的环境、前提、输入和步骤；偶现或暂未复现要如实说明。",
+      "fields": [
+        {
+          "key": "environment",
+          "label": "复现环境",
+          "hint": "端、系统、浏览器或客户端、部署环境；未知细节明确标为待确认。",
+          "required": true,
+          "kind": "area"
+        },
+        {
+          "key": "buildVersion",
+          "label": "版本／构建号",
+          "hint": "填写实际版本、提交或构建号；没有材料时留空。",
+          "required": false,
+          "kind": "text"
+        },
+        {
+          "key": "page",
+          "label": "受影响页面／接口",
+          "hint": "实际页面、接口或后台任务；不适用时说明。",
+          "required": false,
+          "kind": "text"
+        },
+        {
+          "key": "preconditions",
+          "label": "复现前提",
+          "hint": "账号权限、初始数据和必要状态。",
+          "required": true,
+          "kind": "area"
+        },
+        {
+          "key": "reproInput",
+          "label": "复现输入／样本",
+          "hint": "准确输入、操作对象与必要上下文；区分原始记录和整理样例。",
+          "required": true,
+          "kind": "area"
+        },
+        {
+          "key": "reproSteps",
+          "label": "复现步骤",
+          "hint": "每行一步，按操作顺序写，不混入预期结果。",
+          "required": true,
+          "kind": "area"
+        },
+        {
+          "key": "frequency",
+          "label": "复现情况",
+          "hint": "有记录才写必现；偶现或暂未复现不冒充稳定复现。",
+          "required": true,
+          "kind": "select",
+          "options": [
+            "",
+            "必现",
+            "偶现",
+            "暂未复现"
+          ]
+        },
+        {
+          "key": "reproEvidence",
+          "label": "现场证据",
+          "hint": "已存在的日志、错误信息、截图或录屏位置；不要编造链接或上传敏感资料。",
+          "required": false,
+          "kind": "area"
+        }
+      ]
+    },
+    {
+      "id": "comparison",
+      "title": "实际与预期对照",
+      "hint": "实际结果写已观察到的事实，预期结果写已有约定及其依据。",
+      "fields": [
+        {
+          "key": "actualResult",
+          "label": "实际结果",
+          "hint": "具体错误文字、数值、列表内容或状态，不能只写“有问题”。",
+          "required": true,
+          "kind": "area"
+        },
+        {
+          "key": "expectedResult",
+          "label": "预期结果",
+          "hint": "恢复后用户应实际看到的正确文字、数据或行为。",
+          "required": true,
+          "kind": "area"
+        },
+        {
+          "key": "expectedBasis",
+          "label": "预期依据",
+          "hint": "现有需求、历史正常行为、接口约定或已确认的产品决定；没有既有依据时需确认是否属于 Feature。",
+          "required": true,
+          "kind": "area"
+        }
+      ]
+    },
+    {
+      "id": "diagnosis",
+      "title": "排查信息",
+      "hint": "已核实事实、根因与待验证假设分开，未知根因不阻碍提交问题。",
+      "fields": [
+        {
+          "key": "investigationStart",
+          "label": "从哪里开始排查",
+          "hint": "接手后能执行的第一步，如按步骤复现并核对现场日志。",
+          "required": true,
+          "kind": "area"
+        },
+        {
+          "key": "confirmedFacts",
+          "label": "已确认事实",
+          "hint": "只写有记录支持的排查结果。",
+          "required": false,
+          "kind": "area"
+        },
+        {
+          "key": "rootCause",
+          "label": "根因／待验证假设",
+          "hint": "根因未知可留空；假设须明确标注“待验证”，不得冒充已定位。",
+          "required": false,
+          "kind": "area"
+        }
+      ]
+    },
+    {
+      "id": "fixScope",
+      "title": "修复范围",
+      "hint": "恢复已有约定行为，说明哪些地方要修、哪些地方不变。",
+      "fields": [
+        {
+          "key": "fixScope",
+          "label": "本次修复范围",
+          "hint": "明确需要恢复的行为；未定位时描述修复目标，不编造实现方案。",
+          "required": true,
+          "kind": "area"
+        },
+        {
+          "key": "workaround",
+          "label": "临时绕过方式",
+          "hint": "仅填写已验证或明确标为待验证的临时办法。",
+          "required": false,
+          "kind": "area"
+        },
+        {
+          "key": "risks",
+          "label": "关联影响与风险",
+          "hint": "可能需要回归的相邻功能、历史数据或兼容场景。",
+          "required": false,
+          "kind": "area"
+        }
+      ]
+    },
+    {
+      "id": "goals",
+      "title": "目标预期",
+      "hint": "说明完成后用户能做什么、会看到什么结果；具体判定放入验收案例。",
+      "fields": [
+        {
+          "key": "goals",
+          "label": "目标预期",
+          "hint": "每行一个用户可观察的能力或结果。实现动作放任务，具体 前提条件／操作／预期结果 放验收；不要只写“优化体验”。",
+          "required": true,
+          "kind": "area"
+        }
+      ]
+    }
+  ],
+  "forms": {
+    "Feature": {
+      "label": "Feature · 功能需求",
+      "title": "Feature 需求表单",
+      "introTitle": "说明背景与目标。",
+      "intro": "填写背景和目标，用任务的前提、操作和预期结果说明需求，再给具体验收案例。",
+      "sectionIds": [
+        "basic",
+        "summary",
+        "background",
+        "goals",
+        "story",
+        "overview",
+        "tasks",
+        "acceptance",
+        "nongoals"
+      ],
+      "collectionKeys": [
+        "tasks",
+        "acceptance"
+      ]
+    },
+    "Bugfix": {
+      "label": "Bugfix · 缺陷修复",
+      "title": "Bugfix 问题表单",
+      "introTitle": "把问题复现清楚。",
+      "intro": "填写背景和目标，用任务的前提、操作和预期结果说明需求，再给具体验收案例。",
+      "sectionIds": [
+        "basic",
+        "summary",
+        "problem",
+        "reproduction",
+        "comparison",
+        "diagnosis",
+        "fixScope",
+        "tasks",
+        "acceptance",
+        "nongoals"
+      ],
+      "collectionKeys": [
+        "tasks",
+        "acceptance"
+      ],
+      "reviewCriteria": [
+        {
+          "id": "classification",
+          "label": "类型与预期依据",
+          "instruction": "这是恢复已有约定行为；如果是新增能力或改变未约定行为，标出类型待确认，不因用户称其 Bug 就编造既有规则。"
+        },
+        {
+          "id": "repro",
+          "label": "可复现性",
+          "instruction": "环境、前提、输入、顺序和频率足够明确；偶现与未复现如实写，不编造稳定复现。"
+        },
+        {
+          "id": "difference",
+          "label": "实际／预期差异",
+          "instruction": "两者具体、可对照；实际有现场来源，预期有已确认依据，不能只写“不正常／正常”。"
+        },
+        {
+          "id": "impact",
+          "label": "影响范围",
+          "instruction": "说明实际受影响用户、功能、版本及后果，未知范围和推断明确标识。"
+        },
+        {
+          "id": "diagnosis",
+          "label": "事实与假设",
+          "instruction": "排查起点可执行；已确认事实与待验证假设分开，未知根因可以留空。"
+        },
+        {
+          "id": "fixScope",
+          "label": "修复边界",
+          "instruction": "恢复目标与非目标明确，不把功能扩展夹带进修复。"
+        },
+        {
+          "id": "coverage",
+          "label": "规则与案例覆盖",
+          "instruction": "抽象任务说明恢复后的通用行为；具体验收案例关联有效 任务，覆盖原问题、相关功能和必要边界，每条核心规则有正面案例，整体有反面案例。"
+        },
+        {
+          "id": "evidence",
+          "label": "执行证据",
+          "instruction": "未执行不冒充通过；已执行的状态、实际结果和证据对应，结果确实支持通过结论。"
+        },
+        {
+          "id": "executable",
+          "label": "能否照做",
+          "instruction": "案例写清必要前提、具体输入与操作、可观察的预期结果；不增加执行元信息、重复步骤表或完成条件章。"
+        },
+        {
+          "id": "abstraction",
+          "label": "规则抽象",
+          "instruction": "任务 使用一类场景的 前提条件／操作／预期结果，具体样本和固定话术放入验收案例；条件与处理分支明确。"
+        }
+      ]
+    }
+  },
+  "procedure": {
+    "fields": [
+      {
+        "key": "action",
+        "label": "动作",
+        "hint": "每步只写一个动作，按真实执行顺序填写。",
+        "required": true,
+        "kind": "select",
+        "options": [
+          "",
+          "打开链接",
+          "点击",
+          "输入",
+          "清空",
+          "选择",
+          "等待",
+          "刷新",
+          "检查",
+          "上传",
+          "发送请求",
+          "执行命令",
+          "按键"
+        ]
+      },
+      {
+        "key": "target",
+        "label": "目标／控件",
+        "hint": "浏览器写按钮文字、输入框标签或明确定位；请求写完整端点；命令写工作目录。",
+        "required": true,
+        "kind": "text"
+      },
+      {
+        "key": "value",
+        "label": "输入值／请求参数",
+        "hint": "输入、选择、上传、请求和命令须给字面值或完整参数；不要写“有效内容”“某关键词”。",
+        "required": false,
+        "kind": "area"
+      },
+      {
+        "key": "expected",
+        "label": "该步预期结果",
+        "hint": "这个动作之后应看到的具体文字、行数、状态或输出；等待也写明确完成条件。",
+        "required": true,
+        "kind": "area"
+      }
+    ],
+    "valueActions": [
+      "输入",
+      "选择",
+      "上传",
+      "发送请求",
+      "执行命令",
+      "按键"
+    ],
+    "methodActions": {
+      "浏览器操作": [
+        "打开链接",
+        "点击",
+        "输入",
+        "清空",
+        "选择",
+        "等待",
+        "刷新",
+        "检查",
+        "上传",
+        "按键"
+      ],
+      "API 请求": [
+        "发送请求",
+        "等待",
+        "检查"
+      ],
+      "命令行": [
+        "执行命令",
+        "等待",
+        "检查"
+      ]
+    }
+  },
+  "linear": {
+    "titleField": "title",
+    "descriptionExcludedSectionIds": [
+      "basic"
+    ],
+    "properties": {
+      "project": "project",
+      "assignee": "assignee",
+      "status": "state",
+      "priority": "priority",
+      "estimate": "estimate"
+    },
+    "contextFields": [
+      "identifier",
+      "sourceUrl",
+      "issueType"
+    ],
+    "priorityValues": {
+      "Urgent": 1,
+      "High": 2,
+      "Normal": 3,
+      "Low": 4,
+      "No priority": 0
+    }
+  }
+}

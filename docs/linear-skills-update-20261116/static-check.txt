@@ -1,0 +1,38 @@
+
+> forge-town-skills@0.0.0 check:skills /Users/amin/repositories/forge-town-skills-linear-update
+> tsx skills/forge--check-all-skills/scripts/check-skills.ts ./skills ./README.md
+
+=== Skill 合规性批量检查 ===
+
+✅ forge--brainstorm [static-pass]
+   [content.manual] evidence-required | 名称、正文、示例与实际交付的一致性，以及外部集成，需人工或运行验证 | 阅读相关资源，记录实际输入输出和未覆盖范围
+✅ forge--check-all-skills [static-pass]
+   [content.manual] evidence-required | 名称、正文、示例与实际交付的一致性，以及外部集成，需人工或运行验证 | 阅读相关资源，记录实际输入输出和未覆盖范围
+✅ forge--create-skill [static-pass]
+   [content.manual] evidence-required | 名称、正文、示例与实际交付的一致性，以及外部集成，需人工或运行验证 | 阅读相关资源，记录实际输入输出和未覆盖范围
+✅ forge--linear--backfill-issues [static-pass]
+   [content.manual] evidence-required | 名称、正文、示例与实际交付的一致性，以及外部集成，需人工或运行验证 | 阅读相关资源，记录实际输入输出和未覆盖范围
+✅ forge--linear--create-issues [static-pass]
+   [content.manual] evidence-required | 名称、正文、示例与实际交付的一致性，以及外部集成，需人工或运行验证 | 阅读相关资源，记录实际输入输出和未覆盖范围
+✅ forge--linear--query-issues [static-pass]
+   [content.manual] evidence-required | 名称、正文、示例与实际交付的一致性，以及外部集成，需人工或运行验证 | 阅读相关资源，记录实际输入输出和未覆盖范围
+✅ forge--linear--review-acceptance [static-pass]
+   [content.manual] evidence-required | 名称、正文、示例与实际交付的一致性，以及外部集成，需人工或运行验证 | 阅读相关资源，记录实际输入输出和未覆盖范围
+✅ forge--linear--review-issue [static-pass]
+   [content.manual] evidence-required | 名称、正文、示例与实际交付的一致性，以及外部集成，需人工或运行验证 | 阅读相关资源，记录实际输入输出和未覆盖范围
+✅ forge--linear--show-issue-best-practice [static-pass]
+   [content.manual] evidence-required | 名称、正文、示例与实际交付的一致性，以及外部集成，需人工或运行验证 | 阅读相关资源，记录实际输入输出和未覆盖范围
+✅ forge--linear--show-issue-form [static-pass]
+   [content.manual] evidence-required | 名称、正文、示例与实际交付的一致性，以及外部集成，需人工或运行验证 | 阅读相关资源，记录实际输入输出和未覆盖范围
+✅ forge--linear--submit-acceptance [static-pass]
+   [content.manual] evidence-required | 名称、正文、示例与实际交付的一致性，以及外部集成，需人工或运行验证 | 阅读相关资源，记录实际输入输出和未覆盖范围
+✅ forge--review-best-practice [static-pass]
+   [content.manual] evidence-required | 名称、正文、示例与实际交付的一致性，以及外部集成，需人工或运行验证 | 阅读相关资源，记录实际输入输出和未覆盖范围
+✅ forge--show-skill-best-practice [static-pass]
+   [content.manual] evidence-required | 名称、正文、示例与实际交付的一致性，以及外部集成，需人工或运行验证 | 阅读相关资源，记录实际输入输出和未覆盖范围
+✅ forge--write-brief-report [static-pass]
+   [content.manual] evidence-required | 名称、正文、示例与实际交付的一致性，以及外部集成，需人工或运行验证 | 阅读相关资源，记录实际输入输出和未覆盖范围
+
+=== 检查报告 ===
+总计: 14 | 静态通过: 14 | 静态错误: 0 | 人工待验证: 14
+✅ 静态检查通过；人工内容与外部运行验证仍需另行记录。
