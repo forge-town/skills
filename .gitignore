@@ -1,3 +1,6 @@
 .github
 
 node_modules/
+
+# Local plans, reports, packages and verification artifacts
+/docs/
