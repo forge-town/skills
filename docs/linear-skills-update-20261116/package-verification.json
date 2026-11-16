@@ -1,0 +1,15 @@
+{
+  "archive": "docs/distribution/forge-linear-skills-2026-11-16.zip",
+  "skills": 8,
+  "files": 122,
+  "bytes": 347863,
+  "sha256": "ce1a6c53757377739fd853341fdfc64a4cf82235b7efc8424f6e37d4759577a3",
+  "checks": [
+    "CRC and file hashes",
+    "isolated extraction with clean HOME",
+    "form launcher and prototype copy",
+    "shared create/review generator",
+    "strict body validation and tamper rejection",
+    "unknown fields rejected without output"
+  ]
+}

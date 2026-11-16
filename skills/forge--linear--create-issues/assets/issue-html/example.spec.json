@@ -1,0 +1,774 @@
+{
+  "$comment": "Fictional demo input for scripts/render-issue.mjs. Not a real Linear issue; replace every value with approved content. Remove demoNotice for real issues.",
+  "demoNotice": "虚构演示数据，仅用于展示 issue.html 模板，不对应任何真实 Linear Issue / Fictional demo data only.",
+  "mode": "zh-en",
+  "title": {
+    "zh": "[Channel][Feature] 作为运营管理员，我希望通过渠道设置，可以添加和查看通知渠道",
+    "en": "As an operations admin, I want to use Channel Settings so that I can add and inspect notification channels"
+  },
+  "meta": {
+    "product": "Demo Console",
+    "domain": "Notification",
+    "type": "Feature",
+    "estimate": 8,
+    "priority": "Medium",
+    "dependencies": []
+  },
+  "components": [
+    {
+      "id": "channel-list",
+      "kind": "page",
+      "name": {
+        "zh": "渠道列表页面",
+        "en": "Channel list page"
+      },
+      "trigger": {
+        "zh": "Settings 侧栏 →“通知渠道”",
+        "en": "Settings sidebar → “Channels”"
+      },
+      "state": {
+        "zh": "已有 2 个渠道的正常列表",
+        "en": "List with two existing channels"
+      },
+      "route": "/settings/channels",
+      "blocks": [
+        {
+          "type": "bar",
+          "title": {
+            "zh": "通知渠道",
+            "en": "Channels"
+          },
+          "sub": {
+            "zh": "管理团队接收通知的渠道",
+            "en": "Where your team receives notifications"
+          },
+          "actions": [
+            {
+              "label": {
+                "zh": "添加渠道",
+                "en": "Add channel"
+              },
+              "icon": "+",
+              "variant": "primary"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            {
+              "zh": "名称",
+              "en": "Name"
+            },
+            {
+              "zh": "类型",
+              "en": "Type"
+            },
+            {
+              "zh": "状态",
+              "en": "Status"
+            }
+          ],
+          "rows": [
+            [
+              "Ops Alerts",
+              "Slack",
+              {
+                "zh": "启用",
+                "en": "Active"
+              }
+            ],
+            [
+              "Billing Mail",
+              "Email",
+              {
+                "zh": "启用",
+                "en": "Active"
+              }
+            ]
+          ],
+          "rowAction": {
+            "icon": "⋯",
+            "tooltip": {
+              "zh": "更多操作",
+              "en": "More actions"
+            },
+            "variant": "ghost",
+            "ref": "row-menu"
+          }
+        }
+      ]
+    },
+    {
+      "id": "channel-row-menu",
+      "kind": "menu",
+      "base": "channel-list",
+      "anchor": "row-menu",
+      "name": {
+        "zh": "渠道行操作菜单",
+        "en": "Channel row menu"
+      },
+      "trigger": {
+        "zh": "渠道行末尾 `MoreHorizontal` 图标",
+        "en": "`MoreHorizontal` icon at the row end"
+      },
+      "state": {
+        "zh": "菜单展开",
+        "en": "Menu open"
+      },
+      "items": [
+        {
+          "label": {
+            "zh": "查看详情",
+            "en": "View details"
+          }
+        },
+        {
+          "label": {
+            "zh": "停用",
+            "en": "Disable"
+          },
+          "tone": "danger"
+        }
+      ]
+    },
+    {
+      "id": "add-channel-catalog",
+      "kind": "modal",
+      "base": "channel-list",
+      "name": {
+        "zh": "添加渠道弹窗 · 内置目录",
+        "en": "Add channel dialog · Catalog"
+      },
+      "trigger": {
+        "zh": "列表页右上角“添加渠道”按钮",
+        "en": "“Add channel” button, top right of the list"
+      },
+      "state": {
+        "zh": "内置目录，已选中 Slack",
+        "en": "Built-in catalog, Slack selected"
+      },
+      "title": {
+        "zh": "添加渠道",
+        "en": "Add channel"
+      },
+      "blocks": [
+        {
+          "type": "tabs",
+          "items": [
+            {
+              "zh": "内置目录",
+              "en": "Catalog"
+            },
+            {
+              "zh": "自定义",
+              "en": "Custom"
+            }
+          ],
+          "active": 0
+        },
+        {
+          "type": "choices",
+          "items": [
+            {
+              "label": "Slack",
+              "desc": {
+                "zh": "发送到频道",
+                "en": "Post to a channel"
+              },
+              "selected": true
+            },
+            {
+              "label": "Email",
+              "desc": {
+                "zh": "发送到邮箱",
+                "en": "Send to an address"
+              }
+            },
+            {
+              "label": "Webhook",
+              "desc": {
+                "zh": "推送到 URL",
+                "en": "Push to a URL"
+              }
+            }
+          ]
+        }
+      ],
+      "footer": [
+        {
+          "label": {
+            "zh": "取消",
+            "en": "Cancel"
+          }
+        },
+        {
+          "label": {
+            "zh": "下一步",
+            "en": "Next"
+          },
+          "variant": "primary"
+        }
+      ]
+    },
+    {
+      "id": "add-channel-custom",
+      "kind": "modal",
+      "base": "channel-list",
+      "name": {
+        "zh": "添加渠道弹窗 · 自定义表单",
+        "en": "Add channel dialog · Custom form"
+      },
+      "trigger": {
+        "zh": "弹窗内“自定义”Tab",
+        "en": "“Custom” tab inside the dialog"
+      },
+      "state": {
+        "zh": "URL 校验失败",
+        "en": "URL validation error"
+      },
+      "title": {
+        "zh": "添加渠道",
+        "en": "Add channel"
+      },
+      "blocks": [
+        {
+          "type": "tabs",
+          "items": [
+            {
+              "zh": "内置目录",
+              "en": "Catalog"
+            },
+            {
+              "zh": "自定义",
+              "en": "Custom"
+            }
+          ],
+          "active": 1
+        },
+        {
+          "type": "field",
+          "label": {
+            "zh": "渠道名称",
+            "en": "Channel name"
+          },
+          "value": "Release Bot"
+        },
+        {
+          "type": "field",
+          "label": "Webhook URL",
+          "value": "release-bot.example",
+          "error": {
+            "zh": "请输入以 https:// 开头的地址",
+            "en": "Enter an address starting with https://"
+          }
+        }
+      ],
+      "footer": [
+        {
+          "label": {
+            "zh": "取消",
+            "en": "Cancel"
+          }
+        },
+        {
+          "label": {
+            "zh": "保存渠道",
+            "en": "Save channel"
+          },
+          "variant": "primary"
+        }
+      ]
+    },
+    {
+      "id": "channel-detail",
+      "kind": "drawer",
+      "base": "channel-list",
+      "name": {
+        "zh": "渠道详情抽屉",
+        "en": "Channel detail drawer"
+      },
+      "trigger": {
+        "zh": "行操作菜单 →“查看详情”",
+        "en": "Row menu → “View details”"
+      },
+      "state": {
+        "zh": "查看 Ops Alerts",
+        "en": "Viewing Ops Alerts"
+      },
+      "title": "Ops Alerts",
+      "blocks": [
+        {
+          "type": "dl",
+          "items": [
+            [
+              {
+                "zh": "类型",
+                "en": "Type"
+              },
+              "Slack"
+            ],
+            [
+              {
+                "zh": "状态",
+                "en": "Status"
+              },
+              {
+                "zh": "启用",
+                "en": "Active"
+              }
+            ],
+            [
+              {
+                "zh": "目标",
+                "en": "Target"
+              },
+              "#ops-alerts"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "langs": {
+    "zh": {
+      "summary": [
+        "一句话：运营管理员可以在渠道设置中从内置目录或自定义表单添加通知渠道，并查看渠道详情",
+        "面向角色：负责团队通知配置的运营管理员",
+        "核心交付：渠道列表与详情、内置目录添加、自定义渠道表单与校验",
+        "关键规则：自定义 Webhook URL 必须以 https:// 开头；重名渠道不可保存",
+        "不包含：渠道消息模板编辑与发送记录",
+        "规模：8 点（T1 2 + T2 2 + T3 4）"
+      ],
+      "background": [
+        "运营管理员需要为团队添加并核对通知接收渠道。",
+        "目前需要联系工程人员配置，管理员无法自行确认保存结果。",
+        "系统现有配置依赖工程维护，尚缺少自助渠道列表和添加表单。"
+      ],
+      "story": {
+        "as": "负责团队通知配置的运营管理员",
+        "want": "在渠道设置页面自行添加和查看通知渠道",
+        "so": "新的通知目标无需等待工程排期即可生效"
+      },
+      "overview": [
+        "管理员可以从内置目录或自定义表单添加通知渠道，并在列表及详情中查看保存结果。"
+      ],
+      "tasks": [
+        {
+          "id": "T1",
+          "name": "查看渠道列表与详情",
+          "points": 2,
+          "items": [
+            "列表展示名称、类型和状态",
+            "行操作菜单打开渠道详情抽屉"
+          ]
+        },
+        {
+          "id": "T2",
+          "name": "从内置目录添加渠道",
+          "points": 2,
+          "items": [
+            "弹窗内置目录展示 Slack、Email、Webhook",
+            "选择后保存并刷新列表"
+          ]
+        },
+        {
+          "id": "T3",
+          "name": "自定义渠道表单与校验",
+          "points": 4,
+          "items": [
+            "填写名称与 Webhook URL",
+            "URL 格式与重名校验在字段下方提示"
+          ]
+        }
+      ],
+      "userFlow": [
+        "打开渠道设置",
+        "点击“添加渠道”",
+        "选择内置渠道或填写自定义表单",
+        "保存后返回列表并看到新渠道"
+      ],
+      "nonGoals": [
+        "渠道消息模板编辑",
+        "通知发送记录查询"
+      ],
+      "acs": [
+        {
+          "id": "AC-01",
+          "task": "T1",
+          "summary": "渠道列表显示已有渠道的名称、类型和状态",
+          "then": "表格显示两行，分别包含名称、类型和“启用”状态",
+          "given": "团队已有 Ops Alerts 与 Billing Mail 两个启用渠道，管理员位于 `/settings/channels`",
+          "when": "渠道列表完成加载"
+        },
+        {
+          "id": "AC-02",
+          "task": "T1",
+          "summary": "从行操作菜单打开渠道详情抽屉",
+          "then": "右侧抽屉显示 Ops Alerts 的类型、状态和目标，列表仍在抽屉左侧可见",
+          "given": "管理员位于渠道列表，Ops Alerts 行可见",
+          "when": "管理员点击该行 `MoreHorizontal` 图标并选择“查看详情”"
+        },
+        {
+          "id": "AC-03",
+          "task": "T2",
+          "summary": "从内置目录选择 Slack 进入配置步骤",
+          "then": "Dialog 显示 Slack 的配置步骤，标题仍为“添加渠道”",
+          "given": "管理员已打开添加渠道 Dialog 的“内置目录”Tab",
+          "when": "管理员选择 Slack 卡片并点击“下一步”"
+        },
+        {
+          "id": "AC-04",
+          "task": "T3",
+          "summary": "非 https Webhook URL 在字段下方显示错误",
+          "then": "URL 字段下方显示“请输入以 https:// 开头的地址”，Dialog 保持打开",
+          "given": "管理员位于“自定义”Tab，名称为 Release Bot，URL 为 release-bot.example",
+          "when": "管理员点击“保存渠道”"
+        },
+        {
+          "id": "AC-05",
+          "task": "T3",
+          "summary": "保存有效自定义渠道后列表新增该渠道",
+          "then": "Dialog 关闭，渠道列表新增 Release Bot 行且状态为“启用”",
+          "given": "管理员在“自定义”Tab 填写名称 Release Bot 与 https://hooks.example/release",
+          "when": "管理员点击“保存渠道”"
+        }
+      ],
+      "testCases": [
+        {
+          "id": "TC-01",
+          "acRef": "AC-01",
+          "summary": "渠道列表显示已有渠道的名称、类型和状态",
+          "given": "团队已有 Ops Alerts 与 Billing Mail 两个启用渠道，管理员位于 `/settings/channels`",
+          "when": "1. 渠道列表完成加载",
+          "then": "表格显示两行，分别包含名称、类型和“启用”状态"
+        },
+        {
+          "id": "TC-02",
+          "acRef": "AC-02",
+          "summary": "从行操作菜单打开渠道详情抽屉",
+          "given": "管理员位于渠道列表，Ops Alerts 行可见",
+          "when": "1. 管理员点击该行 `MoreHorizontal` 图标并选择“查看详情”",
+          "then": "右侧抽屉显示 Ops Alerts 的类型、状态和目标，列表仍在抽屉左侧可见"
+        },
+        {
+          "id": "TC-03",
+          "acRef": "AC-03",
+          "summary": "从内置目录选择 Slack 进入配置步骤",
+          "given": "管理员已打开添加渠道 Dialog 的“内置目录”Tab",
+          "when": "1. 管理员选择 Slack 卡片并点击“下一步”",
+          "then": "Dialog 显示 Slack 的配置步骤，标题仍为“添加渠道”"
+        },
+        {
+          "id": "TC-04",
+          "acRef": "AC-04",
+          "summary": "非 https Webhook URL 在字段下方显示错误",
+          "given": "管理员位于“自定义”Tab，名称为 Release Bot，URL 为 release-bot.example",
+          "when": "1. 管理员点击“保存渠道”",
+          "then": "URL 字段下方显示“请输入以 https:// 开头的地址”，Dialog 保持打开"
+        },
+        {
+          "id": "TC-05",
+          "acRef": "AC-05",
+          "summary": "保存有效自定义渠道后列表新增该渠道",
+          "given": "管理员在“自定义”Tab 填写名称 Release Bot 与 https://hooks.example/release",
+          "when": "1. 管理员点击“保存渠道”",
+          "then": "Dialog 关闭，渠道列表新增 Release Bot 行且状态为“启用”"
+        }
+      ]
+    },
+    "en": {
+      "summary": [
+        "In one sentence: Operations admins add notification channels from a built-in catalog or a custom form and view channel details in Channel Settings",
+        "Primary role: Operations admin who owns team notification setup",
+        "Core delivery: channel list and details, catalog add, custom channel form with validation",
+        "Key rules: custom Webhook URLs must start with https://; duplicate names cannot be saved",
+        "Excludes: message template editing and delivery history",
+        "Size: 8 points (T1 2 + T2 2 + T3 4)"
+      ],
+      "background": [
+        "Operations admins need to add and inspect their team notification channels.",
+        "They currently depend on engineers to configure channels and cannot inspect saved settings themselves.",
+        "The current setup lacks a self-service channel list and creation form."
+      ],
+      "story": {
+        "as": "operations admin who owns team notification setup",
+        "want": "add and inspect notification channels myself in Channel Settings",
+        "so": "new notification targets go live without waiting for engineering"
+      },
+      "overview": [
+        "Admins can add a channel from the catalog or a custom form and inspect the saved result in the list and details."
+      ],
+      "tasks": [
+        {
+          "id": "T1",
+          "name": "View the channel list and details",
+          "points": 2,
+          "items": [
+            "List shows name, type and status",
+            "Row menu opens the channel detail drawer"
+          ]
+        },
+        {
+          "id": "T2",
+          "name": "Add a channel from the catalog",
+          "points": 2,
+          "items": [
+            "Dialog catalog shows Slack, Email and Webhook",
+            "Selection is saved and the list refreshes"
+          ]
+        },
+        {
+          "id": "T3",
+          "name": "Custom channel form and validation",
+          "points": 4,
+          "items": [
+            "Enter a name and Webhook URL",
+            "URL format and duplicate-name errors appear under the field"
+          ]
+        }
+      ],
+      "userFlow": [
+        "Open Channel Settings",
+        "Click “Add channel”",
+        "Pick a catalog channel or fill the custom form",
+        "Save, return to the list and see the new channel"
+      ],
+      "nonGoals": [
+        "Message template editing",
+        "Delivery history lookup"
+      ],
+      "acs": [
+        {
+          "id": "AC-01",
+          "task": "T1",
+          "summary": "Channel list shows name, type and status of existing channels",
+          "then": "The table shows two rows with name, type and “Active” status",
+          "given": "The team has active channels Ops Alerts and Billing Mail and the admin is on `/settings/channels`",
+          "when": "The channel list finishes loading"
+        },
+        {
+          "id": "AC-02",
+          "task": "T1",
+          "summary": "Open the channel detail drawer from the row menu",
+          "then": "A right-side drawer shows Ops Alerts type, status and target while the list stays visible to its left",
+          "given": "The admin is on the channel list and the Ops Alerts row is visible",
+          "when": "The admin clicks the row `MoreHorizontal` icon and chooses “View details”"
+        },
+        {
+          "id": "AC-03",
+          "task": "T2",
+          "summary": "Choose Slack in the catalog to reach its setup step",
+          "then": "The Dialog shows the Slack setup step with the title “Add channel”",
+          "given": "The admin has the “Catalog” tab of the Add channel Dialog open",
+          "when": "The admin selects the Slack card and clicks “Next”"
+        },
+        {
+          "id": "AC-04",
+          "task": "T3",
+          "summary": "A non-https Webhook URL shows an error under the field",
+          "then": "“Enter an address starting with https://” appears under the URL field and the Dialog stays open",
+          "given": "The admin is on the “Custom” tab with name Release Bot and URL release-bot.example",
+          "when": "The admin clicks “Save channel”"
+        },
+        {
+          "id": "AC-05",
+          "task": "T3",
+          "summary": "Saving a valid custom channel adds it to the list",
+          "then": "The Dialog closes and the list gains an active Release Bot row",
+          "given": "The admin filled name Release Bot and https://hooks.example/release on the “Custom” tab",
+          "when": "The admin clicks “Save channel”"
+        }
+      ],
+      "testCases": [
+        {
+          "id": "TC-01",
+          "acRef": "AC-01",
+          "summary": "Channel list shows name, type and status of existing channels",
+          "given": "The team has active channels Ops Alerts and Billing Mail and the admin is on `/settings/channels`",
+          "when": "1. The channel list finishes loading",
+          "then": "The table shows two rows with name, type and “Active” status"
+        },
+        {
+          "id": "TC-02",
+          "acRef": "AC-02",
+          "summary": "Open the channel detail drawer from the row menu",
+          "given": "The admin is on the channel list and the Ops Alerts row is visible",
+          "when": "1. The admin clicks the row `MoreHorizontal` icon and chooses “View details”",
+          "then": "A right-side drawer shows Ops Alerts type, status and target while the list stays visible to its left"
+        },
+        {
+          "id": "TC-03",
+          "acRef": "AC-03",
+          "summary": "Choose Slack in the catalog to reach its setup step",
+          "given": "The admin has the “Catalog” tab of the Add channel Dialog open",
+          "when": "1. The admin selects the Slack card and clicks “Next”",
+          "then": "The Dialog shows the Slack setup step with the title “Add channel”"
+        },
+        {
+          "id": "TC-04",
+          "acRef": "AC-04",
+          "summary": "A non-https Webhook URL shows an error under the field",
+          "given": "The admin is on the “Custom” tab with name Release Bot and URL release-bot.example",
+          "when": "1. The admin clicks “Save channel”",
+          "then": "“Enter an address starting with https://” appears under the URL field and the Dialog stays open"
+        },
+        {
+          "id": "TC-05",
+          "acRef": "AC-05",
+          "summary": "Saving a valid custom channel adds it to the list",
+          "given": "The admin filled name Release Bot and https://hooks.example/release on the “Custom” tab",
+          "when": "1. The admin clicks “Save channel”",
+          "then": "The Dialog closes and the list gains an active Release Bot row"
+        }
+      ]
+    }
+  },
+  "video": {
+    "tasks": {
+      "T1": {
+        "kind": "frontend",
+        "shots": [
+          {
+            "component": "channel-list",
+            "on": {
+              "scope": 0
+            }
+          },
+          {
+            "component": "channel-detail",
+            "on": {
+              "scope": 1
+            }
+          }
+        ]
+      },
+      "T2": {
+        "kind": "frontend",
+        "shots": [
+          {
+            "component": "add-channel-catalog",
+            "on": {
+              "scope": 0
+            }
+          }
+        ]
+      },
+      "T3": {
+        "kind": "mixed",
+        "shots": [
+          {
+            "component": "add-channel-custom",
+            "on": {
+              "scope": 0
+            }
+          },
+          {
+            "flow": "channel-save",
+            "on": {
+              "scope": 1
+            }
+          }
+        ]
+      }
+    },
+    "flows": [
+      {
+        "id": "channel-save",
+        "name": {
+          "zh": "保存渠道与校验",
+          "en": "Save and validate a channel"
+        },
+        "direction": "TB",
+        "nodes": [
+          {
+            "id": "Submit",
+            "kind": "start",
+            "label": {
+              "zh": "管理员保存渠道",
+              "en": "Admin saves a channel"
+            }
+          },
+          {
+            "id": "Https",
+            "kind": "decision",
+            "label": {
+              "zh": "URL 以 https:// 开头？",
+              "en": "URL starts with https://?"
+            }
+          },
+          {
+            "id": "UrlError",
+            "kind": "error",
+            "label": {
+              "zh": "URL 字段下方提示错误",
+              "en": "Show error below URL"
+            }
+          },
+          {
+            "id": "Unique",
+            "kind": "decision",
+            "label": {
+              "zh": "团队内名称唯一？",
+              "en": "Name unique in team?"
+            }
+          },
+          {
+            "id": "NameError",
+            "kind": "error",
+            "label": {
+              "zh": "名称字段下方提示重名",
+              "en": "Show duplicate-name error"
+            }
+          },
+          {
+            "id": "Saved",
+            "kind": "success",
+            "label": {
+              "zh": "列表新增启用渠道",
+              "en": "List gains an active channel"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "from": "Submit",
+            "to": "Https"
+          },
+          {
+            "from": "Https",
+            "to": "UrlError",
+            "label": {
+              "zh": "否",
+              "en": "No"
+            }
+          },
+          {
+            "from": "Https",
+            "to": "Unique",
+            "label": {
+              "zh": "是",
+              "en": "Yes"
+            }
+          },
+          {
+            "from": "Unique",
+            "to": "NameError",
+            "label": {
+              "zh": "否",
+              "en": "No"
+            }
+          },
+          {
+            "from": "Unique",
+            "to": "Saved",
+            "label": {
+              "zh": "是",
+              "en": "Yes"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

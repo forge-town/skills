@@ -5,7 +5,8 @@
   "description": "Forge Town Agent Skills 集合",
   "scripts": {
     "check:skills": "tsx skills/forge--check-all-skills/scripts/check-skills.ts ./skills ./README.md",
-    "test:skills": "tsx --test skills/forge--check-all-skills/scripts/*.test.ts"
+    "test:skills": "tsx --test skills/forge--check-all-skills/scripts/*.test.ts skills/forge--linear--show-issue-form/scripts/*.test.ts skills/forge--linear--show-issue-form/scripts/*.test.mjs skills/forge--linear--create-issues/scripts/*.test.mjs skills/forge--linear--create-issues/scripts/video/*.test.mjs",
+    "build:issue-form": "tsx skills/forge--linear--show-issue-form/scripts/build-form.ts"
   },
   "devDependencies": {
     "tsx": "^4.20.5",
