@@ -54,4 +54,3 @@ pnpm run check:skills
 - 个人入口 `create-linear-issues` 对应本仓库 `forge--linear--create-issues`；`backfill-linear-issues` 对应 `forge--linear--backfill-issues`。
 - 整套安装时将八个完整目录复制到目标技能目录，保持同级；采用独立实体目录，不依赖个人目录或软链接。已有版本先备份。`plan-linear-cycle` 不在本项目套件内。
 - 生成器需要 Node.js 24+；计点工具使用 Python 3。视频配音及独立验证等额外依赖按对应 reference 按需准备。
-- [迁入范围与验证](docs/linear-skills-update-20261116/verification.md)；[八技能 ZIP](docs/distribution/forge-linear-skills-2026-11-16.zip)。
